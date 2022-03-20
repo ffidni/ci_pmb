@@ -13,9 +13,7 @@ class Main extends CI_Controller {
         $this->load->view("home/index");
     }
 
-    public function daftar(){
-        $this->load->view("daftar/index");
-    }
+
 
 
 

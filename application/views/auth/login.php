@@ -40,6 +40,7 @@
                 <input type="text" class="form-control" name="username">
 
               </div>
+              <br>
               <div class="form-group last mb-4">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name="password">
@@ -56,7 +57,7 @@
 
               <input type="submit" value="Log In" class="btn btn-block btn-primary">
 
-              <span class="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
+              <span class="d-block text-left my-4 text-muted">&mdash; Belum punya akun? <a href="<?= base_url('auth/register')?>">Buat Akun</a> &mdash;</span>
               
               <div class="social-login">
                 <a href="#" class="facebook">

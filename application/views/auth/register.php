@@ -34,7 +34,8 @@
               <h3>Daftar Akun</h3>
               <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
             </div>
-            <form action="<?= base_url("auth/registerProcess")?>" method="post">
+            <?= validation_errors();?>
+            <?= form_open('auth/validateRegister');?>
               <div class="form-group first">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" name="username">

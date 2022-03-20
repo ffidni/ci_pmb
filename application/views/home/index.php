@@ -51,9 +51,9 @@
         <ul>
           <li><a class="nav-link scrollto active" href="<?= base_url()?>">Home</a></li>
           <li><a class="nav-link scrollto" href="">Tentang</a></li>
-          <li><a class="nav-link scrollto" href="<?= base_url("main/daftar")?>">Pendaftaran Mahasiswa</a></li>
+          <li><a class="nav-link scrollto" href="<?= base_url("form/daftar")?>">Pendaftaran Mahasiswa</a></li>
           <li><a class="nav-link scrollto " href="">Akun</a></li>
-          <li><a class="nav-link scrollto" href="">Logout</a></li>
+          <li><a class="nav-link scrollto" href="<?= base_url("auth/logout") ?>">Logout</a></li>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

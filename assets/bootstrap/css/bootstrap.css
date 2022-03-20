@@ -6838,5 +6838,131 @@ button.close {
   color: grey;
 }
 
+.form-table {
+    width: 100%;
+}
+
+.form-table td {
+    padding: 10px 10px 5px 0px;
+}
+
+.form-table #perempuan {
+    margin-left: 10px;
+}
+
+.tab-daftar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tab-daftar h3 {
+    display: inline-block;
+    margin-top: 35px;
+    border-bottom: 3px solid #22803d;
+    
+}
+
+.header {
+    background-color: #22803d;
+    padding-bottom: 20px;
+    height: 11rem;
+}
+
+.header .logo {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    float: left;
+    
+}
+
+.header .links {
+    float: right;
+    line-height: 11rem;
+    
+}
+
+.header .links li {
+    list-style: none;
+    float: left;
+}
+
+
+
+.header .links li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 20px;
+    font-size: 1.7rem;
+}
+
+.header .links li a:hover {
+    background-color: #248c42;
+}
+
+.header .logo img {
+    width: 82px;
+    margin: 10px 15px 0px 40px;
+}
+
+.header .logo h3 {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.button-navigation{
+    margin-top: 20px;
+    width: 100%;
+    text-align: right;
+}
+
+.btn-navigation {
+    border: none;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.btn-next {
+    background-color: #22803d;
+}
+
+.btn-previous {
+    background-color: #d63c3c;
+}
+
+.btn-next:hover {
+    color: white;
+    background-color: #248c42;
+}
+
+.btn-previous:hover {
+    color: white;
+    background-color: #e83f3f;
+}
+
+.tahu-stainu {
+    border-top: 1px solid grey;
+    margin-top: 10px;
+    padding-top: 10px;
+
+}
+
+#tahu-textarea {
+    display: none;
+}
+
+.tahu-stainu table {
+    display: inline-block;
+    margin-left: 30px;
+}
+
 
 /*# sourceMappingURL=bootstrap.css.map */
