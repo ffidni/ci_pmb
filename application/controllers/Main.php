@@ -10,12 +10,9 @@ class Main extends CI_Controller {
     }
     
     public function index(){
-        $this->load->view("home/index");
+        $data["detail_pendaftaran"] = $this->Form_model->get_details($this->session->userdata("email"))->row_array();
+        $this->load->view("home/sidebar", $data);
+        $this->load->view("home/index", $data);
     }
-
-
-
-
-
 
 }

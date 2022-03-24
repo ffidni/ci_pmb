@@ -6964,5 +6964,26 @@ button.close {
     margin-left: 30px;
 }
 
+.error {
+    box-shadow: 0 0 0 1px red;
+}
+
+input[type=radio] {
+    border: 1px solid lightgray;
+    padding: 0.5em;
+    -webkit-appearance: none;
+    border-radius: 20%;
+  }
+  
+input[type=radio]:focus {
+    outline-color: transparent;
+}
+
+input[type=radio]:checked {
+    background: url('checked.jpg') no-repeat center center;
+    background-size: 9px 9px;
+    
+}
+  
 
 /*# sourceMappingURL=bootstrap.css.map */

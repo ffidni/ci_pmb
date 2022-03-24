@@ -35,4 +35,23 @@ class Form_model extends CI_Model {
 		return $query;
     }
 
+    public function get_pendidikan($id = 0){
+        if ($id == 0) {
+            $query = $this->db->get("pendidikan");
+        } else {
+            $query = $this->db->get_where('pendidikan', array('id' => $id));
+        }
+        return $query->result();
+    }
+
+    public function insert_data($data){
+        $this->db->insert('mahasiswa', $data);
+        return $this->db->insert_id();
+    }
+
+    public function get_details($email){
+        $this->db->where("email", $email);
+        return $this->db->get("mahasiswa");
+    }
+
 }

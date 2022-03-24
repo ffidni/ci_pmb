@@ -15,7 +15,6 @@ class Auth extends CI_Controller {
     public function registerProcess(){
         if ($this->input->post()){
             $username = $this->input->post("username");
-            $matches = $this->Auth_model->check_username($username)->num_rows();
             $email = $this->input->post("email");
             $password = $this->input->post("password");
             $encrypted_pass = md5($password);
@@ -38,7 +37,7 @@ class Auth extends CI_Controller {
         $this->form_validation->set_rules("password", "Password", "required");
 
         if ($this->form_validation->run() != false){
-            
+            $this->registerProcess();
         } else {
             $this->load->view("auth/register");
         }

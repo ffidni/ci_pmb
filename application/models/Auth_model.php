@@ -15,6 +15,7 @@
             return $this->db->get("user");
         }
 
+
         public function getUsername(){
             
         }
