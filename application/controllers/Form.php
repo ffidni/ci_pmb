@@ -2,34 +2,44 @@
 
 class Form extends CI_Controller {
 
-
+    public function __construct(){
+        parent::__construct();
+        if (!array_key_exists("email", $this->session->userdata())){
+            redirect('auth/login');
+        }
+    }
 
     public function index(){
 
     }
 
-    public function daftar(){
+    public function daftar($is_edit = false, $detail = []){
         $data = [
             'provinsi' => $this->Form_model->getprovinsi(),
             'pendidikan' => $this->Form_model->get_pendidikan(),
             'mhs_pendidikan' => array("SMA", "SMK", "MA", "Paket C"),
-            'username' => $this->session->userdata("username"),
-            'email' => $this->session->userdata("email"),
+            'is_home' => false,
+            'is_edit' => false,
+            'update_status' => ($this->session->flashdata("update_status")) ? true : false,
         ];
-        $this->load->view("home/sidebar");
+
+        if ($is_edit){
+            $detail = $this->session->userdata("detail_pendaftaran");
+            $data['is_edit'] = true;
+        }
+
+
+        if (!empty($detail)){
+            $data['detail_pendaftaran'] = $detail;
+        } else {
+            $data['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('email'))->row_array();
+            $_SESSION['detail_pendaftaran'] = $data['detail_pendaftaran'];
+        }
+
+        $this->load->view("home/sidebar", $data);
         $this->load->view("home/daftar", $data);
     }
 
-    public function daftar_edit(){
-        $data = [
-            'provinsi' => $this->Form_model->getprovinsi(),
-            'pendidikan' => $this->Form_model->get_pendidikan(),
-            'mhs_pendidikan' => array("SMA", "SMK", "MA", "Paket C"),
-        ];
-        $data['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('email'))->row();
-        $this->load->view("home/sidebar");
-        $this->load->view("home/edit_daftar", $data);
-    }
 
     function get_kabupaten()
     {
@@ -57,10 +67,48 @@ class Form extends CI_Controller {
         if ($data){
             $id = $this->Form_model->insert_data($data);
             if ($id) {
-                echo "Berhasil";
+                $data['nomor_seleksi'] = $this->get_seleksi();
+                $this->Form_model->update("nomor_seleksi", $data['nomor_seleksi'], $id);
+                redirect('/');
             }
         }
+    }
+
+    public function updateProcess(){
+        $data = $this->input->post();
+        $id = $_SESSION['detail_pendaftaran']['mhs_id'];
+        $this->Form_model->update_all($id, $data);
+        $this->session->set_flashdata("update_status", true);
+        $_SESSION['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('email'))->row_array();
+        redirect(base_url('form/daftar/detail'));
+
+    }
+
+    public function get_seleksi(){
+        $email = $this->session->userdata("email");
+        $id = $this->Form_model->get_id($email)->row()->mhs_id;
+        $current_year = date('y');
+        return "$current_year-$id";
+    }
 
 
+    public function validateForm($is_update = false){
+        $this->form_validation->set_rules("email", "Email", "required|is_unique[mahasiswa.email]", array("is_unique" => "Email ini sudah terdaftar, coba masukan email lain!"));
+        $this->form_validation->set_rules("no_hp", "Nomor Hp", "required|is_unique[mahasiswa.no_hp]", array("is_unique" => "Nomor ini sudah terdaftar, coba masukan nomor lain!"));
+        $this->form_validation->set_rules("nomor_ijazah", "Nomor Ijazah", "required|is_unique[mahasiswa.nomor_ijazah]", array("is_unique" => "Seri ini sudah terdaftar, coba masukan seri lain!"));
+
+        if ($is_update && $_SESSION['detail_pendaftaran']['email'] == $this->input->post('email') && $_SESSION['detail_pendaftaran']['no_hp'] == $this->input->post('no_hp') && $_SESSION['detail_pendaftaran']['nomor_ijazah'] == $this->input->post('nomor_ijazah')) {
+            $this->updateProcess();
+        } 
+        if ($this->form_validation->run() != false) {
+                if ($is_update) {
+                    $this->updateProcess();
+                } else {
+                    $this->daftarProcess();
+                }
+        } else {
+
+            $this->daftar($is_update, $this->input->post());
+        }
     }
 }

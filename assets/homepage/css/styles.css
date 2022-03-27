@@ -122,6 +122,7 @@ section h1 {
     border-radius: 30px;
     margin: 10px;
     color: white;
+    transition: 0.2s;
 }
 
 .btn:hover {
@@ -133,3 +134,36 @@ section h1 {
 .mdi-note {
     margin-right: 10px;
 }
+
+.profile {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.profile img {
+    width: 82px;
+    padding-bottom: 15px;
+}
+
+.profile img:hover {
+    cursor: pointer;
+}
+
+
+
+.sidebar-button {
+    display: block;
+    text-align: center;
+    background-color: rgb(65, 99, 66);
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+.sidebar-button:hover {
+    background-color: rgb(72, 110, 74);
+}
+

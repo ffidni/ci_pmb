@@ -206,7 +206,7 @@ th {
   }
   a,
   a:visited {
-    text-decoration: underline;
+
   }
   a[href]:after {
     content: " (" attr(href) ")";
@@ -1104,8 +1104,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #23527c;
-  text-decoration: underline;
+
 }
 a:focus {
   outline: 5px auto -webkit-focus-ring-color;
@@ -6916,19 +6915,19 @@ button.close {
 }
 
 .button-navigation{
-    margin-top: 20px;
-    width: 100%;
-    text-align: right;
+    display: flex;
+    margin: 50px 0px 20px 0px;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid lightgray;
+    padding: 20px 0;
 }
 
-.btn-navigation {
-    border: none;
-    padding: 8px 15px;
-    text-decoration: none;
-    color: white;
-    text-align: center;
-    margin-bottom: 10px;
+.button-navigation a {
+    display: inline-block;
 }
+
+
 
 .btn-next {
     background-color: #22803d;
@@ -6984,6 +6983,27 @@ input[type=radio]:checked {
     background-size: 9px 9px;
     
 }
+
+.error-text {
+    color: red;
+}
   
+.notif {
+    background-color: rgb(103, 206, 103);
+    color: white;
+
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: 2px solid rgb(85, 169, 85);
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
 
 /*# sourceMappingURL=bootstrap.css.map */

@@ -54,4 +54,30 @@ class Form_model extends CI_Model {
         return $this->db->get("mahasiswa");
     }
 
+    public function get_id($email){
+        $this->db->where("email", $email);
+        return $this->db->get("mahasiswa");
+    }
+
+    public function get_mahasiswa(){
+        $this->db->select('mahasiswa.mhs_id, mahasiswa.nomor_seleksi, mahasiswa.mhs_nama, mahasiswa.no_hp, mahasiswa.nama_sekolah, prodi.nama, mahasiswa.is_reguler, mahasiswa.approved');
+        $this->db->join('prodi','prodi.id = mahasiswa.id_prodi');
+        return $this->db->get("mahasiswa");
+    }
+
+    public function get_prodi($id_prodi){
+        $this->db->where("id", $id_prodi);
+        return $this->db->get("prodi");
+    }
+
+    public function update($field, $value, $id){
+        $this->db->where("mhs_id", $id);
+        $this->db->update("mahasiswa", array($field => $value));
+    }
+
+    public function update_all($id, $data) {
+        $this->db->where("mhs_id", $id);
+        $this->db->update("mahasiswa", $data);
+    }
+
 }

@@ -10,18 +10,26 @@
     <link rel="stylesheet" href="<?= base_url('assets/homepage/css/styles.css')?>">
 </head>
 <body class="home-body">
+    <?php $detail_pendaftaran = $_SESSION['detail_pendaftaran']?>
     <section>
     <div class="home-container">
         <?php if (empty($detail_pendaftaran)) {?>
             <h1>Daftarkan dirimu sekarang!</h1>
+        <?php } else if ($this->session->userdata("hak_akses") == "admin") {?>
+            <h1>Selamat datang di aplikasi PMB2022.</h1>
         <?php } else {?>
             <h1>Selamat!<br>Kamu sudah terdaftar.</h1>
         <?php }?>
         <div class="buttons">
             
             <?php if (!empty($detail_pendaftaran)) {?>
-                <a href="<?= base_url('form/daftar_edit')?>" class="btn"><span class="mdi mdi-note"></span>Data Pendaftaran-mu</a>
-                <a href="" class="btn"><span class="mdi mdi-information-variant"></span>Info Lebih Lanjut</a>
+
+            <?php if ($this->session->userdata("hak_akses") == "admin") {?>
+                <a href="<?= base_url('admin/verifikasi')?>" class="btn"><span class="mdi mdi-note"></span>Verifikasi Data</a>
+                <?php } else {?>
+                    <a href="<?= base_url('form/daftar/detail')?>" class="btn"><span class="mdi mdi-note"></span>Data Pendaftaran-mu</a>
+                    <a href="" class="btn"><span class="mdi mdi-information-variant"></span>Info Lebih Lanjut</a>
+                <?php }?>
             <?php } else {?>
                 <a href="<?= base_url('form/daftar')?>" class="btn"><span class="mdi mdi-note"></span>Daftar</a>
                 <?php }?>
