@@ -34,29 +34,13 @@
     transition: 0.2s;
 }
 
-.terima {
-    background-color: #3E9F48;
-}
-
-.terima:hover {
-    background-color: #46b651;;
-}
 
 .tolak {
-    background-color: #f06c20;
+    background-color: #ee2525;
 }
 
 .tolak:hover {
-    background-color: #ff7424;
+    background-color: #ff2424;
 }
 
-
-.batal {
-    background-color: #ee940e;
-
-}
-.batal:hover {
-    background-color: #ff9f0f;
-
-}
 

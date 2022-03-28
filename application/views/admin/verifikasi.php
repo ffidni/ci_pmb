@@ -41,14 +41,14 @@
                     <td><?= $row->is_reguler?></td>
                     <td><?= $status?></td>
                     <?php if ($status != 'Menunggu konfirmasi') {?>
-                        <td><a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn batal">Batal</a>
+                        <td><a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn">Batal</a>
                         <?php if ($status == 'Diterima'){?>
-                            <a href="<?= base_url('admin/cetak/'.$row->mhs_id)?>" class="btn cetak">Cetak</a></td>
+                            <a href="<?= base_url('admin/cetak/'.$row->mhs_id)?>" class="btn">Cetak</a></td>
                         <?php }?>
                         
                     <?php } else {?>
                     <td>
-                        <a href="<?= base_url('admin/accept/'.$row->mhs_id)?>"  class="btn terima">Terima</a>
+                        <a href="<?= base_url('admin/accept/'.$row->mhs_id)?>"  class="btn">Terima</a>
                         <a href="<?= base_url('admin/deny/'.$row->mhs_id)?>" class="btn tolak">Tolak</a>
                     </td>
                     <?php }?>

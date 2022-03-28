@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/bootstrap.css')?>">
 
   <script src="<?= base_url('assets/bootstrap/js/jquery.min.js')?>"></script>
-  <script src="<?= base_url('assets/bootstrap/js/bootstrap.min.js')?>"></script>
 </head>
 <body>
 <div class="notif">
@@ -17,27 +16,27 @@
             <p>Detail pendaftaran berhasil dirubah.</p>
         </div>
     </div>
-<div class="container tab-daftar">
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#home" id="target0">Data Diri</a></li>
-        <li><a href="#menu1" id="target1">Latar Belakang Pendidikan</a></li>
-        <li><a href="#menu2" id="target2">Data Orang Tua / Wali</a></li>
-        <li><a href="#menu3" id="target3">Data Pendukung Lainnya</a></li>
-        <li><a href="#menu4" id="target4">Pilihan Program Studi</a></li>
-      </ul>
+<div class="tab-daftar">
+      <div class="container tab">
+        <button class="tab-links data_diri active" onClick="openTab(event, 'data_diri')">Data Diri</button>
+        <button class="tab-links latar_belakang" onClick="openTab(event, 'latar_belakang')"> Latar Belakang Pendidikan</button>
+        <button class="tab-links data_ortu" onClick="openTab(event, 'data_ortu')"> Data Orang Tua / Wali</button>
+        <button class="tab-links data_pendukung" onClick="openTab(event, 'data_pendukung')"> Data Pendukung Lainnya</button>
+        <button class="tab-links prodi" onClick="openTab(event, 'prodi')"> Pilihan Program Studi</button>
+        </div>
 
     <?= form_open(base_url(($is_edit) ? 'form/validateForm/update' : 'form/validateForm'), array("method" => "post", "onsubmit" => "return validateForm()"))?>
-      <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
+      <div class="container">
+        <div id="data_diri" class="tab-content active">
             <h3>Informasi Data Diri</h3>
             <table class="form-table" border="0">
                 <tr>
                     <td><label>Nama Lengkap</label></td>
-                    <td colspan="3" ><input class="form-control" class="form-control" name="mhs_nama" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nama']?>"></td>
+                    <td colspan="3" ><input class="form-control" name="mhs_nama" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nama']?>"></td>
                 </tr>
                 <tr>
                     <td><label>NIK (Nomor KTP)</label></td>
-                    <td colspan="3" ><input class="form-control" class="form-control" name="mhs_nik" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nik']?>"></td>
+                    <td colspan="3" ><input class="form-control" name="mhs_nik" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nik']?>"></td>
                 </tr>
                 <tr>
                     <td><label>Tempat Lahir</label></td>
@@ -51,7 +50,7 @@
                 </tr>
                 <tr>
                     <td><label for="">Alamat (Kampung / Jalan)</label></td>
-                    <td colspan="4"><textarea class="form-control" name="mhs_alamat" id="" cols="30" rows="5"><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_alamat']?></textarea></td>
+                    <td colspan="4"><textarea class="form-control form-textarea" name="mhs_alamat" id="" cols="30" rows="5"><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_alamat']?></textarea></td>
                 </tr>
                 <tr>
                 <td><label for="">Provinsi</label></td>
@@ -119,13 +118,13 @@
             <?php if ($is_edit) {?>
                     <input type="submit" class="btn btn-perbarui" value="Perbarui">
                 <?php }?>
-                <a data-target="target1" class="btn  btn-next" href="#menu1">Selanjutnya</a>
+                <a data-target="latar_belakang" class="btn btn-next">Selanjutnya</a>
 
             </div>
 
             
         </div>
-        <div id="menu1" class="tab-pane fade">
+        <div id="latar_belakang" class="tab-content">
          <h3>Latar Belakang Pendidikan</h3>
          <table class="form-table">
              <tr>
@@ -175,14 +174,14 @@
              </td>
          </table>
          <div class="button-navigation">
-                <a data-target="target0" class="btn btn-previous" href="#home">Sebelumnya</a>
+                <a data-target="data_diri" class="btn btn-previous">Sebelumnya</a>
                 <?php if ($is_edit) {?>
                     <input type="submit" class="btn btn-perbarui" value="Perbarui">
                 <?php }?>
-                <a data-target="target2" class="btn btn-next" href="#menu2">Selanjutnya</a>
+                <a data-target="data_ortu" class="btn btn-next">Selanjutnya</a>
             </div>
         </div>
-        <div id="menu2" class="tab-pane fade">
+        <div id="data_ortu" class="tab-content">
           <h3>Data Orang Tua / Wali</h3>
               <table class="form-table">
                   <tr>
@@ -268,7 +267,7 @@
                           <label for="">Alamat Orang Tua (Kampung / Jalan)</label>
                       </td>
                       <td colspan="5">
-                        <textarea class="form-control" name="alamat_orangtua" cols="30" rows="5" ><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['alamat_orangtua']?></textarea>
+                        <textarea class="form-control form-textarea" name="alamat_orangtua" cols="30" rows="5" ><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['alamat_orangtua']?></textarea>
                       </td>
                   </tr>
                   <tr>
@@ -318,15 +317,15 @@
                   </tr>
               </table>
               <div class="button-navigation">
-                <a data-target="target1" class="btn  btn-previous" href="#menu1">Sebelumnya</a>
+                <a data-target="latar_belakang" class="btn  btn-previous">Sebelumnya</a>
                 <?php if ($is_edit) {?>
                     <input type="submit" class="btn btn-perbarui" value="Perbarui">
                 <?php }?>
-                <a data-target="target3" class="btn  btn-next" href="#menu3">Selanjutnya</a>
+                <a data-target="data_pendukung" class="btn  btn-next">Selanjutnya</a>
 
             </div>
         </div>
-        <div id="menu3" class="tab-pane fade">
+        <div id="data_pendukung" class="tab-content">
           <h3>Data Pendukung Lainnya</h3>
           <table class="form-table">
               <tr>
@@ -405,15 +404,15 @@
               </tr>
           </table>
           <div class="button-navigation">
-                <a data-target="target2" class="btn  btn-previous" href="#menu2">Sebelumnya</a>
+                <a data-target="data_ortu" class="btn  btn-previous">Sebelumnya</a>
                 <?php if ($is_edit) {?>
                     <input type="submit" class="btn btn-perbarui" value="Perbarui">
                 <?php }?>
-                <a data-target="target4" class="btn  btn-next" href="#menu4">Selanjutnya</a>
+                <a data-target="prodi" class="btn  btn-next">Selanjutnya</a>
             </div>
         </div>
-        <div id="menu4" class="tab-pane fade">
-          <h3>Pilihan Program Studi</h3>
+        <div id="prodi" class="tab-content">
+          <h4>Pilihan Program Studi</h4>
           <table class="form-table">
               <tr>
                   <td>
@@ -447,8 +446,7 @@
           </table>
           <div class="tahu-stainu">
               <h4>Tahu STAINU dari mana ?</h4>
-              <textarea name="keterangan_tahu" id="tahu-textarea" cols="50" rows="8"><?= (!empty($detail_pendaftaran) && array_key_exists('tahu_stainu', $detail_pendaftaran)) ? $detail_pendaftaran['tahu_stainu'] : ''?></textarea>
-              <table>
+              <table class="form-table">
                           <tr>
                       <td>
                       <input type="radio" name="tahu_stainu" value="1" id="sosial_media" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '1') ? 'checked' : ''?>>
@@ -480,13 +478,15 @@
                       </td>
                   </tr>
                           </table>
+                <textarea name="keterangan_tahu" id="tahu-textarea" style="<?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '5') ? 'display: block' : 'display: none'?>" class="form-control form-textarea" cols="50" rows="8"><?= (!empty($detail_pendaftaran) && array_key_exists('keterangan_tahu', $detail_pendaftaran)) ? $detail_pendaftaran['keterangan_tahu'] : ''?></textarea>
+
           </div>
           <div class="button-navigation">
           <?php if (!$is_edit) { ?>
             <input type="submit" class="btn">
           <?php } else {?>
-            <a data-target="target3" class="btn  btn-previous" href="#menu3">Sebelumnya</a>
-            <<input type="submit" class="btn btn-perbarui" value="Perbarui">
+            <a data-target="data_pendukung" class="btn  btn-previous" >Sebelumnya</a>
+            <input type="submit" class="btn btn-perbarui" value="Perbarui">
             <?php }?> 
           </div>
 
@@ -595,6 +595,30 @@
                   return false;
               }
           }
+
+          function openTab(event, tab){
+              var tab_content, tab_links;
+
+              tab_content = document.querySelectorAll(".tab-content");
+              console.log(tab_content);
+              tab_content.forEach((content) => {
+                  console.log(content);
+                  content.style.display = "none";
+              });
+
+              tab_links = document.querySelectorAll(".tab-links");
+              tab_links.forEach((links) => {
+                  links.classList.remove("active");
+              });
+              
+              document.getElementById(tab).style.display = "block";
+              if (event) {
+              event.currentTarget.classList.add("active");
+
+              }
+              
+
+          }
       
       
           const inputStyle = document.querySelectorAll("input")[0].style;
@@ -602,7 +626,22 @@
 
             <?php if ($update_status) {?> 
                 $('.notif').show();
+                var count = 1
+                var interval = setInterval(() => {
+                    console.log(count);
+                    if (count === 2 || $('.notif').is(':hidden')) {
+                        clearInterval(interval);
+                        $('.notif').hide();
+                        count = 1;
+                    } else {
+                        count++;
+                    }
+                }, 3000);
             <?php }?>
+            
+            $('.notif').click(() => {
+                $('.notif').hide();
+            });
 
             $(window).keydown(function(event){
     if(event.keyCode == 13) {
@@ -893,29 +932,16 @@
               textarea.style.display = "none";
           }
       });
-              $(".nav-tabs a").click(function(){
-                  $(this).tab('show');
-              });
-              $(".btn-next").click(function(){
+              $(".btn-next, .btn-previous").click(function(){
                   const targetName = this.dataset.target;
-                  const target = document.getElementById(targetName);
-                  console.log(`${targetName}, ${target}`);
-                  $(target).tab('show');
+                  const target = document.getElementsByClassName(targetName)[0];
+                  console.log("A");
+                  console.log(target);
+                  openTab(false, targetName);
+                  target.classList.add("active");
+                  console.log("B");
+                  console.log(target);
               });
-              $(".btn-previous").click(function(){
-                  const targetName = this.dataset.target;
-                  const target = document.getElementById(targetName);
-                  console.log(`${targetName}, ${target}`);
-                  $(target).tab('show');
-              });
-              $('.nav-tabs a').on('shown.bs.tab', function(event){
-                  console.log(event)
-                  var x = $(event.target).text();         
-                  var y = $(event.relatedTarget).text();  
-                  $(".act span").text(x);
-                  $(".prev span").text(y);
-                  console.log($(".prev span").text(y));
-              })
       });
     </script>
 </body>
