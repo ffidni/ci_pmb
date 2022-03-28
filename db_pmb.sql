@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2022 at 12:48 AM
+-- Generation Time: Mar 29, 2022 at 01:44 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -65,7 +65,7 @@ CREATE TABLE `mahasiswa` (
   `kec_orangtua` int(5) NOT NULL,
   `kel_orangtua` int(10) NOT NULL,
   `kode_pos_orangtua` varchar(20) NOT NULL,
-  `status_mhs` enum('1','2','3','4') NOT NULL,
+  `status_mhs` enum('Belum Kawin','Kawin','Cerai Hidup','Cerai Mati') NOT NULL,
   `pekerjaan_mhs` varchar(10) NOT NULL,
   `id_tinggal` int(2) NOT NULL,
   `nama_pesantren` varchar(100) NOT NULL,
@@ -74,15 +74,18 @@ CREATE TABLE `mahasiswa` (
   `is_reguler` enum('Reguler','Non Reguler') NOT NULL,
   `penghasilan` int(11) NOT NULL,
   `tahu_stainu` enum('1','2','3','4','5') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `keterangan_tahu` text NOT NULL
+  `keterangan_tahu` text NOT NULL,
+  `nomor_seleksi` varchar(100) NOT NULL,
+  `approved` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`mhs_id`, `mhs_nama`, `mhs_nik`, `mhs_tempat_lahir`, `mhs_tgl_lahir`, `mhs_jk`, `mhs_alamat`, `mhs_rt_rw`, `provinsi`, `kab_kota`, `kec`, `kel`, `kode_pos`, `no_hp`, `email`, `pendidikan_id`, `nama_sekolah`, `nisn`, `nomor_ijazah`, `tahun_ijazah`, `nama_ayah`, `tgl_lahir_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `penghasilan_ayah`, `nama_ibu`, `tgl_lahir_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `penghasilan_ibu`, `alamat_orangtua`, `rt_rw_orangtua`, `provinsi_orangtua`, `kota_orangtua`, `kec_orangtua`, `kel_orangtua`, `kode_pos_orangtua`, `status_mhs`, `pekerjaan_mhs`, `id_tinggal`, `nama_pesantren`, `id_transportasi`, `id_prodi`, `is_reguler`, `penghasilan`, `tahu_stainu`, `keterangan_tahu`) VALUES
-(1, 'Muhammad Haikal', '12390128301298390', 'Ciamis', '2022-03-07', 'l', 'dawdawd', '1 2', 35, 3501, 350101, 2147483647, '4226', 'indiff', 'akunhaikal@gmail.com', 9, 'SMKS NU Tasikmalaya', '134123123', '223414134', 2023, 'Endin', '2022-03-08', 11, 'Wiraswasta', 123123123, 'Hilda', '2022-03-01', 11, '-', 0, 'awdawd', '1, 1', 51, 5101, 510101, 2147483647, '43176', '', 'Programmer', 1, '-', 1, 1, 'Reguler', 123123123, '2', '');
+INSERT INTO `mahasiswa` (`mhs_id`, `mhs_nama`, `mhs_nik`, `mhs_tempat_lahir`, `mhs_tgl_lahir`, `mhs_jk`, `mhs_alamat`, `mhs_rt_rw`, `provinsi`, `kab_kota`, `kec`, `kel`, `kode_pos`, `no_hp`, `email`, `pendidikan_id`, `nama_sekolah`, `nisn`, `nomor_ijazah`, `tahun_ijazah`, `nama_ayah`, `tgl_lahir_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `penghasilan_ayah`, `nama_ibu`, `tgl_lahir_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `penghasilan_ibu`, `alamat_orangtua`, `rt_rw_orangtua`, `provinsi_orangtua`, `kota_orangtua`, `kec_orangtua`, `kel_orangtua`, `kode_pos_orangtua`, `status_mhs`, `pekerjaan_mhs`, `id_tinggal`, `nama_pesantren`, `id_transportasi`, `id_prodi`, `is_reguler`, `penghasilan`, `tahu_stainu`, `keterangan_tahu`, `nomor_seleksi`, `approved`) VALUES
+(1, 'Muhammad Haikal Hilalul Hamdi', '123123123', 'Ciamis', '2022-03-25', 'l', 'Tembong Sari', '1, 3', 35, 3501, 350101, 2147483647, '43176', '082130089012', 'realityinaship@gmail.com', 7, 'SMKS NU Tasikmalaya', '123123', 'D-42069', 2023, 'Endin', '2022-03-10', 11, 'Wiraswasta', 10000000, 'Hilda', '2022-03-09', 11, '-', 0, 'wdwdw', '1, 1', 33, 3301, 330101, 2147483647, '43176', 'Kawin', 'Programmer', 1, '', 1, 1, 'Reguler', 10000000, '5', 'test', '22-1', '1'),
+(3, 'Naufal Ghifari Hidayat', '20202020', 'Papua', '2022-03-03', 'l', 'Rambutan Runtuh Wad', '1/2', 31, 3101, 310101, 2147483647, '42069', '082828282828', 'naufalghifary@gmail.com', 9, 'SMK PRIMA EKSTRA JOS', '2312321', '666', 2024, 'Gatau', '2022-03-16', 18, '-', 0, 'dwdwd', '2022-03-05', 18, '-', 0, 'Runtuh Rambutan', '1/2', 31, 3101, 310101, 2147483647, '42424', 'Belum Kawin', 'Tiktoker', 1, '', 5, 1, 'Reguler', 20000000, '4', '', '22-2', '');
 
 -- --------------------------------------------------------
 
@@ -119,6 +122,27 @@ INSERT INTO `pendidikan` (`id`, `nama`, `singkatan`) VALUES
 (16, 'Diploma 3', 'D3'),
 (17, 'Diploma 4', 'D4'),
 (18, 'Lainnya', 'Lainnya');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prodi`
+--
+
+CREATE TABLE `prodi` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `keterangan` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `prodi`
+--
+
+INSERT INTO `prodi` (`id`, `nama`, `keterangan`) VALUES
+(1, 'Manajemen Pendidikan Islam', ''),
+(2, 'Komunikasi Penyiaran Islam', ''),
+(3, 'Hukum Keluarga Islam', '');
 
 -- --------------------------------------------------------
 
@@ -90440,7 +90464,7 @@ INSERT INTO `tprovinsi` (`id_prov`, `nama`) VALUES
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
+  `no_hp` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `hak_akses` enum('user','admin') NOT NULL
@@ -90450,10 +90474,11 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `hak_akses`) VALUES
-(1, '082130089012', 'd88dccd9c8d34004412dca336a8defb0', 'realityinaship@gmail.com', 'user'),
+INSERT INTO `user` (`id`, `no_hp`, `password`, `email`, `hak_akses`) VALUES
+(1, '082130089012', 'd88dccd9c8d34004412dca336a8defb0', 'realityinaship@gmail.com', 'admin'),
 (2, 'indiff', 'd88dccd9c8d34004412dca336a8defb0', 'akunhaikal@gmail.com', 'user'),
-(3, 'ffidni', 'd88dccd9c8d34004412dca336a8defb0', 'haikal@gmail.com', 'user');
+(3, '081214983220', 'e10adc3949ba59abbe56e057f20f883e', 'nizar@gmail.com', 'user'),
+(4, 'naufal', 'cbfa480321f90284fb8cd9bcfb801d28', 'naufalghifary@gmail.com', 'user');
 
 --
 -- Indexes for dumped tables
@@ -90466,16 +90491,34 @@ ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`mhs_id`);
 
 --
--- Indexes for table `pendidikan`
+-- Indexes for table `prodi`
 --
-ALTER TABLE `pendidikan`
+ALTER TABLE `prodi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tahu_stainu`
+-- Indexes for table `tkabupaten`
 --
-ALTER TABLE `tahu_stainu`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `tkabupaten`
+  ADD PRIMARY KEY (`id_kab`) USING BTREE;
+
+--
+-- Indexes for table `tkecamatan`
+--
+ALTER TABLE `tkecamatan`
+  ADD PRIMARY KEY (`id_kec`) USING BTREE;
+
+--
+-- Indexes for table `tkelurahan`
+--
+ALTER TABLE `tkelurahan`
+  ADD PRIMARY KEY (`id_kel`) USING BTREE;
+
+--
+-- Indexes for table `tprovinsi`
+--
+ALTER TABLE `tprovinsi`
+  ADD PRIMARY KEY (`id_prov`) USING BTREE;
 
 --
 -- Indexes for table `user`
@@ -90491,25 +90534,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `mhs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `mhs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `pendidikan`
+-- AUTO_INCREMENT for table `prodi`
 --
-ALTER TABLE `pendidikan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `tahu_stainu`
---
-ALTER TABLE `tahu_stainu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `prodi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
