@@ -147,10 +147,6 @@ section h1 {
     padding-bottom: 15px;
 }
 
-.profile img:hover {
-    cursor: pointer;
-}
-
 
 
 .sidebar-button {
@@ -185,4 +181,173 @@ section h1 {
     color: white;
     font-size: 2rem;
     margin-bottom: 20px;
+}
+
+.responsive-visibility {
+    display: none;
+}
+
+.close-sidebar {
+    display: flex;
+    justify-content: right;
+    color: white;
+    font-size: 2em;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+.title h3 {
+    text-align: center;
+}
+
+
+
+@media only screen and (max-width: 992px) {
+
+    .btn {
+        padding: 8px 25px;
+        font-size: 15px;
+    }
+
+    .home-container h1 {
+        font-size: 30px;
+    }
+    .links {
+        display: none;
+    }
+
+    .title h3 {
+        font-size: 20px;
+    }
+
+    .responsive-visibility {
+        display: block;
+    }
+
+}
+
+@media only screen and (max-width: 830px) {
+
+    .btn {
+        padding: 8px 20px;
+    }
+
+
+
+    .title h3 {
+        font-size: 20px;
+    }
+
+    .links {
+        display: none;
+    }
+
+}
+
+
+
+@media only screen and (max-width: 768px) {
+
+
+    .btn {
+        padding: 8px 15px;
+    }
+
+    .home-container h1 {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .title h3 {
+        font-size: 18px;
+    }
+
+    .links {
+        display: none;
+    }
+
+    .wrapper .sidebar{
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .home-container h1 {
+        text-align: center;
+    }
+
+    .btn {
+        padding: 6px 13px;
+        font-size: 12px;
+    }
+
+    .title h3 {
+        font-size: 17px;
+        
+    }
+
+    .title img {
+        width: 50px;
+    }
+
+    .links {
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 530px){
+
+
+    
+    .home-container h1 {
+        font-size: 20px;
+        
+    }
+    .title h3 {
+        font-size: 15px;
+    }
+
+    .title img {
+        width: 40px;
+    }
+}
+
+
+
+
+@media only screen and (max-width: 476px){
+
+    .home-container h1 {
+        font-size: 15px;
+        
+    }
+    .title h3 {
+        font-size: 13px;
+    }
+
+    .title img {
+        width: 35px;
+    }
+    .title img {
+        display: none;
+    }
+}
+
+
+
+@media only screen and (max-width: 300px){
+    .title h3 {
+        font-size: 10px;
+    }
+
+    .title img {
+        display: none;
+    }
+
 }

@@ -15,6 +15,9 @@
         <div class="sidebar">
             <ul>
                 <li>
+                <span class="close-sidebar">&times;</span>
+                </li>
+                <li>
                     <div class="profile">
                         <img src="<?= base_url('assets/homepage/images/account.png')?>" alt="">
                         <?php if (!empty($detail_pendaftaran)) {?>
@@ -23,6 +26,12 @@
                             <h4>Belum Terdaftar</h4>
                         <?php }?>
                     </div>
+                </li>
+                <li>
+                    <a href="<?= base_url()?>" class="sidebar-button responsive-visibility">Home</a>
+                </li>
+                <li>
+                    <a href="https://stainu-tasikmalaya.ac.id/2021/" class="sidebar-button responsive-visibility">Website STAINU</a>
                 </li>
                 <li>
                     <?php if (!empty($detail_pendaftaran)) {?>
@@ -40,6 +49,9 @@
                         <a href="<?= base_url('admin/verifikasi')?>"  class="sidebar-button">Verifikasi Data</a>           
                     </li>
                 <?php }?>   
+                <li>
+                    <a href="<?= base_url('auth/logout')?>" class="sidebar-button responsive-visibility" >Keluar</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -70,6 +82,20 @@
             </div>
         </div>
     </nav>
-    <script src="<?= base_url('assets/homepage/js/scripts.js')?>"></script>
+    <script>
+    const menuIcon = document.body.querySelector('.menu');
+    const closeIcon = document.getElementsByClassName("close-sidebar")[0];
+    const sidebar = document.body.querySelector('.wrapper');
+    const navbar = document.body.querySelector('.nav-header');
+
+    closeIcon.addEventListener("click", () => {
+        sidebar.classList.toggle("hide");
+        sidebar.classList.toggle("show");        
+    });
+    menuIcon.addEventListener("click", () => {
+        sidebar.classList.toggle("hide");
+        sidebar.classList.toggle("show");
+    });
+    </script>
 </body>
 </html>

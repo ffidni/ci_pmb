@@ -10,6 +10,7 @@
 
 </head>
 <body>
+    <img src="<?= base_url('assets/auth/images/bg.jpg')?>" alt="" id="bg">
     <div class="container">
     <div class="title">
         <img src="<?= base_url('assets/homepage/images/logo_stainu.png')?>" alt="">

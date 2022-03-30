@@ -27,34 +27,54 @@
 
     <?= form_open(base_url(($is_edit) ? 'form/validateForm/update' : 'form/validateForm'), array("method" => "post", "onsubmit" => "return validateForm()"))?>
       <div class="container">
-        <div id="data_diri" class="tab-content active">
+      <div id="data_diri" class="tab-content active">
             <h3>Informasi Data Diri</h3>
-            <table class="form-table" border="0">
-                <tr>
+            <table class="mobile-table">
+            <tr>
                     <td><label>Nama Lengkap</label></td>
-                    <td colspan="3" ><input class="form-control" name="mhs_nama" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nama']?>"></td>
-                </tr>
-                <tr>
+            </tr>
+            <tr>
+            <td colspan="3" ><input class="form-control" name="mhs_nama" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nama']?>"></td>
+            </tr>
+            <tr>
                     <td><label>NIK (Nomor KTP)</label></td>
-                    <td colspan="3" ><input class="form-control" name="mhs_nik" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nik']?>"></td>
                 </tr>
+            <tr>
+            <td colspan="3" ><input class="form-control" name="mhs_nik" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nik']?>"></td>
+            </tr>
                 <tr>
                     <td><label>Tempat Lahir</label></td>
-                    <td><input class="form-control" name="mhs_tempat_lahir" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_tempat_lahir']?>"></td>
-                    <td><label for="">Tgl, Bln, Thn Lahir</label></td>
-                    <td><input class="form-control" name="mhs_tgl_lahir" type="date" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_tgl_lahir']?>"></td>
+                </tr>
+                <tr>
+                <td><input class="form-control" name="mhs_tempat_lahir" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_tempat_lahir']?>"></td>
+                </tr>
+                <tr>
+                <td><label for="">Tgl, Bln, Thn Lahir</label></td>
+                </tr>
+                <tr>
+                <td><input class="form-control" name="mhs_tgl_lahir" type="date" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_tgl_lahir']?>"></td>
                 </tr>
                 <tr>
                     <td><label>Jenis Kelamin</label></td>
-                    <td colspan="3"><input type="radio" id="laki-laki" name="mhs_jk" value="l" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['mhs_jk'] == 'l') ? 'checked' : ''?>><label for="laki-laki">Laki-laki</label><input type="radio" id="perempuan" name="mhs_jk" value="p" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['mhs_jk'] == 'p') ? 'checked' : ''?>><label for="perempuan">Perempuan</label></td>
                 </tr>
                 <tr>
+                <td colspan="3"><input type="radio" id="laki-laki" name="mhs_jk_1" value="l" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['mhs_jk'] == 'l') ? 'checked' : ''?>><label for="laki-laki">Laki-laki</label></td>
+                </tr>
+                <tr>
+                <td><input type="radio" id="perempuan" name="mhs_jk_1" value="p" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['mhs_jk'] == 'p') ? 'checked' : ''?>><label for="perempuan">Perempuan</label></td>
+                </tr>
+                <tr><td><div class="spacer"></div></td></tr>
+                <tr>
                     <td><label for="">Alamat (Kampung / Jalan)</label></td>
-                    <td colspan="4"><textarea class="form-control form-textarea" name="mhs_alamat" id="" cols="30" rows="5"><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_alamat']?></textarea></td>
+                </tr>
+                <tr>
+                <td colspan="4"><textarea class="form-control form-textarea" name="mhs_alamat" id="" cols="30" rows="5"><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_alamat']?></textarea></td>
                 </tr>
                 <tr>
                 <td><label for="">Provinsi</label></td>
-                    <td>
+                </tr>
+                <tr>
+                <td>
                         <select class="form-control select2" name="provinsi" id="provinsi" >
 					        <option value="">-- Pilih --</option>
 					        <?php foreach($provinsi as $row):?>
@@ -62,42 +82,59 @@
 					        <?php endforeach;?>
 					    </select>
                     </td>
-                    <td><label for="">Kabupaten/Kota</label></td>
-                    <td>
+                </tr>
+                <tr>
+                <td><label for="">Kabupaten/Kota</label></td>
+                </tr>
+                <tr>
+                <td>
                     <select class="form-control select2" id="kabupaten" name="kab_kota" >
 									<option value="">-- Pilih --</option>
 								</select>
                     </td>
-
-
-
                 </tr>
                 <tr>
                 <td><label for="">Kecamatan</label></td>
-                    <td>
+                </tr>
+                <tr>
+                <td>
                     <select class="form-control select2" id="kecamatan" name="kec" >
 									<option value="">-- Pilih --</option>
 								</select>
                     </td>
+                </tr>
+                <tr>
                 <td><label for="">Desa/Kelurahan</label></td>
-                    <td>
+                </tr>
+                <tr>
+                <td>
                     <select class="form-control select2" id="kelurahan" name="kel" >
 									<option value="">-- Pilih --</option>
 								</select>
                     </td>
-                    
                 </tr>
                 <tr>
                 <td><label for="">RT / RW</label></td>
-                    <td><input class="form-control" type="text" name="mhs_rt_rw" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_rt_rw']?>"></td>
-                    <td><label for="">Kode POS</label></td>
-                    <td><input class="form-control" type="number" name="kode_pos" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['kode_pos']?>"> </td>
                 </tr>
                 <tr>
-                    <td><label for="">No. HP / WhatsApp</label></td>
-                    <td colspan="3"><input class="form-control <?= (form_error('no_hp')) ? 'error': ''?>" type="text" name="no_hp" value="<?= (empty($detail_pendaftaran)) ? $this->session->userdata('no_hp') : $detail_pendaftaran['no_hp']?>"></td>
+                <td><input class="form-control" type="text" name="mhs_rt_rw" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_rt_rw']?>"></td>
                 </tr>
+                <tr>
+                <td><label for="">Kode POS</label></td>
+                </tr>
+                <tr>
+                <td><input class="form-control" type="number" name="kode_pos" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['kode_pos']?>"> </td>
+                </tr>
+
+                <tr>
+                    <td><label for="">No. HP / WhatsApp</label></td>
+                </tr>
+                <tr>
+                <td colspan="3"><input class="form-control <?= (form_error('no_hp')) ? 'error': ''?>" type="text" name="no_hp" value="<?= (empty($detail_pendaftaran)) ? $this->session->userdata('no_hp') : $detail_pendaftaran['no_hp']?>"></td>
+                </tr>
+                <tr>
                 <?php if (form_error("no_hp")) {?>
+                </tr>
                 <tr>
                     <td></td>
                 <td class="error-text" id="no_hp_error"><?= form_error("no_hp")?></td>
@@ -105,7 +142,9 @@
                 <?php }?>
                 <tr>
                     <td><label for="">Alamat E-Mail</label></td>
-                    <td colspan="3"><input class="form-control <?= (form_error('email')) ? 'error': ''?>" type="text" name="email" value="<?= (empty($detail_pendaftaran)) ? $this->session->userdata('email') : $detail_pendaftaran['email']?>"></td>
+                </tr>
+                <tr>
+                <td colspan="3"><input class="form-control <?= (form_error('email')) ? 'error': ''?>" type="text" name="email" value="<?= (empty($detail_pendaftaran)) ? $this->session->userdata('email') : $detail_pendaftaran['email']?>"></td>
                 </tr>
                 <?php if (form_error("email")) {?>
                 <tr>
@@ -121,15 +160,15 @@
                 <a data-target="latar_belakang" class="btn btn-next">Selanjutnya</a>
 
             </div>
-
-            
         </div>
         <div id="latar_belakang" class="tab-content">
          <h3>Latar Belakang Pendidikan</h3>
-         <table class="form-table">
+         <table class="mobile-table">
+         <tr>
+            <td><label for="">Pendidikan Terakhir</label></td>
+             </tr>
              <tr>
-                 <td><label for="">Pendidikan Terakhir</label></td>
-                 <td>
+             <td>
                      <select class="form-control select2" name="pendidikan_id">
                          <option value="">-- Pilih --</option>
                          <?php foreach($pendidikan as $row):?>
@@ -139,39 +178,57 @@
                          <?php endforeach?>
                      </select>
                 </td>
-             </tr>
+             </tr>     
              <tr>
                  <td>
                      <label for="">Nama Sekolah</label>
                 </td>
-                 <td>
+
+
+
+             </tr>
+             <tr>
+             <td>
                     <input type="text" class="form-control" name="nama_sekolah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nama_sekolah']?>">
                  </td>
-                 <td>
+             </tr>
+             <tr>
+             <td>
                     <label for="">NISN</label>
                  </td>
-                 <td>
+             </tr>
+             <tr>
+             <td>
                     <input type="number" class="form-control" name="nisn" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nisn']?>">
                  </td>
              </tr>
+             <tr>
              <td>
                  <label for="">Nomor Seri Ijazah</label>
              </td>
-             <td>
+
+            </tr>
+            <tr>
+            <td>
                  <input class="form-control <?= (form_error('nomor_ijazah')) ? 'error': ''?>" type="text" name="nomor_ijazah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nomor_ijazah']?>">
              </td>
-             <?php if (form_error('nomor_ijazah')) {?>
+            </tr>
+            <?php if (form_error('nomor_ijazah')) {?>
              <tr>
                  <td></td>
              <td class="error-text" id="ijazah_error"><?= form_error("nomor_ijazah")?></td>
              </tr>
              <?php }?>
+             <tr>
              <td>
                  <label for="">Tahun Ijazah</label>
              </td>
+             </tr>
+             <tr>
              <td>
                 <input type="number" class="form-control" name="tahun_ijazah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['tahun_ijazah']?>">
              </td>
+             </tr>
          </table>
          <div class="button-navigation">
                 <a data-target="data_diri" class="btn btn-previous">Sebelumnya</a>
@@ -183,18 +240,24 @@
         </div>
         <div id="data_ortu" class="tab-content">
           <h3>Data Orang Tua / Wali</h3>
-              <table class="form-table">
+          <table class="mobile-table">
                   <tr>
                       <td>
                           <label for="">Nama Ayah Kandung</label>
                       </td>
-                      <td>
+                  </tr>
+                  <tr>
+                  <td>
                           <input type="text" class="form-control" name="nama_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nama_ayah']?>">
                       </td>
-                      <td>
+                  </tr>
+                  <tr>
+                  <td>
                           <label for="">Tgl Lahir</label>
                       </td>
-                      <td colspan="3">
+                  </tr>
+                  <tr>
+                  <td colspan="3">
                         <input type="date" class="form-control" name="tgl_lahir_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['tgl_lahir_ayah']?>">
                       </td>
                   </tr>
@@ -202,7 +265,9 @@
                   <td>
                           <label for="">Pendidikan Terakhir</label>
                       </td>
-                      <td>
+                  </tr>
+                  <tr>
+                  <td>
                       <select class="form-control select2" name="pendidikan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pendidikan_ayah']?>">
                          <option value="">-- Pilih --</option>
                          <?php foreach($pendidikan as $row):?>
@@ -210,30 +275,44 @@
                          <?php endforeach?>
                      </select>
                       </td>
+                  </tr>
+                  <tr>
                   <td>
                         <label for="">Pekerjaan</label>
-                      </td>
-                      <td>
-                        <input type="text" class="form-control" name="pekerjaan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_ayah']?>">
-                      </td>
-                      <td>
-                          <label for="">Penghasilan - Rp</label>
-                      </td>
-                      <td>
-                        <input type="number" class="form-control" name="penghasilan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan_ayah']?>">
                       </td>
                   </tr>
                   <tr>
                   <td>
+                        <input type="text" class="form-control" name="pekerjaan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_ayah']?>">
+                      </td>
+                  </tr>
+                  <tr>
+                  <td>
+                          <label for="">Penghasilan - Rp</label>
+                      </td>
+                  </tr>
+                  <tr>
+                  <td>
+                        <input type="number" class="form-control" name="penghasilan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan_ayah']?>">
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
                           <label for="">Nama Ibu Kandung</label>
                       </td>
-                      <td>
+                  </tr>
+                  <tr>
+                  <td>
                           <input type="text" class="form-control" name="nama_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nama_ibu']?>">
                       </td>
-                      <td>
+                  </tr>
+                  <tr>
+                  <td>
                           <label for="">Tgl Lahir</label>
                       </td>
-                      <td>
+                  </tr>
+                  <tr>
+                  <td colspan="3">
                         <input type="date" class="form-control" name="tgl_lahir_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['tgl_lahir_ibu']?>">
                       </td>
                   </tr>
@@ -241,38 +320,55 @@
                   <td>
                           <label for="">Pendidikan Terakhir</label>
                       </td>
-                      <td>
-                      <select class="form-control select2" name="pendidikan_ibu">
+                  </tr>
+                  <tr>
+                  <td>
+                      <select class="form-control select2" name="pendidikan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pendidikan_ibu']?>">
                          <option value="">-- Pilih --</option>
                          <?php foreach($pendidikan as $row):?>
                             <option value="<?= $row->id?>" <?= (!empty($detail_pendaftaran) && $row->id == $detail_pendaftaran['pendidikan_ibu']) ? 'selected' : '' ?>><?= $row->singkatan?></option>
                          <?php endforeach?>
                      </select>
                       </td>
+                  </tr>
+                  <tr>
                   <td>
                         <label for="">Pekerjaan</label>
                       </td>
-                      <td>
+                  </tr>
+                  <tr>
+                  <td>
                         <input type="text" class="form-control" name="pekerjaan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_ibu']?>">
                       </td>
-                      <td>
+                  </tr>
+                  <tr>
+                  <td>
                           <label for="">Penghasilan - Rp</label>
                       </td>
-                      <td>
+                  </tr>
+                  <tr>
+                  <td>
                         <input type="number" class="form-control" name="penghasilan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan_ibu']?>">
                       </td>
                   </tr>
                   <tr>
                       <td>
                           <label for="">Alamat Orang Tua (Kampung / Jalan)</label>
-                      </td>
+
+                  </tr>
+                  <tr>
+                  </td>
                       <td colspan="5">
                         <textarea class="form-control form-textarea" name="alamat_orangtua" cols="30" rows="5" ><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['alamat_orangtua']?></textarea>
                       </td>
                   </tr>
                   <tr>
                 <td><label for="">Provinsi</label></td>
-                    <td colspan="2">
+
+
+                </tr>
+                <tr>
+                <td colspan="2">
                         <select class="form-control select2" name="provinsi_orangtua" id="provinsi_orangtua" >
 					        <option value="">-- Pilih --</option>
 					        <?php foreach($provinsi as $row):?>
@@ -280,8 +376,13 @@
 					        <?php endforeach;?>
 					    </select>
                     </td>
-                    <td><label for="">Kabupaten/Kota</label></td>
-                    <td colspan="2">
+                </tr>
+                <tr>
+                <td><label for="">Kabupaten/Kota</label></td>
+
+                </tr>
+                <tr>
+                <td colspan="2">
                     <select class="form-control select2" id="kabupaten_orangtua" name="kota_orangtua" >
 									<option value="">-- Pilih --</option>
                 </select>
@@ -289,33 +390,46 @@
                 </tr>
                 <tr>
                 <td><label for="">Kecamatan</label></td>
-                    <td colspan="2">
+                </tr>
+                <tr>
+                <td colspan="2">
                     <select class="form-control select2" id="kecamatan_orangtua" name="kec_orangtua" >
 									<option value="">-- Pilih --</option>
 								</select>
                     </td>
+                </tr>
+                <tr>
                 <td><label for="">Desa/Kelurahan</label></td>
-                    <td colspan="2">
+
+                </tr>
+                <tr>
+                <td colspan="2">
                     <select class="form-control select2" id="kelurahan_orangtua" name="kel_orangtua" >
 									<option value="">-- Pilih --</option>
 								</select>
                     </td>
-                    
                 </tr>
-                  <tr>
+                <tr>
                       <td>
                           <label for="">RT / RW</label>
-                      <td colspan="2">
+                  </tr>
+                  <tr>
+                  <td colspan="2">
                         <input type="text" class="form-control" name="rt_rw_orangtua" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['rt_rw_orangtua']?>">
                       </td>
-                      <td>
+                  </tr>
+                  <tr>
+                  <td>
                           <label for="">Kode POS</label>
                       </td>
-                      <td colspan="2">
+                  </tr>
+                  <tr>
+                  <td colspan="2">
                         <input type="number" class="form-control" name="kode_pos_orangtua" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['kode_pos_orangtua']?>">
                       </td>
                   </tr>
-              </table>
+          </table>
+
               <div class="button-navigation">
                 <a data-target="latar_belakang" class="btn  btn-previous">Sebelumnya</a>
                 <?php if ($is_edit) {?>
@@ -327,59 +441,94 @@
         </div>
         <div id="data_pendukung" class="tab-content">
           <h3>Data Pendukung Lainnya</h3>
-          <table class="form-table">
-              <tr>
+          <table class="mobile-table">
+          <tr>
                   <td><label for="">Status Perkawinan</label></td>
-                  <td>
-                     <input type="radio" id="belum_kawin" name="status_mhs" value="Belum Kawin" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Belum Kawin') ? 'checked' : ''?>>
-                     <label for="belum_kawin">Belum Kawin</label>
-                     <input type="radio" id="kawin" name="status_mhs" value="Kawin" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Kawin') ? 'checked' : ''?>>
-                     <label for="kawin">Kawin</label>
-                     <input type="radio" id="cerai_hidup" name="status_mhs" value="Cerai Hidup" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Cerai Hidup') ? 'checked' : ''?>>
-                     <label for="cerai_hidup">Cerai Hidup</label>
-                     <input type="radio" id="cerai_mati" name="status_mhs" value="Cerai Mati" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Cerai Mati') ? 'checked' : ''?>>
-                     <label for="cerai_mati">Cerai Mati</label>
-                    </td>
             </tr>
-              <tr>
+            <tr>
+                <td><input type="radio" id="belum_kawin" name="status_mhs_1" value="Belum Kawin" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Belum Kawin') ? 'checked' : ''?>><label for="belum_kawin">Belum Kawin</label></td>
+            </tr>
+            <tr>
+            <td><input type="radio" id="kawin" name="status_mhs_1" value="Kawin" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Kawin') ? 'checked' : ''?>><label for="kawin">Kawin</label></td>
+            </tr>
+            <tr>
+            <td><input type="radio" id="cerai_hidup" name="status_mhs_1" value="Cerai Hidup" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Cerai Hidup') ? 'checked' : ''?>><label for="cerai_hidup">Cerai Hidup</label></td>
+            </tr>
+            <tr>
+            <td><input type="radio" id="cerai_mati" name="status_mhs_1" value="Cerai Mati" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Cerai Mati') ? 'checked' : ''?>><label for="cerai_mati">Cerai Mati</label></td>
+            </tr>
+            <tr><td><div class="spacer"></div></td></tr>
+            <tr>
                   <td>
                       <label for="">Pekerjaan</label>
                   </td>
-                  <td>
+              </tr>
+              <tr>
+              <td>
                       <input type="text" class="form-control" name="pekerjaan_mhs" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_mhs']?>">
                   </td>
-                  <td>
+              </tr>
+              <tr>
+
+              <td>
                       <label for="">Penghasilan - Rp</label>
                   </td>
-                  <td>
+              </tr>
+              <tr>
+              <td>
                       <input type="number" class="form-control" name="penghasilan" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan']?>">
                   </td>
               </tr>
-                  
               <tr>
                   <td>
                   <label for="">Jenis Tinggal</label>
                   </td>
-                  <td>
-                     <input class="form-radio-input" type="radio" id="orangtua" name="id_tinggal" value="1" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '1') ? 'checked' : ''?>>
-                     <label for="orangtua">Bersama Orang Tua</label>
-                     <input type="radio" id="wali" name="id_tinggal" value="2" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '2') ? 'checked' : ''?>>
-                     <label for="wali">Wali</label>
-                     <input type="radio" id="kos" name="id_tinggal" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '3') ? 'checked' : ''?>>
-                     <label for="kos">Kos</label>
-                     <input type="radio" id="asrama" name="id_tinggal" value="4" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '4') ? 'checked' : ''?>>
-                     <label for="asrama">Asrama</label>
-                     <input type="radio" id="pesantren" name="id_tinggal" value="5" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '5') ? 'checked' : ''?>>
-                     <label for="pesantren">Pesantren</label>
-                     <input type="radio" id="lainnya" name="id_tinggal" value="6" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '6') ? 'checked' : ''?>>
-                     <label for="lainnya">Lainnya</label>
-                </td>
               </tr>
+              <tr>
+                  <td>
+                  <input class="form-radio-input" type="radio" id="orangtua" name="id_tinggal_1" value="1" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '1') ? 'checked' : ''?>>
+                     <label for="orangtua">Bersama Orang Tua</label>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  <input type="radio" id="wali" name="id_tinggal_1" value="2" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '2') ? 'checked' : ''?>>
+                     <label for="wali">Wali</label>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  <input type="radio" id="kos" name="id_tinggal_1" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '3') ? 'checked' : ''?>>
+                     <label for="kos">Kos</label>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  <input type="radio" id="asrama" name="id_tinggal_1" value="4" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '4') ? 'checked' : ''?>>
+                     <label for="asrama">Asrama</label>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  <input type="radio" id="pesantren" name="id_tinggal_1" value="5" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '5') ? 'checked' : ''?>>
+                     <label for="pesantren">Pesantren</label>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  <input type="radio" id="lainnya" name="id_tinggal_1" value="6" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '6') ? 'checked' : ''?>>
+                     <label for="lainnya">Lainnya</label>
+                  </td>
+              </tr>
+              <tr><td><div class="spacer"></div></td></tr>
               <tr>
                   <td>
                       <label for="">Nama Pesantren (opsional)</label>
                   </td>
-                  <td>
+
+              </tr>
+              <tr>
+              <td>
                       <input type="text" class="form-control" name="nama_pesantren" value="<?= (!empty($detail_pendaftaran) && array_key_exists('nama_pesantren', $detail_pendaftaran)) ? $detail_pendaftaran['nama_pesantren'] : ''?>">
                   </td>
               </tr>
@@ -387,18 +536,40 @@
                   <td>
                       <label for="">Alat Transportasi</label>
                   </td>
-                  <td>
-                     <input type="radio" id="angkutan_umum" name="id_transportasi" value="1" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '1') ? 'checked' : ''?>>
+              </tr>
+              <tr>
+               <td>
+               <input type="radio" id="angkutan_umum" name="id_transportasi_1" value="1" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '1') ? 'checked' : ''?>>
                      <label for="angkutan_umum">Angkutan Umum</label>
-                     <input type="radio" id="ojek" name="id_transportasi" value="2" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '2') ? 'checked' : ''?>>
+               </td>
+              </tr>
+              <tr>
+                  <td>
+                  <input type="radio" id="ojek" name="id_transportasi_1" value="2" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '2') ? 'checked' : ''?>>
                      <label for="ojek">Ojek</label>
-                     <input type="radio" id="sepeda" name="id_transportasi" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '3') ? 'checked' : ''?>>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  <input type="radio" id="sepeda" name="id_transportasi_1" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '3') ? 'checked' : ''?>>
                      <label for="angkutan_umum">Sepeda</label>
-                     <input type="radio" id="mobil_pribadi" name="id_transportasi" value="4" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '4') ? 'checked' : ''?>>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  <input type="radio" id="mobil_pribadi" name="id_transportasi_1" value="4" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '4') ? 'checked' : ''?>>
                      <label for="mobil_pribadi">Mobil Pribadi</label>
-                     <input type="radio" id="sepeda_motor" name="id_transportasi" value="5" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '5') ? 'checked' : ''?>>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  <input type="radio" id="sepeda_motor" name="id_transportasi_1" value="5" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '5') ? 'checked' : ''?>>
                      <label for="sepeda_motor">Sepeda Motor</label>
-                     <input type="radio" id="lainnya" name="id_transportasi" value="6" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '6') ? 'checked' : ''?>>
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                  <input type="radio" id="lainnya" name="id_transportasi_1" value="6" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '6') ? 'checked' : ''?>>
                      <label for="lainnya">Lainnya</label>
                   </td>
               </tr>

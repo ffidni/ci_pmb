@@ -10,7 +10,10 @@
 
 </head>
 <body>
+<img src="<?= base_url('assets/auth/images/bg.jpg')?>" alt="" id="bg">
     <div class="container">
+<div class="spacer"></div>
+
     <div class="title">
         <img src="<?= base_url('assets/homepage/images/logo_stainu.png')?>" alt="">
         <h3>Penerimaan Mahasiswa Baru STAINU<br>Tahun Ajaran 2022/2023</h3>

@@ -1,5 +1,5 @@
 .container {
-    margin: 0px 8em;
+    margin: 0px 10vw;
 }
 
 .form-control {
@@ -68,7 +68,6 @@
 
 .tab button {
     background-color: inherit;
-    float: left;
     border: none;
     border-bottom: 2px solid #ccc;
     outline: none;
@@ -291,10 +290,38 @@
       cursor: pointer;
 
   }
-  
-  
-  
 
-  /*# sourceMappingURL=bootstrap.css.map */
-  
+  .form-control {
+      width: 80vw;
+      margin-bottom: 20px;
+  }
+
+  .spacer {
+    margin-bottom: 20px;
+}
+
+
+
+
+  @media only screen and (max-width: 992px) {
+    .tab {
+        flex-direction: column;
+    }
+
+
+    .container {
+        margin: 0 10vw;
+    }
+
+    .form-control {
+        width: 80vw;
+        margin-bottom: 20px;
+    }
+
+    textarea {
+        margin-bottom: 20px;
+    }
+
+  }
+
   

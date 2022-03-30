@@ -15,6 +15,7 @@
 .form-control {
     display: block;
     width: 100%;
+    min-width: 300px;
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
@@ -86,8 +87,8 @@
 }
 
 .container {
-    margin-top: 40px;
     display: flex;
+    height: 80vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -96,6 +97,7 @@
 .container img {
     width: 120px;
 }
+
 
 .details {  
 }
@@ -109,8 +111,9 @@
 }
 
 .details input {
-    width: 20vw;
-    height: 4vh;
+    min-width: 300px;
+    width: 30vw;
+    height: 5vh;
     padding: 0 8px;
 }
 
@@ -125,7 +128,7 @@
 
 .settings-btn {
     border-radius: 8px;
-    padding: 9px 30px;
+    padding: 8px 20px;
 }
 
 .error-text {
@@ -156,3 +159,4 @@
 .hide {
     display: none;
 }
+
