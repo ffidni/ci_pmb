@@ -13,15 +13,17 @@ class Form extends CI_Controller {
 
     }
 
-    public function daftar($is_edit = false, $detail = []){
+    public function daftar($is_edit = false, $detail = [], $updated = false){
         $data = [
             'provinsi' => $this->Form_model->getprovinsi(),
             'pendidikan' => $this->Form_model->get_pendidikan(),
             'mhs_pendidikan' => array("SMA", "SMK", "MA", "Paket C"),
             'is_home' => false,
             'is_edit' => false,
-            'update_status' => ($this->session->flashdata("update_status")) ? true : false,
         ];
+        if ($updated) {
+            $data['updated'] = $updated;
+        }
 
         if ($is_edit){
             $detail = $this->session->userdata("detail_pendaftaran");
@@ -68,6 +70,7 @@ class Form extends CI_Controller {
             $id = $this->Form_model->insert_data($data);
             if ($id) {
                 $data['nomor_seleksi'] = $this->get_seleksi();
+                $data['approved'] = "";
                 $this->Form_model->update("nomor_seleksi", $data['nomor_seleksi'], $id);
                 redirect('/');
             }
@@ -77,10 +80,9 @@ class Form extends CI_Controller {
     public function updateProcess(){
         $data = $this->input->post();
         $id = $_SESSION['detail_pendaftaran']['mhs_id'];
-        $this->Form_model->update_all($id, $data);
-        $this->session->set_flashdata("update_status", true);
+        $updated = $this->Form_model->update_all($id, $data);
         $_SESSION['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('email'))->row_array();
-        redirect(base_url('form/daftar/detail'));
+        $this->daftar(true, $data, $updated);
 
     }
 

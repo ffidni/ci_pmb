@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@
 </head>
 <body>
     <?php $detail_pendaftaran = $this->session->userdata("detail_pendaftaran")?>
-
     <div class="wrapper hide">
         <!--Top menu -->
         <div class="sidebar">
@@ -35,7 +33,7 @@
                     <?php }?>
                 </li>
                 <li>
-                    <a href=""  class="sidebar-button">Pengaturan Akun</a>           
+                    <a href="<?= base_url('auth/pengaturan')?>"  class="sidebar-button">Pengaturan Akun</a>           
                 </li>
                 <?php if ($this->session->userdata('hak_akses') == 'admin') {?>
                     <li>

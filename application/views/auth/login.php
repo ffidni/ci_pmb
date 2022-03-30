@@ -16,17 +16,21 @@
         <h3>Penerimaan Mahasiswa Baru STAINU<br>Tahun Ajaran 2022/2023</h3>
     </div>
     <div class="form">
-        <?= form_open(base_url('auth/validateLogin'), array("method" => "post"))?>
+        <?= form_open(base_url('auth/login/validate'), array("method" => "post"))?>
         <h3>Akses Akun</h3>
+        <?php if (array_key_exists("error_login", $_SESSION)) {?>
+            <h4 class="error-text error-style"><?= $_SESSION['error_login'] ?></h4>
+            <?php unset($_SESSION['error_login'])?>
+        <?php }?>
             <div class="form-field">
             <label for="no_hp">Nomor HP</label>
-            <input type="number" name="no_hp" class="form-control">
-            <p class="error"><?= form_erorr('no_hp')?></p>
+            <input type="number" name="no_hp" data-target="#hperror" class="form-control <?= (form_error('no_hp')) ? 'error' : '' ?>">
+            <p class="error-text"><?= form_error('no_hp', '<p class="error-text" id="hperror">', '</p>')?></p>
             </div>
             <div class="form-field">
             <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control">
-            <p class="error"><?= form_erorr('password')?></p>
+            <input type="password" name="password" id="password" data-target="#passworderror" class="form-control <?= (form_error('password')) ? 'error' : '' ?>">
+            <p class="error-text"><?= form_error('password', '<p class="error-text" id="passworderror">')?></p>
             </div>
             <div class="buttons">
             <input type="submit" href="" class="btn" value="Masuk">
@@ -36,7 +40,19 @@
     </div>
     </div>
 
+    <script>
 
+        $('input').keydown(function () {
+            if (this.classList.contains("error")){
+                this.classList.remove("error");
+                
+                if (this.dataset.target) {
+                    $(this.dataset.target).addClass("hide");
+                }
+                
+            }
+        });
+    </script>
 
 </body>
 </html>

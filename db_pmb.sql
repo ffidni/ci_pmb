@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2022 at 01:44 AM
+-- Generation Time: Mar 30, 2022 at 07:33 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -76,16 +76,18 @@ CREATE TABLE `mahasiswa` (
   `tahu_stainu` enum('1','2','3','4','5') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `keterangan_tahu` text NOT NULL,
   `nomor_seleksi` varchar(100) NOT NULL,
-  `approved` enum('0','1') NOT NULL
+  `approved` enum('0','1','') NOT NULL,
+  `alasan_pembatalan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`mhs_id`, `mhs_nama`, `mhs_nik`, `mhs_tempat_lahir`, `mhs_tgl_lahir`, `mhs_jk`, `mhs_alamat`, `mhs_rt_rw`, `provinsi`, `kab_kota`, `kec`, `kel`, `kode_pos`, `no_hp`, `email`, `pendidikan_id`, `nama_sekolah`, `nisn`, `nomor_ijazah`, `tahun_ijazah`, `nama_ayah`, `tgl_lahir_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `penghasilan_ayah`, `nama_ibu`, `tgl_lahir_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `penghasilan_ibu`, `alamat_orangtua`, `rt_rw_orangtua`, `provinsi_orangtua`, `kota_orangtua`, `kec_orangtua`, `kel_orangtua`, `kode_pos_orangtua`, `status_mhs`, `pekerjaan_mhs`, `id_tinggal`, `nama_pesantren`, `id_transportasi`, `id_prodi`, `is_reguler`, `penghasilan`, `tahu_stainu`, `keterangan_tahu`, `nomor_seleksi`, `approved`) VALUES
-(1, 'Muhammad Haikal Hilalul Hamdi', '123123123', 'Ciamis', '2022-03-25', 'l', 'Tembong Sari', '1, 3', 35, 3501, 350101, 2147483647, '43176', '082130089012', 'realityinaship@gmail.com', 7, 'SMKS NU Tasikmalaya', '123123', 'D-42069', 2023, 'Endin', '2022-03-10', 11, 'Wiraswasta', 10000000, 'Hilda', '2022-03-09', 11, '-', 0, 'wdwdw', '1, 1', 33, 3301, 330101, 2147483647, '43176', 'Kawin', 'Programmer', 1, '', 1, 1, 'Reguler', 10000000, '5', 'test', '22-1', '1'),
-(3, 'Naufal Ghifari Hidayat', '20202020', 'Papua', '2022-03-03', 'l', 'Rambutan Runtuh Wad', '1/2', 31, 3101, 310101, 2147483647, '42069', '082828282828', 'naufalghifary@gmail.com', 9, 'SMK PRIMA EKSTRA JOS', '2312321', '666', 2024, 'Gatau', '2022-03-16', 18, '-', 0, 'dwdwd', '2022-03-05', 18, '-', 0, 'Runtuh Rambutan', '1/2', 31, 3101, 310101, 2147483647, '42424', 'Belum Kawin', 'Tiktoker', 1, '', 5, 1, 'Reguler', 20000000, '4', '', '22-2', '');
+INSERT INTO `mahasiswa` (`mhs_id`, `mhs_nama`, `mhs_nik`, `mhs_tempat_lahir`, `mhs_tgl_lahir`, `mhs_jk`, `mhs_alamat`, `mhs_rt_rw`, `provinsi`, `kab_kota`, `kec`, `kel`, `kode_pos`, `no_hp`, `email`, `pendidikan_id`, `nama_sekolah`, `nisn`, `nomor_ijazah`, `tahun_ijazah`, `nama_ayah`, `tgl_lahir_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `penghasilan_ayah`, `nama_ibu`, `tgl_lahir_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `penghasilan_ibu`, `alamat_orangtua`, `rt_rw_orangtua`, `provinsi_orangtua`, `kota_orangtua`, `kec_orangtua`, `kel_orangtua`, `kode_pos_orangtua`, `status_mhs`, `pekerjaan_mhs`, `id_tinggal`, `nama_pesantren`, `id_transportasi`, `id_prodi`, `is_reguler`, `penghasilan`, `tahu_stainu`, `keterangan_tahu`, `nomor_seleksi`, `approved`, `alasan_pembatalan`) VALUES
+(1, 'Muhammad Haikal Hilalul Hamdi', '123123123', 'Ciamis', '2022-03-25', 'l', 'Tembong Sari', '1, 3', 35, 3501, 350101, 2147483647, '43176', '082130089012', 'realityinaship@gmail.com', 7, 'SMKS NU Tasikmalaya', '123123', 'D-42069', 2023, 'Endin', '2022-03-10', 11, 'Wiraswasta', 10000000, 'Hilda', '2022-03-09', 11, '-', 0, 'wdwdw', '1, 1', 33, 3301, 330101, 2147483647, '43176', 'Kawin', 'Programmer', 1, '', 1, 1, 'Reguler', 10000000, '5', 'test', '22-1', '1', ''),
+(3, 'Naufal Ghifari Hidayat', '20202020', 'Papua', '2022-03-03', 'l', 'Rambutan Runtuh Wad', '1/2', 31, 3101, 310101, 2147483647, '42069', '082828282828', 'naufalghifary@gmail.com', 9, 'SMK PRIMA EKSTRA JOS', '2312321', '666', 2024, 'Gatau', '2022-03-16', 18, '-', 0, 'dwdwd', '2022-03-05', 18, '-', 0, 'Runtuh Rambutan', '1/2', 31, 3101, 310101, 2147483647, '42424', 'Belum Kawin', 'Tiktoker', 1, '', 5, 1, 'Reguler', 20000000, '4', '', '22-2', '', 'test doang'),
+(4, 'Muhammad Haikal', '123', 'Petir', '2022-03-17', 'l', 'Petir', '1/2', 51, 5101, 510101, 2147483647, '42626', '123', 'akunhaikal@gmail.com', 9, 'SMKS NU Tasikmalaya', '232323', 'd-420', 2024, 'Endin', '2022-03-17', 11, 'W', 2147483647, 'Hilda', '2022-03-10', 11, '-', 0, 'Tembongsari', '1/1', 32, 3201, 320101, 2147483647, '43176', 'Belum Kawin', 'Programmer', 1, '', 2, 1, 'Reguler', 20000000, '5', 'SMKS NU', '22-4', '0', 'ini adalah test tolak');
 
 -- --------------------------------------------------------
 
@@ -90475,10 +90477,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `no_hp`, `password`, `email`, `hak_akses`) VALUES
-(1, '082130089012', 'd88dccd9c8d34004412dca336a8defb0', 'realityinaship@gmail.com', 'admin'),
-(2, 'indiff', 'd88dccd9c8d34004412dca336a8defb0', 'akunhaikal@gmail.com', 'user'),
-(3, '081214983220', 'e10adc3949ba59abbe56e057f20f883e', 'nizar@gmail.com', 'user'),
-(4, 'naufal', 'cbfa480321f90284fb8cd9bcfb801d28', 'naufalghifary@gmail.com', 'user');
+(1, '082130089012', '388fbb327ec9f12894691b750915e37b', 'realityinaship@gmail.com', 'admin'),
+(2, '123', 'd88dccd9c8d34004412dca336a8defb0', 'akunhaikal@gmail.com', 'user'),
+(3, '2147483647', 'e10adc3949ba59abbe56e057f20f883e', 'nizar@gmail.com', 'user'),
+(4, '0', 'cbfa480321f90284fb8cd9bcfb801d28', 'naufalghifary@gmail.com', 'user');
 
 --
 -- Indexes for dumped tables
@@ -90534,7 +90536,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `mhs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `mhs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `prodi`

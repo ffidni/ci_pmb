@@ -78,6 +78,7 @@ class Form_model extends CI_Model {
     public function update_all($id, $data) {
         $this->db->where("mhs_id", $id);
         $this->db->update("mahasiswa", $data);
+        return $this->db->affected_rows();
     }
 
 }

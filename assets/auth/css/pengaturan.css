@@ -1,3 +1,5 @@
+
+
 *{
     list-style: none;
     text-decoration: none;
@@ -8,6 +10,8 @@
     text-decoration: none;
 
 }
+
+
 .form-control {
     display: block;
     width: 100%;
@@ -64,105 +68,91 @@
       height: auto;
   }
 
+  .btn {
+    display: inline-block;
+    background-color: #3E9F48;
+    padding: 10px 35px;
+    border-radius: 30px;
+    margin: 10px;
+    color: white;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #44b14f;
+    
+}
 
 .container {
+    margin-top: 40px;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    margin: 40px 20px;
-}
-
-.container h2 {
-    margin-bottom: 30px;
-}
-
-.container th, td {
-    padding: 10px 10px;
-    text-align: center;
-}
-
-.btn {
-    padding: 5px 10px;
-    color: white;
-    text-align: center;
-    border-radius: 5px;
-    transition: 0.2s;
-}
-
-
-.tolak {
-    background-color: #ee2525;
-}
-
-.tolak:hover {
-    background-color: #ff2424;
-}
-
-
-table th {
-    color: white;
-    background-color: rgb(72, 126, 72);
-}
-
-.batal-popup {
-    display: none;
-    position: fixed;
-    z-index: 11;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-
-.batal-content {
-    display: flex;
     justify-content: center;
-    background-color: #b2c7b2;
-    margin: 15% auto;
-    padding: 50px 10px;;
-    border: 1px solid #888;
-    width: 40%;
-    border-radius: 10px;
-
+    align-items: center;
 }
 
-.batal-buttons {
+.container img {
+    width: 120px;
+}
+
+.details {  
+}
+
+.details p {
+    font-size: 1.2rem;
+}
+
+.row {
+    margin-bottom: 25px;
+}
+
+.details input {
+    width: 20vw;
+    height: 4vh;
+    padding: 0 8px;
+}
+
+.settings h3 {
+    color: black;
+}
+
+.btn-navigation {
+    margin-top: 10px;
+}
+
+
+.settings-btn {
+    border-radius: 8px;
+    padding: 9px 30px;
+}
+
+.error-text {
+    color: red;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.notif {
+    background-color: rgb(103, 206, 103);
+    color: white;
+    text-align: center;
     display: flex;
     align-items: center;
-    text-align: center;
     justify-content: center;
+    padding: 20px;
+    border: 2px solid rgb(85, 169, 85);
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 5vh;
+    display: none;
 }
 
-
-
-
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.hide {
+    display: none;
 }
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.tolak {
-    cursor: pointer;
-}
-
-.batal-btn {
-    border: none;
-    width: 100%;
-    cursor: pointer;
-}
-

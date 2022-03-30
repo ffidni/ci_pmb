@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/styles.css')?>">
 </head>
 <body>
+    <div id="modal" class="batal-popup">
+        <div class="batal-content">
+            <form id="batal-form" method="post">
+                <span class="close">&times;</span>
+                <h4>Alasan pembatalan</h4>
+                <textarea name="alasan_pembatalan" id="" class="form-control form-textarea" cols="60" rows="10"></textarea>
+                <div class="batal-buttons">
+                    <input type="submit" class="btn batal-btn" onsubmit="return closeModal(true)">
+                </div>
+            </form>
+        </div>  
+    </div>
     <div class="container">
         <h2>Daftar Calon Mahasiswa</h2>
         <table border="1" cellspacing="0">
@@ -49,7 +61,7 @@
                     <?php } else {?>
                     <td>
                         <a href="<?= base_url('admin/accept/'.$row->mhs_id)?>"  class="btn">Terima</a>
-                        <a href="<?= base_url('admin/deny/'.$row->mhs_id)?>" class="btn tolak">Tolak</a>
+                        <a class="btn tolak" onclick="openModal('<?= $row->mhs_id?>')">Tolak</a>
                     </td>
                     <?php }?>
                 </tr>
@@ -58,6 +70,36 @@
     </div>
 
     <script>
+        var modal = document.getElementById("modal");
+        var btns = document.querySelectorAll(".tolak");
+        var span = document.getElementsByClassName("close")[0];
+        var form = document.getElementById("batal-form");
+
+
+        span.onclick = () => {
+            closeModal();
+        }
+
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        function openModal(id){
+            modal.style.display = "block";
+            form.action = "<?= base_url('admin/deny/')?>" + id;
+            console.log("A");
+            console.log(form.action);
+        }
+
+        function closeModal(submit = false){
+            modal.style.display = "none";
+            if (submit) {
+                form.submit();
+            }
+        }
+
 </script>
 
 </body>

@@ -6,6 +6,8 @@
             parent::__construct();
             if (!array_key_exists("email", $this->session->userdata())){
                 redirect('auth/login');
+            } else if ($this->session->userdata("hak_akses") == 'user'){
+                redirect('/');
             }
         }
 
@@ -27,8 +29,8 @@
 
         public function deny($id){
             $this->Form_model->update("approved", "0", $id);
+            $this->Form_model->update("alasan_pembatalan", $this->input->post("alasan_pembatalan"), $id);
             redirect('admin/verifikasi');
-
         }
 
         public function batal($id){

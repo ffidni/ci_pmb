@@ -13,7 +13,7 @@
 <body>
 <div class="notif">
         <div class="content">
-            <p>Detail pendaftaran berhasil dirubah.</p>
+            <p><?= (isset($update_status) && $update_status) ? 'Data berhasil diperbarui.': 'Data gagal diperbarui. Pastikan anda terkoneksi dengan internet.'?></p>
         </div>
     </div>
 <div class="tab-daftar">
@@ -95,7 +95,7 @@
                 </tr>
                 <tr>
                     <td><label for="">No. HP / WhatsApp</label></td>
-                    <td colspan="3"><input class="form-control <?= (form_error('no_hp')) ? 'error': ''?>" type="text" name="no_hp" value="<?= (empty($detail_pendaftaran)) ? $this->session->userdata('username') : $detail_pendaftaran['no_hp']?>"></td>
+                    <td colspan="3"><input class="form-control <?= (form_error('no_hp')) ? 'error': ''?>" type="text" name="no_hp" value="<?= (empty($detail_pendaftaran)) ? $this->session->userdata('no_hp') : $detail_pendaftaran['no_hp']?>"></td>
                 </tr>
                 <?php if (form_error("no_hp")) {?>
                 <tr>
@@ -624,7 +624,10 @@
           const inputStyle = document.querySelectorAll("input")[0].style;
           $(document).ready(function () {
 
-            <?php if ($update_status) {?> 
+            <?php if (isset($update_status)) {?> 
+                if (!$update_status){
+                    $('.notif').css({"background-color", "rgb(206, 103, 103)", "border", "rgb(169, 85, 85)"});
+                }
                 $('.notif').show();
                 var count = 1
                 var interval = setInterval(() => {

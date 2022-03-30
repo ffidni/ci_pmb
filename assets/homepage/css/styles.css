@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+
 *{
     list-style: none;
     text-decoration: none;
@@ -11,11 +12,14 @@
 
 }
 
+
 .home-body{
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),  url('../images/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+
 
 .wrapper {
     transition: all 0.5s ease;
@@ -174,4 +178,11 @@ section h1 {
     color: white;
     font-size: 1.1em;
     font-weight: normal
+}
+
+.home-container h3 {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
