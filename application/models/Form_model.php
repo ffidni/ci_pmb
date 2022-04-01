@@ -49,8 +49,8 @@ class Form_model extends CI_Model {
         return $this->db->insert_id();
     }
 
-    public function get_details($email){
-        $this->db->where("email", $email);
+    public function get_details($mhs_id){
+        $this->db->where("mhs_id", $mhs_id);
         return $this->db->get("mahasiswa");
     }
 
@@ -60,7 +60,7 @@ class Form_model extends CI_Model {
     }
 
     public function get_mahasiswa(){
-        $this->db->select('mahasiswa.mhs_id, mahasiswa.nomor_seleksi, mahasiswa.mhs_nama, mahasiswa.no_hp, mahasiswa.nama_sekolah, prodi.nama, mahasiswa.is_reguler, mahasiswa.approved');
+        $this->db->select('mahasiswa.mhs_id, mahasiswa.mhs_nama, mahasiswa.bukti_pembayaran, mahasiswa.nomor_seleksi, mahasiswa.mhs_nama, mahasiswa.no_hp, mahasiswa.nama_sekolah, prodi.nama, mahasiswa.is_reguler, mahasiswa.approved');
         $this->db->join('prodi','prodi.id = mahasiswa.id_prodi');
         return $this->db->get("mahasiswa");
     }
@@ -80,5 +80,12 @@ class Form_model extends CI_Model {
         $this->db->update("mahasiswa", $data);
         return $this->db->affected_rows();
     }
+
+    public function get_img($id){
+        $this->db->select("bukti_pembayaran");
+        $this->db->where("mhs_id", $id);
+        return $this->db->get("mahasiswa")->row_array();
+    }
+
 
 }

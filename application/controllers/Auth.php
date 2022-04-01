@@ -4,9 +4,7 @@ class Auth extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        if (array_key_exists("email", $this->session->userdata())){
-            
-        }
+
     }
 
     public function index(){
@@ -15,7 +13,7 @@ class Auth extends CI_Controller {
     }
 
     public function logout(){
-        unset($_SESSION);
+        $this->session->sess_destroy();
         redirect('auth/login');
     }
 
@@ -90,19 +88,29 @@ class Auth extends CI_Controller {
     }
 
     public function register($validate = false){
-        if ($validate){
-            $this->validateRegister();
+        if (array_key_exists("email", $_SESSION)){
+            redirect('/');
         } else {
-            $this->load->view("auth/register");
+            if ($validate){
+                $this->validateRegister();
+            } else {
+                $this->load->view("auth/register");
+            }
         }
+
     }
 
     public function login($validate = false){
-        if ($validate){
-            $this->validateLogin();
-        } else {    
-            $this->load->view("auth/login");
+        if (array_key_exists("email", $_SESSION)){
+            redirect('/');
+        } else {
+            if ($validate){
+                $this->validateLogin();
+            } else {    
+                $this->load->view("auth/login");
+            }
         }
+
 
     }
 

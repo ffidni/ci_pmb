@@ -9,6 +9,8 @@
     <script src="<?= base_url('assets/bootstrap/js/jquery.min.js')?>"></script>
 </head>
 <body>
+<img src="<?= base_url('assets/auth/images/bg.jpg')?>" alt="" id="bg">
+
 <div class="notif">
         <div class="content">
             <p><?= (isset($update_status) && $update_status) ? "Data akun berhasil diperbarui." : "Memperbarui akun gagal. Pastikan anda terkoneksi dengan internet."?></p>

@@ -34,7 +34,7 @@ class Form extends CI_Controller {
         if (!empty($detail)){
             $data['detail_pendaftaran'] = $detail;
         } else {
-            $data['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('email'))->row_array();
+            $data['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('mhs_id'))->row_array();
             $_SESSION['detail_pendaftaran'] = $data['detail_pendaftaran'];
         }
 
@@ -69,9 +69,11 @@ class Form extends CI_Controller {
         if ($data){
             $id = $this->Form_model->insert_data($data);
             if ($id) {
-                $data['nomor_seleksi'] = $this->get_seleksi();
+                $data['nomor_seleksi'] = $this->get_seleksi($id);
                 $data['approved'] = "";
                 $this->Form_model->update("nomor_seleksi", $data['nomor_seleksi'], $id);
+                $this->Auth_model->update('mhs_id', $id, $this->session->userdata('id'));
+                $this->session->userdata("mhs_id", $id);
                 redirect('/');
             }
         }
@@ -81,18 +83,15 @@ class Form extends CI_Controller {
         $data = $this->input->post();
         $id = $_SESSION['detail_pendaftaran']['mhs_id'];
         $updated = $this->Form_model->update_all($id, $data);
-        $_SESSION['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('email'))->row_array();
+        $_SESSION['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('mhs_id'))->row_array();
         $this->daftar(true, $data, $updated);
-
     }
 
-    public function get_seleksi(){
+    public function get_seleksi($id){
         $email = $this->session->userdata("email");
-        $id = $this->Form_model->get_id($email)->row()->mhs_id;
         $current_year = date('y');
         return "$current_year-$id";
     }
-
 
     public function validateForm($is_update = false){
         $this->form_validation->set_rules("email", "Email", "required|is_unique[mahasiswa.email]", array("is_unique" => "Email ini sudah terdaftar, coba masukan email lain!"));
@@ -109,8 +108,28 @@ class Form extends CI_Controller {
                     $this->daftarProcess();
                 }
         } else {
-
             $this->daftar($is_update, $this->input->post());
+        }
+    }
+
+    public function user_detail($mhs_id, $print_view = false){
+        $data = [
+            'provinsi' => $this->Form_model->getprovinsi(),
+            'pendidikan' => $this->Form_model->get_pendidikan(),
+            'mhs_pendidikan' => array("SMA", "SMK", "MA", "Paket C"),
+            'is_home' => false,
+            'is_edit' => false,
+        ];
+        $data['detail_pendaftaran'] = $this->Form_model->get_details($mhs_id)->row_array();
+        $data['is_edit'] = true;
+
+        if ($print_view){
+            $data['is_print'] = $print_view;
+            $this->load->view("home/print_view", $data);
+        } else {
+            $data['admin_view'] = true;
+            $this->load->view("home/sidebar");
+            $this->load->view("home/daftar", $data);
         }
     }
 }

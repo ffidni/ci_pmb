@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="<?= base_url('assets/admin/css/styles.css')?>">
 </head>
 <body>
-    <div id="modal" class="batal-popup">
+    <div id="modal" class="popup">
         <div class="batal-content">
             <form id="batal-form" method="post">
-                <span class="close" onclick="closeModal()">&times;</span>
+                <span class="close" onclick="closeModal()" >&times;</span>
                 <h4>Alasan pembatalan</h4>
                 <textarea name="alasan_pembatalan" id="" class="form-control form-textarea" cols="60" rows="10"></textarea>
                 <div class="batal-buttons">
@@ -20,70 +20,126 @@
             </form>
         </div>  
     </div>
+
+    <div id="pembayaran" class="popup">
+        <div class="img-content">
+            <img id="imgBukti" src="" alt="">
+        </div>
+    </div>
     <div class="container">
         <h2>Daftar Calon Mahasiswa</h2>
-        <table border="1" cellspacing="0">
-            <thead>
-            <tr>
-                <th scope="col">Nomor Seleksi</th>
-                <th scope="col">Nomor HP</th>
-                <th scope="col">Asal Sekolah</th>
-                <th scope="col">Jurusan</th>
-                <th scope="col">Reguler/Non Reguler</th>
-                <th scope="col">Status</th>
-                <th scope="col">Verifikasi</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($data_mahasiswa as $row) {?>
+        <div class="search">
+            <span class="mdi mdi-magnify"></span><input placeholder='Cari Calon Mahasiswa' type="text" id="cari" onkeyup="search()">
+        </div>
+        <div class="items">
+        <?php foreach ($data_mahasiswa as $row) {?>
                 <?php
                     $approved = $row->approved;
                     $status = '';
+                    $classStatus = '';
                     if ($approved == '0'){
                         $status = 'Ditolak';
+                        $classStatus = 'denied';
                     } else if ($approved == '1'){
                         $status = 'Diterima';
+                        $classStatus = 'accepted';
                     } else {
                     $status = 'Menunggu konfirmasi';
+                    $classStatus ='wait';
 
                     }
                 ?>
-                <tr>
-                    <td data-label="Nomor Seleksi"><?= $row->nomor_seleksi?></td>
-                    <td data-label="Nomor HP"><?= $row->no_hp?></td>
-                    <td data-label="Asal Sekolah"><?= $row->nama_sekolah?></td>
-                    <td data-label="Jurusan"><?= $row->nama ?></td>
-                    <td data-label="Reguler/Non Reguler"><?= $row->is_reguler?></td>
-                    <td data-label="Status"><?= $status?></td>
-                    <?php if ($status != 'Menunggu konfirmasi') {?>
-                        <td data-label="Verifikasi"><a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn">Batal</a>
+                <a href="<?= base_url('admin/user_detail/'.$row->mhs_id)?>">
+                <div class="item <?= $classStatus?>">
+                    <div class="item-no"><h3><?= $row->nomor_seleksi?></h3></div>
+                    <div class="item-content">
+                        <div class="row">
+                            <h3>Nama</h3>
+                            <p><?= $row->mhs_nama?></p>
+                        </div>
+                        <div class="row">
+                            <h3>Nomor HP</h3>
+                            <p><?= $row->no_hp?></p>
+                        </div>
+                        <div class="row">
+                            <h3>Asal Sekolah</h3>
+                            <p><?= $row->nama_sekolah?></p>
+                        </div>
+                        <div class="row">
+                            <h3>Pilihan Jurusan</h3>
+                            <p><?= $row->nama?></p>
+                        </div>
+                        <div class="row">
+                            <h3>Reguler/Non Reguler</h3>
+                            <p><?= $row->is_reguler?></p>
+                        </div>
+                        <div class="row">
+                            <h3>Status</h3>
+                            <p><?= $status?></p>
+                        </div>
+                        <div class="row bukti">
+                            <h3>Bukti Pembayaran</h3>
+                            <?php if ($row->bukti_pembayaran) {?>
+                                <a href="<?= base_url('main/lihat_bukti/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn">Lihat Bukti</a>
+                                <?php } else {?>
+                                    <p>Tidak Ada</p>
+                                <?php }?>
+                        </div>
+                        <div class="row buttons">
+                        <?php if ($status != 'Menunggu konfirmasi') {?>
+                        <a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn">Batal</a>
                         <?php if ($status == 'Diterima'){?>
-                            <a href="<?= base_url('admin/cetak/'.$row->mhs_id)?>" class="btn">Cetak</a></td>
+                            <a href="<?= base_url('admin/user_detail/'.$row->mhs_id.'/true')?>" class="btn">Cetak</a>
                         <?php }?>
-                        
                     <?php } else {?>
-                    <td data-label="Verifikasi">
                         <a href="<?= base_url('admin/accept/'.$row->mhs_id)?>"  class="btn">Terima</a>
                         <a class="btn tolak" onclick="openModal('<?= $row->mhs_id?>')">Tolak</a>
-                    </td>
                     <?php }?>
-                </tr>
-            <?php }?>
-            </tbody>
+                        </div>
+                    </div>
+                </div>
+        <?php }?>
+        </div>
+                </a>
+                
 
-        </table>
+
+
     </div>
 
     <script>
         var modal = document.getElementById("modal");
+        var imgModal = document.getElementById("pembayaran");
+        var imgBukti = document.getElementById("imgBukti");
         var btns = document.querySelectorAll(".tolak");
         var form = document.getElementById("batal-form");
+        var currId = ''
+
+
+
+
+        function search(){
+            let input = document.getElementById("cari").value;
+            input = input.toLowerCase();
+            let x = document.querySelectorAll(".item");
+
+            for (i = 0; i < x.length; i++){
+                console.log(x[i].innerHTML);
+                if (!x[i].innerHTML.toLowerCase().includes(input)){
+                    x[i].style.display = "none";
+                } else {
+                    x[i].style.display = "flex";
+                }
+            }
+
+        }
 
         window.onclick = (event) => {
-            if (event.target == modal) {
+            if (event.target == modal || event.target == imgModal) {
                 closeModal();
             }
         }
+
 
         function openModal(id){
             modal.style.display = "block";
@@ -92,6 +148,7 @@
 
         function closeModal(submit = false){
             modal.style.display = "none";
+            imgModal.style.disply = "none";
             if (submit) {
                 form.submit();
             }

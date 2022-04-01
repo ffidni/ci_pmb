@@ -26,6 +26,7 @@
         </div>
 
     <?= form_open(base_url(($is_edit) ? 'form/validateForm/update' : 'form/validateForm'), array("method" => "post", "onsubmit" => "return validateForm()"))?>
+
       <div class="container">
       <div id="data_diri" class="tab-content active">
             <h3>Informasi Data Diri</h3>
@@ -34,48 +35,48 @@
                     <td><label>Nama Lengkap</label></td>
             </tr>
             <tr>
-            <td colspan="3" ><input class="form-control" name="mhs_nama" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nama']?>"></td>
+            <td colspan="3" ><input <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control" name="mhs_nama" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nama']?>"></td>
             </tr>
             <tr>
                     <td><label>NIK (Nomor KTP)</label></td>
                 </tr>
             <tr>
-            <td colspan="3" ><input class="form-control" name="mhs_nik" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nik']?>"></td>
+            <td colspan="3" ><input <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control" name="mhs_nik" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_nik']?>"></td>
             </tr>
                 <tr>
                     <td><label>Tempat Lahir</label></td>
                 </tr>
                 <tr>
-                <td><input class="form-control" name="mhs_tempat_lahir" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_tempat_lahir']?>"></td>
+                <td><input <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control" name="mhs_tempat_lahir" type="text" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_tempat_lahir']?>"></td>
                 </tr>
                 <tr>
                 <td><label for="">Tgl, Bln, Thn Lahir</label></td>
                 </tr>
                 <tr>
-                <td><input class="form-control" name="mhs_tgl_lahir" type="date" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_tgl_lahir']?>"></td>
+                <td><input <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control" name="mhs_tgl_lahir" type="date" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_tgl_lahir']?>"></td>
                 </tr>
                 <tr>
                     <td><label>Jenis Kelamin</label></td>
                 </tr>
                 <tr>
-                <td colspan="3"><input type="radio" id="laki-laki" name="mhs_jk_1" value="l" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['mhs_jk'] == 'l') ? 'checked' : ''?>><label for="laki-laki">Laki-laki</label></td>
+                <td colspan="3"><input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="laki-laki" name="mhs_jk" value="l" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['mhs_jk'] == 'l') ? 'checked' : ''?>><label for="laki-laki">Laki-laki</label></td>
                 </tr>
                 <tr>
-                <td><input type="radio" id="perempuan" name="mhs_jk_1" value="p" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['mhs_jk'] == 'p') ? 'checked' : ''?>><label for="perempuan">Perempuan</label></td>
+                <td><input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="perempuan" name="mhs_jk" value="p" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['mhs_jk'] == 'p') ? 'checked' : ''?>><label for="perempuan">Perempuan</label></td>
                 </tr>
                 <tr><td><div class="spacer"></div></td></tr>
                 <tr>
                     <td><label for="">Alamat (Kampung / Jalan)</label></td>
                 </tr>
                 <tr>
-                <td colspan="4"><textarea class="form-control form-textarea" name="mhs_alamat" id="" cols="30" rows="5"><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_alamat']?></textarea></td>
+                <td colspan="4"><textarea <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control form-textarea" name="mhs_alamat" id="" cols="30" rows="5"><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_alamat']?></textarea></td>
                 </tr>
                 <tr>
                 <td><label for="">Provinsi</label></td>
                 </tr>
                 <tr>
                 <td>
-                        <select class="form-control select2" name="provinsi" id="provinsi" >
+                        <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" name="provinsi" id="provinsi" >
 					        <option value="">-- Pilih --</option>
 					        <?php foreach($provinsi as $row):?>
 					            <option value="<?php echo $row->id_prov;?>" value="<?= (!empty($detail_pendaftaran) && $row->id_prov == $detail_pendaftaran['provinsi']) ?  'selected'  : '' ?>"><?php echo $row->nama;?></option>
@@ -88,7 +89,7 @@
                 </tr>
                 <tr>
                 <td>
-                    <select class="form-control select2" id="kabupaten" name="kab_kota" >
+                    <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" id="kabupaten" name="kab_kota" >
 									<option value="">-- Pilih --</option>
 								</select>
                     </td>
@@ -98,7 +99,7 @@
                 </tr>
                 <tr>
                 <td>
-                    <select class="form-control select2" id="kecamatan" name="kec" >
+                    <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" id="kecamatan" name="kec" >
 									<option value="">-- Pilih --</option>
 								</select>
                     </td>
@@ -108,7 +109,7 @@
                 </tr>
                 <tr>
                 <td>
-                    <select class="form-control select2" id="kelurahan" name="kel" >
+                    <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" id="kelurahan" name="kel" >
 									<option value="">-- Pilih --</option>
 								</select>
                     </td>
@@ -117,20 +118,20 @@
                 <td><label for="">RT / RW</label></td>
                 </tr>
                 <tr>
-                <td><input class="form-control" type="text" name="mhs_rt_rw" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_rt_rw']?>"></td>
+                <td><input <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control" type="text" name="mhs_rt_rw" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['mhs_rt_rw']?>"></td>
                 </tr>
                 <tr>
                 <td><label for="">Kode POS</label></td>
                 </tr>
                 <tr>
-                <td><input class="form-control" type="number" name="kode_pos" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['kode_pos']?>"> </td>
+                <td><input <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control" type="number" name="kode_pos" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['kode_pos']?>"> </td>
                 </tr>
 
                 <tr>
                     <td><label for="">No. HP / WhatsApp</label></td>
                 </tr>
                 <tr>
-                <td colspan="3"><input class="form-control <?= (form_error('no_hp')) ? 'error': ''?>" type="text" name="no_hp" value="<?= (empty($detail_pendaftaran)) ? $this->session->userdata('no_hp') : $detail_pendaftaran['no_hp']?>"></td>
+                <td colspan="3"><input <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control <?= (form_error('no_hp')) ? 'error': ''?>" type="text" name="no_hp" value="<?= (empty($detail_pendaftaran)) ? $this->session->userdata('no_hp') : $detail_pendaftaran['no_hp']?>"></td>
                 </tr>
                 <tr>
                 <?php if (form_error("no_hp")) {?>
@@ -144,7 +145,7 @@
                     <td><label for="">Alamat E-Mail</label></td>
                 </tr>
                 <tr>
-                <td colspan="3"><input class="form-control <?= (form_error('email')) ? 'error': ''?>" type="text" name="email" value="<?= (empty($detail_pendaftaran)) ? $this->session->userdata('email') : $detail_pendaftaran['email']?>"></td>
+                <td colspan="3"><input <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control <?= (form_error('email')) ? 'error': ''?>" type="text" name="email" value="<?= (empty($detail_pendaftaran)) ? $this->session->userdata('email') : $detail_pendaftaran['email']?>"></td>
                 </tr>
                 <?php if (form_error("email")) {?>
                 <tr>
@@ -154,9 +155,12 @@
                 <?php }?>
             </table>
             <div class="button-navigation">
-            <?php if ($is_edit) {?>
-                    <input type="submit" class="btn btn-perbarui" value="Perbarui">
+            <?php if ($is_edit && !isset($admin_view)) {?>
+                    <input <?= (isset($admin_view)) ? 'readonly': ''?> type="submit" class="btn btn-perbarui" value="Perbarui">
+                <?php } else if (isset($admin_view)) {?>
+                    <a href="<?= base_url('admin/verifikasi')?>" class="btn">Kembali ke Verifikasi</a>
                 <?php }?>
+                
                 <a data-target="latar_belakang" class="btn btn-next">Selanjutnya</a>
 
             </div>
@@ -169,7 +173,7 @@
              </tr>
              <tr>
              <td>
-                     <select class="form-control select2" name="pendidikan_id">
+                     <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" name="pendidikan_id">
                          <option value="">-- Pilih --</option>
                          <?php foreach($pendidikan as $row):?>
                             <?php if (in_array($row->singkatan, $mhs_pendidikan)):?>
@@ -189,7 +193,7 @@
              </tr>
              <tr>
              <td>
-                    <input type="text" class="form-control" name="nama_sekolah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nama_sekolah']?>">
+                    <input <?= (isset($admin_view)) ? 'readonly': ''?> type="text" class="form-control" name="nama_sekolah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nama_sekolah']?>">
                  </td>
              </tr>
              <tr>
@@ -199,7 +203,7 @@
              </tr>
              <tr>
              <td>
-                    <input type="number" class="form-control" name="nisn" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nisn']?>">
+                    <input <?= (isset($admin_view)) ? 'readonly': ''?> type="number" class="form-control" name="nisn" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nisn']?>">
                  </td>
              </tr>
              <tr>
@@ -210,7 +214,7 @@
             </tr>
             <tr>
             <td>
-                 <input class="form-control <?= (form_error('nomor_ijazah')) ? 'error': ''?>" type="text" name="nomor_ijazah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nomor_ijazah']?>">
+                 <input <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control <?= (form_error('nomor_ijazah')) ? 'error': ''?>" type="text" name="nomor_ijazah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nomor_ijazah']?>">
              </td>
             </tr>
             <?php if (form_error('nomor_ijazah')) {?>
@@ -226,14 +230,16 @@
              </tr>
              <tr>
              <td>
-                <input type="number" class="form-control" name="tahun_ijazah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['tahun_ijazah']?>">
+                <input <?= (isset($admin_view)) ? 'readonly': ''?> type="number" class="form-control" name="tahun_ijazah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['tahun_ijazah']?>">
              </td>
              </tr>
          </table>
          <div class="button-navigation">
                 <a data-target="data_diri" class="btn btn-previous">Sebelumnya</a>
-                <?php if ($is_edit) {?>
-                    <input type="submit" class="btn btn-perbarui" value="Perbarui">
+                <?php if ($is_edit && !isset($admin_view)) {?>
+                    <input <?= (isset($admin_view)) ? 'readonly': ''?> type="submit" class="btn btn-perbarui" value="Perbarui">
+                <?php } else if (isset($admin_view)) {?>
+                    <a href="<?= base_url('admin/verifikasi')?>" class="btn">Kembali ke Verifikasi</a>
                 <?php }?>
                 <a data-target="data_ortu" class="btn btn-next">Selanjutnya</a>
             </div>
@@ -248,7 +254,7 @@
                   </tr>
                   <tr>
                   <td>
-                          <input type="text" class="form-control" name="nama_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nama_ayah']?>">
+                          <input <?= (isset($admin_view)) ? 'readonly': ''?> type="text" class="form-control" name="nama_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nama_ayah']?>" <?= (isset($admin_view)) ? 'readonly': ''?>>
                       </td>
                   </tr>
                   <tr>
@@ -258,7 +264,7 @@
                   </tr>
                   <tr>
                   <td colspan="3">
-                        <input type="date" class="form-control" name="tgl_lahir_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['tgl_lahir_ayah']?>">
+                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="date" class="form-control" name="tgl_lahir_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['tgl_lahir_ayah']?>">
                       </td>
                   </tr>
                   <tr>
@@ -268,7 +274,7 @@
                   </tr>
                   <tr>
                   <td>
-                      <select class="form-control select2" name="pendidikan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pendidikan_ayah']?>">
+                      <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" name="pendidikan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pendidikan_ayah']?>">
                          <option value="">-- Pilih --</option>
                          <?php foreach($pendidikan as $row):?>
                             <option value="<?= $row->id?>" <?= (!empty($detail_pendaftaran) && $row->id == $detail_pendaftaran['pendidikan_ayah']) ? 'selected' : '' ?>><?= $row->singkatan?></option>
@@ -283,7 +289,7 @@
                   </tr>
                   <tr>
                   <td>
-                        <input type="text" class="form-control" name="pekerjaan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_ayah']?>">
+                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="text" class="form-control" name="pekerjaan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_ayah']?>">
                       </td>
                   </tr>
                   <tr>
@@ -293,7 +299,7 @@
                   </tr>
                   <tr>
                   <td>
-                        <input type="number" class="form-control" name="penghasilan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan_ayah']?>">
+                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="number" class="form-control" name="penghasilan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan_ayah']?>">
                       </td>
                   </tr>
                   <tr>
@@ -303,7 +309,7 @@
                   </tr>
                   <tr>
                   <td>
-                          <input type="text" class="form-control" name="nama_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nama_ibu']?>">
+                          <input <?= (isset($admin_view)) ? 'readonly': ''?> type="text" class="form-control" name="nama_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['nama_ibu']?>">
                       </td>
                   </tr>
                   <tr>
@@ -313,7 +319,7 @@
                   </tr>
                   <tr>
                   <td colspan="3">
-                        <input type="date" class="form-control" name="tgl_lahir_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['tgl_lahir_ibu']?>">
+                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="date" class="form-control" name="tgl_lahir_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['tgl_lahir_ibu']?>">
                       </td>
                   </tr>
                   <tr>
@@ -323,7 +329,7 @@
                   </tr>
                   <tr>
                   <td>
-                      <select class="form-control select2" name="pendidikan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pendidikan_ibu']?>">
+                      <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" name="pendidikan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pendidikan_ibu']?>">
                          <option value="">-- Pilih --</option>
                          <?php foreach($pendidikan as $row):?>
                             <option value="<?= $row->id?>" <?= (!empty($detail_pendaftaran) && $row->id == $detail_pendaftaran['pendidikan_ibu']) ? 'selected' : '' ?>><?= $row->singkatan?></option>
@@ -338,7 +344,7 @@
                   </tr>
                   <tr>
                   <td>
-                        <input type="text" class="form-control" name="pekerjaan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_ibu']?>">
+                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="text" class="form-control" name="pekerjaan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_ibu']?>">
                       </td>
                   </tr>
                   <tr>
@@ -348,7 +354,7 @@
                   </tr>
                   <tr>
                   <td>
-                        <input type="number" class="form-control" name="penghasilan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan_ibu']?>">
+                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="number" class="form-control" name="penghasilan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan_ibu']?>">
                       </td>
                   </tr>
                   <tr>
@@ -359,7 +365,7 @@
                   <tr>
                   </td>
                       <td colspan="5">
-                        <textarea class="form-control form-textarea" name="alamat_orangtua" cols="30" rows="5" ><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['alamat_orangtua']?></textarea>
+                        <textarea <?= (isset($admin_view)) ? 'readonly': ''?> class="form-control form-textarea" name="alamat_orangtua" cols="30" rows="5" ><?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['alamat_orangtua']?></textarea>
                       </td>
                   </tr>
                   <tr>
@@ -369,7 +375,7 @@
                 </tr>
                 <tr>
                 <td colspan="2">
-                        <select class="form-control select2" name="provinsi_orangtua" id="provinsi_orangtua" >
+                        <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" name="provinsi_orangtua" id="provinsi_orangtua" >
 					        <option value="">-- Pilih --</option>
 					        <?php foreach($provinsi as $row):?>
 					            <option value="<?php echo $row->id_prov;?>" <?= (!empty($detail_pendaftaran) && $row->id_prov == $detail_pendaftaran['provinsi_orangtua']) ? 'selected' : '' ?>><?php echo $row->nama;?></option>
@@ -383,7 +389,7 @@
                 </tr>
                 <tr>
                 <td colspan="2">
-                    <select class="form-control select2" id="kabupaten_orangtua" name="kota_orangtua" >
+                    <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" id="kabupaten_orangtua" name="kota_orangtua" >
 									<option value="">-- Pilih --</option>
                 </select>
                     </td>
@@ -393,7 +399,7 @@
                 </tr>
                 <tr>
                 <td colspan="2">
-                    <select class="form-control select2" id="kecamatan_orangtua" name="kec_orangtua" >
+                    <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" id="kecamatan_orangtua" name="kec_orangtua" >
 									<option value="">-- Pilih --</option>
 								</select>
                     </td>
@@ -404,7 +410,7 @@
                 </tr>
                 <tr>
                 <td colspan="2">
-                    <select class="form-control select2" id="kelurahan_orangtua" name="kel_orangtua" >
+                    <select <?= (isset($admin_view)) ? 'disabled': ''?> class="form-control select2" id="kelurahan_orangtua" name="kel_orangtua" >
 									<option value="">-- Pilih --</option>
 								</select>
                     </td>
@@ -415,7 +421,7 @@
                   </tr>
                   <tr>
                   <td colspan="2">
-                        <input type="text" class="form-control" name="rt_rw_orangtua" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['rt_rw_orangtua']?>">
+                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="text" class="form-control" name="rt_rw_orangtua" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['rt_rw_orangtua']?>">
                       </td>
                   </tr>
                   <tr>
@@ -425,15 +431,17 @@
                   </tr>
                   <tr>
                   <td colspan="2">
-                        <input type="number" class="form-control" name="kode_pos_orangtua" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['kode_pos_orangtua']?>">
+                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="number" class="form-control" name="kode_pos_orangtua" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['kode_pos_orangtua']?>">
                       </td>
                   </tr>
           </table>
 
               <div class="button-navigation">
                 <a data-target="latar_belakang" class="btn  btn-previous">Sebelumnya</a>
-                <?php if ($is_edit) {?>
-                    <input type="submit" class="btn btn-perbarui" value="Perbarui">
+                <?php if ($is_edit && !isset($admin_view)) {?>
+                    <input <?= (isset($admin_view)) ? 'readonly': ''?> type="submit" class="btn btn-perbarui" value="Perbarui">
+                    <?php } else if (isset($admin_view)) {?>
+                    <a href="<?= base_url('admin/verifikasi')?>" class="btn">Kembali ke Verifikasi</a>
                 <?php }?>
                 <a data-target="data_pendukung" class="btn  btn-next">Selanjutnya</a>
 
@@ -446,16 +454,16 @@
                   <td><label for="">Status Perkawinan</label></td>
             </tr>
             <tr>
-                <td><input type="radio" id="belum_kawin" name="status_mhs_1" value="Belum Kawin" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Belum Kawin') ? 'checked' : ''?>><label for="belum_kawin">Belum Kawin</label></td>
+                <td><input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="belum_kawin" name="status_mhs" value="Belum Kawin" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Belum Kawin') ? 'checked' : ''?>><label for="belum_kawin">Belum Kawin</label></td>
             </tr>
             <tr>
-            <td><input type="radio" id="kawin" name="status_mhs_1" value="Kawin" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Kawin') ? 'checked' : ''?>><label for="kawin">Kawin</label></td>
+            <td><input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="kawin" name="status_mhs" value="Kawin" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Kawin') ? 'checked' : ''?>><label for="kawin">Kawin</label></td>
             </tr>
             <tr>
-            <td><input type="radio" id="cerai_hidup" name="status_mhs_1" value="Cerai Hidup" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Cerai Hidup') ? 'checked' : ''?>><label for="cerai_hidup">Cerai Hidup</label></td>
+            <td><input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="cerai_hidup" name="status_mhs" value="Cerai Hidup" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Cerai Hidup') ? 'checked' : ''?>><label for="cerai_hidup">Cerai Hidup</label></td>
             </tr>
             <tr>
-            <td><input type="radio" id="cerai_mati" name="status_mhs_1" value="Cerai Mati" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Cerai Mati') ? 'checked' : ''?>><label for="cerai_mati">Cerai Mati</label></td>
+            <td><input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="cerai_mati" name="status_mhs" value="Cerai Mati" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['status_mhs'] == 'Cerai Mati') ? 'checked' : ''?>><label for="cerai_mati">Cerai Mati</label></td>
             </tr>
             <tr><td><div class="spacer"></div></td></tr>
             <tr>
@@ -465,7 +473,7 @@
               </tr>
               <tr>
               <td>
-                      <input type="text" class="form-control" name="pekerjaan_mhs" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_mhs']?>">
+                      <input <?= (isset($admin_view)) ? 'readonly': ''?> type="text" class="form-control" name="pekerjaan_mhs" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_mhs']?>">
                   </td>
               </tr>
               <tr>
@@ -476,7 +484,7 @@
               </tr>
               <tr>
               <td>
-                      <input type="number" class="form-control" name="penghasilan" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan']?>">
+                      <input <?= (isset($admin_view)) ? 'readonly': ''?> type="number" class="form-control" name="penghasilan" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan']?>">
                   </td>
               </tr>
               <tr>
@@ -486,37 +494,37 @@
               </tr>
               <tr>
                   <td>
-                  <input class="form-radio-input" type="radio" id="orangtua" name="id_tinggal_1" value="1" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '1') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'readonly': ''?> class="form-radio-input" type="radio" id="orangtua" name="id_tinggal" value="1" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '1') ? 'checked' : ''?>>
                      <label for="orangtua">Bersama Orang Tua</label>
                   </td>
               </tr>
               <tr>
                   <td>
-                  <input type="radio" id="wali" name="id_tinggal_1" value="2" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '2') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="wali" name="id_tinggal" value="2" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '2') ? 'checked' : ''?>>
                      <label for="wali">Wali</label>
                   </td>
               </tr>
               <tr>
                   <td>
-                  <input type="radio" id="kos" name="id_tinggal_1" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '3') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="kos" name="id_tinggal" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '3') ? 'checked' : ''?>>
                      <label for="kos">Kos</label>
                   </td>
               </tr>
               <tr>
                   <td>
-                  <input type="radio" id="asrama" name="id_tinggal_1" value="4" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '4') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="asrama" name="id_tinggal" value="4" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '4') ? 'checked' : ''?>>
                      <label for="asrama">Asrama</label>
                   </td>
               </tr>
               <tr>
                   <td>
-                  <input type="radio" id="pesantren" name="id_tinggal_1" value="5" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '5') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="pesantren" name="id_tinggal" value="5" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '5') ? 'checked' : ''?>>
                      <label for="pesantren">Pesantren</label>
                   </td>
               </tr>
               <tr>
                   <td>
-                  <input type="radio" id="lainnya" name="id_tinggal_1" value="6" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '6') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="lainnya" name="id_tinggal" value="6" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_tinggal'] == '6') ? 'checked' : ''?>>
                      <label for="lainnya">Lainnya</label>
                   </td>
               </tr>
@@ -529,7 +537,7 @@
               </tr>
               <tr>
               <td>
-                      <input type="text" class="form-control" name="nama_pesantren" value="<?= (!empty($detail_pendaftaran) && array_key_exists('nama_pesantren', $detail_pendaftaran)) ? $detail_pendaftaran['nama_pesantren'] : ''?>">
+                      <input <?= (isset($admin_view)) ? 'readonly': ''?> type="text" class="form-control" name="nama_pesantren" value="<?= (!empty($detail_pendaftaran) && array_key_exists('nama_pesantren', $detail_pendaftaran)) ? $detail_pendaftaran['nama_pesantren'] : ''?>">
                   </td>
               </tr>
               <tr>
@@ -539,45 +547,47 @@
               </tr>
               <tr>
                <td>
-               <input type="radio" id="angkutan_umum" name="id_transportasi_1" value="1" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '1') ? 'checked' : ''?>>
+               <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="angkutan_umum" name="id_transportasi" value="1" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '1') ? 'checked' : ''?>>
                      <label for="angkutan_umum">Angkutan Umum</label>
                </td>
               </tr>
               <tr>
                   <td>
-                  <input type="radio" id="ojek" name="id_transportasi_1" value="2" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '2') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="ojek" name="id_transportasi" value="2" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '2') ? 'checked' : ''?>>
                      <label for="ojek">Ojek</label>
                   </td>
               </tr>
               <tr>
                   <td>
-                  <input type="radio" id="sepeda" name="id_transportasi_1" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '3') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="sepeda" name="id_transportasi" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '3') ? 'checked' : ''?>>
                      <label for="angkutan_umum">Sepeda</label>
                   </td>
               </tr>
               <tr>
                   <td>
-                  <input type="radio" id="mobil_pribadi" name="id_transportasi_1" value="4" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '4') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="mobil_pribadi" name="id_transportasi" value="4" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '4') ? 'checked' : ''?>>
                      <label for="mobil_pribadi">Mobil Pribadi</label>
                   </td>
               </tr>
               <tr>
                   <td>
-                  <input type="radio" id="sepeda_motor" name="id_transportasi_1" value="5" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '5') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="sepeda_motor" name="id_transportasi" value="5" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '5') ? 'checked' : ''?>>
                      <label for="sepeda_motor">Sepeda Motor</label>
                   </td>
               </tr>
               <tr>
                   <td>
-                  <input type="radio" id="lainnya" name="id_transportasi_1" value="6" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '6') ? 'checked' : ''?>>
+                  <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="lainnya" name="id_transportasi" value="6" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_transportasi'] == '6') ? 'checked' : ''?>>
                      <label for="lainnya">Lainnya</label>
                   </td>
               </tr>
           </table>
           <div class="button-navigation">
                 <a data-target="data_ortu" class="btn  btn-previous">Sebelumnya</a>
-                <?php if ($is_edit) {?>
-                    <input type="submit" class="btn btn-perbarui" value="Perbarui">
+                <?php if ($is_edit && !isset($admin_view)) {?>
+                    <input <?= (isset($admin_view)) ? 'readonly': ''?> type="submit" class="btn btn-perbarui" value="Perbarui">
+                    <?php } else if (isset($admin_view)) {?>
+                    <a href="<?= base_url('admin/verifikasi')?>" class="btn">Kembali ke Verifikasi</a>
                 <?php }?>
                 <a data-target="prodi" class="btn  btn-next">Selanjutnya</a>
             </div>
@@ -588,29 +598,29 @@
               <tr>
                   <td>
         
-                    <input type="radio" id="manajemen_pendidikan_islam" name="id_prodi" value="1" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_prodi'] == '1') ? 'checked' : ''?>>
+                    <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="manajemen_pendidikan_islam" name="id_prodi" value="1" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_prodi'] == '1') ? 'checked' : ''?>>
                     <label for="manajemen_pendidikan_islam">Manajemen Pendidikan Islam (S1)</label>
                 </td>
             </tr>
             <tr>
             <td>
-                <input type="radio" id="komunikasi_penyiaran_islam" name="id_prodi" value="2" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_prodi'] == '2') ? 'checked' : ''?>>
+                <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="komunikasi_penyiaran_islam" name="id_prodi" value="2" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_prodi'] == '2') ? 'checked' : ''?>>
                     <label for="komunikasi_penyiaran_islam">Komunikasi Penyiaran Islam (S1)</label>
                 </td>
             </tr>
             <tr>
             <td>
-                <input type="radio" id="hukum_keluarga_islam" name="id_prodi" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_prodi'] == '3') ? 'checked' : ''?>>
+                <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="hukum_keluarga_islam" name="id_prodi" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_prodi'] == '3') ? 'checked' : ''?>>
                     <label for="hukum_keluarga_islam">Hukum Keluarga Islam (S1)</label>
                 </td>
             </tr>          
             <tr>
             <td>
-                <input type="radio" id="reguler" name="is_reguler" value="Reguler" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['is_reguler'] == 'Reguler') ? 'checked' : ''?>>
+                <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="reguler" name="is_reguler" value="Reguler" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['is_reguler'] == 'Reguler') ? 'checked' : ''?>>
                 <label for="reguler">Kelar Reguler</label>
                 </td>
                 <td>
-                <input type="radio" id="nonreguler" name="is_reguler" value="Non Reguler" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['is_reguler'] == 'Non Reguler') ? 'checked' : ''?>>
+                <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="nonreguler" name="is_reguler" value="Non Reguler" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['is_reguler'] == 'Non Reguler') ? 'checked' : ''?>>
                 <label for="nonreguler">Kelar Non Reguler</label>
                 </td>
             </tr>          
@@ -620,44 +630,47 @@
               <table class="form-table">
                           <tr>
                       <td>
-                      <input type="radio" name="tahu_stainu" value="1" id="sosial_media" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '1') ? 'checked' : ''?>>
+                      <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" name="tahu_stainu" value="1" id="sosial_media" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '1') ? 'checked' : ''?>>
                         <label for="sosial_media">Sosial Media</label>
                       </td>
                   </tr>
                   <tr>
                       <td>
-                      <input type="radio" name="tahu_stainu" value="2" id="dosen" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '2') ? 'checked' : ''?>>
+                      <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" name="tahu_stainu" value="2" id="dosen" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '2') ? 'checked' : ''?>>
                           <label for="dosen">Dosen</label>
                       </td>
                   </tr>
                   <tr>
                       <td>
-                      <input type="radio" name="tahu_stainu" value="3" id="alumni" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '3') ? 'checked' : ''?>>
+                      <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" name="tahu_stainu" value="3" id="alumni" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '3') ? 'checked' : ''?>>
                           <label for="alumni">Alumni</label>
                       </td>
                   </tr>
                   <tr>
                       <td>
-                      <input type="radio" name="tahu_stainu" value="4" id="via_nu" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '4') ? 'checked' : ''?>>
+                      <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" name="tahu_stainu" value="4" id="via_nu" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '4') ? 'checked' : ''?>>
                           <label for="via_nu">Via NU</label>
                       </td>
                   </tr>
                   <tr>
                   <td>
-                      <input type="radio" name="tahu_stainu" value="5" id="checkbox_lainnya" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '5') ? 'checked' : ''?>>
+                      <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" name="tahu_stainu" value="5" id="checkbox_lainnya" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '5') ? 'checked' : ''?>>
                           <label for="lainnya">Lainnya</label>
                       </td>
                   </tr>
                           </table>
-                <textarea name="keterangan_tahu" id="tahu-textarea" style="<?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '5') ? 'display: block' : 'display: none'?>" class="form-control form-textarea" cols="50" rows="8"><?= (!empty($detail_pendaftaran) && array_key_exists('keterangan_tahu', $detail_pendaftaran)) ? $detail_pendaftaran['keterangan_tahu'] : ''?></textarea>
+                <textarea <?= (isset($admin_view)) ? 'readonly': ''?> name="keterangan_tahu" id="tahu-textarea" style="<?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '5') ? 'display: block' : 'display: none'?>" class="form-control form-textarea" cols="50" rows="8"><?= (!empty($detail_pendaftaran) && array_key_exists('keterangan_tahu', $detail_pendaftaran)) ? $detail_pendaftaran['keterangan_tahu'] : ''?></textarea>
 
           </div>
           <div class="button-navigation">
-          <?php if (!$is_edit) { ?>
-            <input type="submit" class="btn">
-          <?php } else {?>
-            <a data-target="data_pendukung" class="btn  btn-previous" >Sebelumnya</a>
-            <input type="submit" class="btn btn-perbarui" value="Perbarui">
+          <?php if (isset($admin_view)) {?>
+                    <a href="<?= base_url('admin/verifikasi')?>" class="btn">Kembali ke Verifikasi</a>
+                <?php }?>
+          <a data-target="data_pendukung" class="btn btn-previous" >Sebelumnya</a>
+          <?php if ($is_edit && !isset($admin_view)) {?>
+            <input <?= (isset($admin_view)) ? 'readonly': ''?> type="submit" class="btn">
+          <?php } else if (!$is_edit && !isset($admin_view)){?>
+            <input <?= (isset($admin_view)) ? 'readonly': ''?> type="submit" class="btn btn-perbarui" value="Perbarui">
             <?php }?> 
           </div>
 
@@ -785,8 +798,8 @@
               document.getElementById(tab).style.display = "block";
               if (event) {
               event.currentTarget.classList.add("active");
-
               }
+              window.scrollTo(0,0);
               
 
           }

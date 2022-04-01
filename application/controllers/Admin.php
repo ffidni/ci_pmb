@@ -17,7 +17,6 @@
 
         public function verifikasi(){
             $data['data_mahasiswa'] = $this->Form_model->get_mahasiswa()->result();
-            $data["detail_pendaftaran"] = $this->Form_model->get_details($this->session->userdata("email"))->row_array();
             $this->load->view("home/sidebar", $data);
             $this->load->view("admin/verifikasi", $data);   
         }
@@ -36,5 +35,25 @@
         public function batal($id){
             $this->Form_model->update("approved", "", $id);
             redirect('admin/verifikasi');
+        }
+
+        public function user_detail($mhs_id, $print_view = false){
+            $data = [
+                'provinsi' => $this->Form_model->getprovinsi(),
+                'pendidikan' => $this->Form_model->get_pendidikan(),
+                'mhs_pendidikan' => array("SMA", "SMK", "MA", "Paket C"),
+                'is_home' => false,
+                'is_edit' => false,
+            ];
+            $data['detail_pendaftaran'] = $this->Form_model->get_details($mhs_id)->row_array();
+    
+            if ($print_view){
+                $data['is_print'] = $print_view;
+                $this->load->view("home/print_view", $data);
+            } else {
+                $data['admin_view'] = true;
+                $this->load->view("home/sidebar");
+                $this->load->view("home/daftar", $data);
+            }
         }
     }

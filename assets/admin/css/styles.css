@@ -70,7 +70,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 40px 20px;
+    margin: 40px 5px;
 }
 
 .container h2 {
@@ -105,8 +105,105 @@ table th {
     background-color: rgb(72, 126, 72);
 }
 
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2em 1.4em;
+    margin: .8em;
+    box-shadow: 10px 10px 10px rgba(74, 73, 73, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+}
 
-.batal-popup {
+
+.items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.row {
+    margin-top: .3em;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    border-top: 1px solid black;
+}
+
+.search {
+    border: 1px solid rgb(40, 40, 40);
+    padding: 3px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+
+.mdi-magnify {
+    font-size: 1.2em;
+}
+
+.search input {
+    border: none;
+    padding: 3px;
+}
+
+.search input:focus {
+    outline: none;
+}
+
+.bukti {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.bukti p {
+    margin-left: 5px;
+}
+
+
+.wait {
+    background-color: rgb(246, 217, 3);
+    color: black;
+}
+
+.wait:hover {
+    background-color: rgb(255, 225, 0);
+}
+
+.accepted {
+    background-color: rgb(91, 201, 69);
+    color: rgb(255, 255, 255);
+}
+
+.accepted:hover {
+    background-color: rgb(95, 208, 73);
+
+}
+
+.denied {
+    background-color: rgb(201, 69, 69);
+    color: rgb(255, 255, 255);
+}
+
+
+a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+  }
+
+
+
+
+.popup {
     display: none;
     position: fixed;
     z-index: 11;
@@ -125,12 +222,20 @@ table th {
     justify-content: center;
     background-color: #b2c7b2;
     margin: 15% auto;
-    padding: 50px 10px;;
-    border: 1px solid #888;
-    width: 40%;
+    padding: 30px 5px;;
+    width: 25%;
     border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    
 
 }
+
+.batal-content textarea {
+    width: 20vw;
+    height: 15vh;
+}
+
+
 
 .batal-buttons {
     display: flex;

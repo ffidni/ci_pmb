@@ -17,30 +17,89 @@
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),  url('../images/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    -webkit-transition: all 500ms linear;
+    -moz-transition: all 500ms linear;
+    -o-transition: all 500ms linear;
+    transition: all 500ms linear;
 }
+
 
 
 
 .wrapper {
-    transition: all 0.5s ease;
-
-}
-
-.wrapper .sidebar{
     background: rgb(54, 81, 55);
     position: fixed;
-    top: 0;
-    left: 0;
+    left: -225px;
     width: 225px;
     height: 100%;
     padding: 20px 0;
+    -webkit-transition: all 300ms linear;
+    -moz-transition: all 300ms linear;
+    -o-transition: all 300ms linear;
+    transition: all 300ms linear;
 }
 
-.hide{
+.wrapper.active {
+    left: 0;
+    -webkit-transition: all 300ms linear;
+    -moz-transition: all 300ms linear;
+    -o-transition: all 300ms linear;
+    transition: all 300ms linear;
+}
+
+.modal {
     display: none;
-    transition: opacity 1s;
-  }
-  
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: grey;
+    margin: 15% auto;
+    color: white;
+    border: 1px solid rgb(133, 133, 133);
+    border-radius: 3px;
+    width: 25%;
+    height: 40%;
+    padding: 1.5em;
+
+}
+
+
+
+.steps{
+    margin-top: 1em;
+}
+
+.steps li {
+    list-style: decimal;
+    margin-left: 1em;
+    margin-bottom: .5em;
+}
+
+
+
+#close {
+    display: flex;
+    justify-content: right;
+    color: rgb(255, 255, 255);
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.steps ol {
+
+}
+
+
+
 
 .header-container {
     display: flex;
@@ -124,6 +183,8 @@ section h1 {
     margin: 10px;
     color: white;
     transition: 0.2s;
+    cursor: pointer;
+    border: none;
 }
 
 .btn:hover {
@@ -132,7 +193,7 @@ section h1 {
 }
 
 
-.mdi-note {
+.mdi{
     margin-right: 10px;
 }
 
@@ -192,7 +253,7 @@ section h1 {
     justify-content: right;
     color: white;
     font-size: 2em;
-    padding-right: 30px;
+    margin-right: 1em;
     cursor: pointer;
 }
 
@@ -201,18 +262,22 @@ section h1 {
 }
 
 
-
 @media only screen and (max-width: 992px) {
 
     .btn {
-        padding: 8px 25px;
-        font-size: 15px;
+        padding: 15px 30px;
+        font-size: 18px;
     }
 
     .home-container h1 {
+        font-size: 40px;
+    }
+
+
+    .home-container h3 {
         font-size: 30px;
     }
-    .links {
+    .links{
         display: none;
     }
 
@@ -224,9 +289,19 @@ section h1 {
         display: block;
     }
 
+
+
 }
 
 @media only screen and (max-width: 830px) {
+
+    .home-container h1 {
+        text-align: center;
+    }
+
+    .home-container h3 {
+        font-size: 25px;
+    }
 
     .btn {
         padding: 8px 20px;
@@ -248,15 +323,21 @@ section h1 {
 
 @media only screen and (max-width: 768px) {
 
-
     .btn {
         padding: 8px 15px;
     }
 
     .home-container h1 {
-        font-size: 25px;
+        font-size: 26px;
         text-align: center;
     }
+
+    .home-container h3 {
+        font-size: 18px;
+        text-align: center;
+    }
+
+
 
     .title h3 {
         font-size: 18px;
@@ -266,10 +347,16 @@ section h1 {
         display: none;
     }
 
-    .wrapper .sidebar{
+    .wrapper.active {
+        position:absolute;
         width: 100%;
-        height: 100%;
+        top:0px;
+        right:0px;
+        bottom:0px;
+        left:0px;
     }
+
+
 
 
 
@@ -282,7 +369,7 @@ section h1 {
     }
 
     .btn {
-        padding: 6px 13px;
+        padding: 7px 13px;
         font-size: 12px;
     }
 
@@ -306,9 +393,14 @@ section h1 {
 
     
     .home-container h1 {
-        font-size: 20px;
+        font-size: 22px;
         
     }
+
+    .home-container h3 {
+        font-size: 13px;
+    }
+
     .title h3 {
         font-size: 15px;
     }
@@ -323,10 +415,7 @@ section h1 {
 
 @media only screen and (max-width: 476px){
 
-    .home-container h1 {
-        font-size: 15px;
-        
-    }
+
     .title h3 {
         font-size: 13px;
     }
@@ -342,6 +431,19 @@ section h1 {
 
 
 @media only screen and (max-width: 300px){
+
+    .btn {
+        padding: 6px 10px;
+    }
+
+    .home-container h1 {
+        font-size: 18px;
+        
+    }
+
+    .home-container h3 {
+        font-size: 14px;
+    }
     .title h3 {
         font-size: 10px;
     }

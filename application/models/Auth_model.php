@@ -52,4 +52,9 @@
             $this->db->update("user", array("no_hp" => $no_hp, "email" => $email));
             return $this->db->affected_rows();
         }
+
+        public function update($field, $value, $id){
+            $this->db->where("id", $id);
+            $this->db->update("user", array($field => $value));
+        }
     }

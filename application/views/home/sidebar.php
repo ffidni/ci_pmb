@@ -7,15 +7,16 @@
     <title>Document</title>
     
     <link rel="stylesheet" href="<?= base_url('assets/homepage/css/styles.css')?>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
 </head>
 <body>
     <?php $detail_pendaftaran = $this->session->userdata("detail_pendaftaran")?>
-    <div class="wrapper hide">
-        <!--Top menu -->
+    <div class="wrapper">
+
         <div class="sidebar">
             <ul>
                 <li>
-                <span class="close-sidebar">&times;</span>
+                <span class="close-sidebar mdi mdi-menu-open"></span>
                 </li>
                 <li>
                     <div class="profile">
@@ -34,13 +35,18 @@
                     <a href="https://stainu-tasikmalaya.ac.id/2021/" class="sidebar-button responsive-visibility">Website STAINU</a>
                 </li>
                 <li>
-                    <?php if (!empty($detail_pendaftaran)) {?>
+                    <?php if (!empty($detail_pendaftaran) && $this->session->userdata('hak_akses') == 'user') {?>
                         <a href="<?= base_url('form/daftar/detail')?>"  class="sidebar-button">Detail Pendaftaran</a>
                                 
-                    <?php } else {?>
+                    <?php } else if ($this->session->userdata("hak_akses") == 'user'){?>
                         <a href="<?= base_url('form/daftar')?>"  class="sidebar-button">Form Pendaftaran</a>   
                     <?php }?>
                 </li>
+                <?php if (!empty($detail_pendaftaran) && $detail_pendaftaran['approved'] != "1") {?>
+                    <li>
+                        <a href="<?= base_url('main/pembayaran')?>" class="sidebar-button">Konfirmasi Pembayaran</a>
+                    </li>
+                <?php }?>
                 <li>
                     <a href="<?= base_url('auth/pengaturan')?>"  class="sidebar-button">Pengaturan Akun</a>           
                 </li>
@@ -58,15 +64,18 @@
 
     <nav class="nav-header">
         <div class="header-container">
+        <?php if (!isset($is_print)) {?>
         <div class="menu">
                     <div class="bar1"></div>
                     <div class="bar2"></div>
                     <div class="bar3"></div>
                 </div>
+        <?php }?>
             <div class="title">
                 <img src="<?= base_url('assets/homepage/images/logo_stainu.png')?>" alt="">
                 <h3>STAINU Penerimaan Mahasiswa Baru 2022/2023</h3>
             </div>
+            <?php if (!isset($is_print)) {?>
             <div class="links">
                 <ul>
                         <li>
@@ -80,22 +89,27 @@
                     </li>
                 </ul>
             </div>
+            <?php }?>
         </div>
     </nav>
     <script>
     const menuIcon = document.body.querySelector('.menu');
     const closeIcon = document.getElementsByClassName("close-sidebar")[0];
     const sidebar = document.body.querySelector('.wrapper');
-    const navbar = document.body.querySelector('.nav-header');
 
     closeIcon.addEventListener("click", () => {
-        sidebar.classList.toggle("hide");
-        sidebar.classList.toggle("show");        
+
+        sidebar.classList.toggle("active")
     });
+
     menuIcon.addEventListener("click", () => {
-        sidebar.classList.toggle("hide");
-        sidebar.classList.toggle("show");
+
+        sidebar.classList.toggle("active")
+        console.log(sidebar.classList);
+        
+
     });
+
     </script>
 </body>
 </html>
