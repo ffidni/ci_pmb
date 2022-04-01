@@ -194,6 +194,10 @@ table th {
     color: rgb(255, 255, 255);
 }
 
+.denied:hover {
+    background-color: rgb(219, 75, 75);
+}
+
 
 a {
     color: inherit; /* blue colors for links too */

@@ -61,13 +61,19 @@ class Form_model extends CI_Model {
 
     public function get_mahasiswa(){
         $this->db->select('mahasiswa.mhs_id, mahasiswa.mhs_nama, mahasiswa.bukti_pembayaran, mahasiswa.nomor_seleksi, mahasiswa.mhs_nama, mahasiswa.no_hp, mahasiswa.nama_sekolah, prodi.nama, mahasiswa.is_reguler, mahasiswa.approved');
-        $this->db->join('prodi','prodi.id = mahasiswa.id_prodi');
+        $this->db->join("prodi", "prodi.id = mahasiswa.id_prodi");
         return $this->db->get("mahasiswa");
     }
 
     public function get_prodi($id_prodi){
         $this->db->where("id", $id_prodi);
         return $this->db->get("prodi");
+    }
+
+    public function get_lokasi($table, $field, $id){
+        $this->db->select("nama");
+        $this->db->where($field, $id);
+        return $this->db->get($table)->row_array()['nama'];
     }
 
     public function update($field, $value, $id){

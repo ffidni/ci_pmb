@@ -11,6 +11,204 @@
   <script src="<?= base_url('assets/bootstrap/js/jquery.min.js')?>"></script>
 </head>
 <body>
+    <div class="container">
+        <h3>STAINU Formulir Pendaftaran Mahasiswa Baru Tahun 2022/2023</h3>
+        <div class="container-row">
+        <h3>Data Diri Calon Mahasiswa Baru</h3>
+        <table>
+            <tr>
+                <td><label for="">Nama Lengkap</label></td>
+                <td><p><?= $detail_pendaftaran['mhs_nama']?></p></td>
+                <td><label for="">NIK (Nomor KTP)</label></td>
+                <td><p><?= $detail_pendaftaran['mhs_nik']?></p></td>
+            </tr>
+
+            <tr>
+                <td><label for="">Tempat Lahir</label></td>
+                <td><p><?= $detail_pendaftaran['mhs_tempat_lahir']?></p>
+                <td><label for="">Tgl, Bln, Thn Lahir</label></td>
+                <td><p><?= $detail_pendaftaran['mhs_tgl_lahir']?></p></td>
+            </tr>
+            <tr>
+                <td><label for="">Jenis Kelamin</label></td>
+                <td><input type="radio" name="jk" value="l" <?= ($detail_pendaftaran['mhs_jk'] == 'l') ? 'checked': ''?>>Laki-Laki
+                <input type="radio" name="jk" value="p" <?= ($detail_pendaftaran['mhs_jk'] == 'p') ? 'checked': ''?>>Perempuan</td>
+                <td><label for="">Alamat</label></td>
+                <td><p><?= $detail_pendaftaran['mhs_alamat']?></p></td>
+            </tr>
+            <tr>
+                <td><label for="">RT / RW</label></td>
+                <td><p><?= $detail_pendaftaran['mhs_rt_rw']?></p></td>
+                <td><label for="">Desa/Kelurahan</label></td>
+                <td><p><?= $detail_pendaftaran['kel']?></p></td>
+            </tr>
+            <tr>
+                <td><label for="">Kecamatan</label></td>
+                <td><p><?= $detail_pendaftaran['kec']?></p></td>
+                <td><label for="">Kabupaten/Kota</label></td>
+                <td><p><?= $detail_pendaftaran['kab_kota']?></p></td>
+            </tr>
+            <tr>
+                <td><label for="">Provinsi</label></td>
+                <td><p><?= $detail_pendaftaran['provinsi']?></p></td>
+                <td><label for="">Kode POS</label></td>
+                <td><p><?= $detail_pendaftaran['kode_pos']?></p></td>
+            </tr>
+            <tr>
+                <td><label for="">No. HP</label></td>
+                <td><p><?= $detail_pendaftaran['no_hp']?></p></td>
+                <td><label for="">Alamat E-Mail</label></td>
+                <td><p><?= $detail_pendaftaran['email']?></p></td>
+            </tr>
+        </table>
+        </div>
+        <div class="container-row">
+            <h3>Latar Belakang Pendidikan</h3>
+            <table>
+                <tr>
+                    <td><label for="">Pendidikan Terakhir</label></td>
+                    <td>
+                        <input type="radio" name="pendidikan_id" value="1" <?= ($detail_pendaftaran['pendidikan_id'] == '1') ? 'checked': ''?>>SMA
+                        <input type="radio" name="pendidikan_id" value="2" <?= ($detail_pendaftaran['pendidikan_id'] == '2') ? 'checked': ''?>>MA
+                        <input type="radio" name="pendidikan_id" value="3" <?= ($detail_pendaftaran['pendidikan_id'] == '3') ? 'checked': ''?>>SMK
+                        <input type="radio" name="pendidikan_id" value="4" <?= ($detail_pendaftaran['pendidikan_id'] == '4') ? 'checked': ''?>>Paket C
+                </td>
+                <td><label for="">Nama Sekolah</label></td>
+                <td><p><?= $detail_pendaftaran['nama_sekolah']?></p></td>
+                </tr>
+                <tr>
+                    <td><label for="">Nomor Seri Ijazah</label></td>
+                    <td><p><?= $detail_pendaftaran['nomor_ijazah']?></p></td>
+                    <td><label for="">Tahun Ijazah</label></td>
+                    <td><p><?= $detail_pendaftaran['tahun_ijazah']?></p></td>
+                </tr>
+            </table>
+        </div>
+        <div class="container-row">
+            <h3>Data Orang Tua / Wali</h3>
+            <table>
+                <tr>
+                    <td><label for="">Nama Ayah Kandung</label></td>
+                    <td><p><?= $detail_pendaftaran['nama_ayah']?></p></td>
+                    <td><label for="">Tanggal Lahir</label></td>
+                    <td colspan="2"><p><?= $detail_pendaftaran['tgl_lahir_ayah']?></p></td>
+                </tr>
+                <tr>
+                    <td><label for="">Pendidikan Terakhir</label></td>
+                    <td><p><?= $detail_pendaftaran['pendidikan_ayah']?></p></td>
+                    <td><label for="">Pekerjaan</label></td>
+                    <td><p><?= $detail_pendaftaran['pekerjaan_ayah']?></p></td>
+                    <td><label for="">Penghasilan</label></td>
+                    <td><p><?= $detail_pendaftaran['penghasilan_ayah']?></p></td>
+                </tr>
+                <tr>
+                    <td><label for="">Nama Ibu Kandung</label></td>
+                    <td><p><?= $detail_pendaftaran['nama_ibu']?></p></td>
+                    <td><label for="">Tanggal Lahir</label></td>
+                    <td colspan="2"><p><?= $detail_pendaftaran['tgl_lahir_ibu']?></p></td>
+                </tr>
+                <tr>
+                    <td><label for="">Pendidikan Terakhir</label></td>
+                    <td><p><?= $detail_pendaftaran['pendidikan_ibu']?></p></td>
+                    <td><label for="">Pekerjaan</label></td>
+                    <td><p><?= $detail_pendaftaran['pekerjaan_ibu']?></p></td>
+                    <td><label for="">Penghasilan</label></td>
+                    <td><p><?= $detail_pendaftaran['penghasilan_ibu']?></p></td>
+                </tr>
+                <tr>
+                    <td><label for="">Alamat Orang Tua</label></td>
+                    <td><p><?= $detail_pendaftaran['alamat_orangtua']?></p></td>
+                    <td><label for="">RT / RW</label></td>
+                    <td><p><?= $detail_pendaftaran['rt_rw_orangtua']?></p></td>
+                    <td><label for="">Desa / Kelurahan</label></td>
+                    <td><p><?= $detail_pendaftaran['kel_orangtua']?></p></td>
+                </tr>
+                <tr>
+                    <td><label for="">Kecamatan</label></td>
+                    <td><p><?= $detail_pendaftaran['kec_orangtua']?></p></td>
+                    <td><label for="">Provinsi</label></td>
+                    <td><p><?= $detail_pendaftaran['provinsi_orangtua']?></p></td>
+                    <td><label for="">Kode POS</label></td>
+                    <td><p><?= $detail_pendaftaran['kode_pos_orangtua']?></p></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="container-row">
+            <h3>Data Pendukung Lainnya</h3>
+            <table>
+                <tr>
+                    <td><label for="">Status Perkawinan</label></td>
+                    <td>
+                        <input type="radio" name="status_mhs" value="Kawin" <?= ($detail_pendaftaran['status_mhs'] == 'Kawin') ? 'checked': ''?>>Menikah
+                        <input type="radio" name="status_mhs" value="Belum Kawin" <?= ($detail_pendaftaran['status_mhs'] == 'Belum Kawin') ? 'checked': ''?>>Belum Menikah
+                        <input type="radio" name="status_mhs" value="Cerai Hidup" <?= ($detail_pendaftaran['status_mhs'] == 'Cerai Hidup') ? 'checked': ''?>>Cerai Hidup
+                        <input type="radio" name="status_mhs" value="Cerai Mati" <?= ($detail_pendaftaran['status_mhs'] == 'Cerai Mati') ? 'checked': ''?>>Cerai Mati
+                </td>
+                <td><label for="">Pekerjaan</label></td>
+                <td><p><?= $detail_pendaftaran['pekerjaan_mhs']?></p></td>
+                </tr>
+                <tr>
+                    <td><label for="">Penghasilan</label></td>
+                    <td><p><?= $detail_pendaftaran['penghasilan']?></p></td>
+                </tr>
+                <tr>
+                <td><label for="">Jenis Tinggal</label></td>
+                    <td>
+                        <input type="radio" name="tinggal" value="1" <?= ($detail_pendaftaran['id_tinggal'] == '1') ? 'checked': ''?>>Bersama Orang Tua
+                        <input type="radio" name="tinggal" value="2" <?= ($detail_pendaftaran['id_tinggal'] == '2') ? 'checked': ''?>>Wali
+                        <input type="radio" name="tinggal" value="3" <?= ($detail_pendaftaran['id_tinggal'] == '3') ? 'checked': ''?>>Kos
+                        <input type="radio" name="tinggal" value="4" <?= ($detail_pendaftaran['id_tinggal'] == '4') ? 'checked': ''?>>Asrama
+                        <input type="radio" name="tinggal" value="5" <?= ($detail_pendaftaran['id_tinggal'] == '5') ? 'checked': ''?>>Pesantren
+                        <input type="radio" name="tinggal" value="6" <?= ($detail_pendaftaran['id_tinggal'] == '6') ? 'checked': ''?>>Lainnya
+                </td>
+                <td><label for="">Nama Pesantren (Opsional)</label></td>
+                <td><p><?= $detail_pendaftaran['nama_pesantren']?></p></td>
+                </tr>
+                <tr>
+                    <td><label for="">Alat Transportasi</label></td>
+                    <td>
+                        <input type="radio" name="id_transportasi" value="1" <?= ($detail_pendaftaran['id_transportasi'] == '1') ? 'checked': ''?>>Angkutan Umum
+                        <input type="radio" name="id_transportasi" value="2" <?= ($detail_pendaftaran['id_transportasi'] == '2') ? 'checked': ''?>>Ojek
+                        <input type="radio" name="id_transportasi" value="3" <?= ($detail_pendaftaran['id_transportasi'] == '3') ? 'checked': ''?>>Sepeda
+                        <input type="radio" name="id_transportasi" value="4" <?= ($detail_pendaftaran['id_transportasi'] == '4') ? 'checked': ''?>>Mobil Pribadi
+                        <input type="radio" name="id_transportasi" value="5" <?= ($detail_pendaftaran['id_transportasi'] == '5') ? 'checked': ''?>>Sepeda Motor
+                        <input type="radio" name="id_transportasi" value="6" <?= ($detail_pendaftaran['id_transportasi'] == '6') ? 'checked': ''?>>Lainnya
+                </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="container-row">
+            <h3>Pilihan Program Studi</h3>
+            <table>
+                <tr>
+                    <td><input type="radio" name='id_prodi' value="1" <?= ($detail_pendaftaran['id_prodi'] == '1') ? 'checked' : ''?>>Manajemen Pendidikan Islam (S1)</td>
+                    <td><input type="radio" name='id_prodi' value="2" <?= ($detail_pendaftaran['id_prodi'] == '2') ? 'checked' : ''?>>Komunikasi Penyiaran Islam (S1)</td>
+                    <td><input type="radio" name='id_prodi' value="3" <?= ($detail_pendaftaran['id_prodi'] == '3') ? 'checked' : ''?>>Hukum Keluarga Islam (S1)</td>
+                </tr>
+                <tr>
+                <td><input type="radio" name='is_reguler' value="Reguler" <?= ($detail_pendaftaran['is_reguler'] == 'Reguler') ? 'checked' : ''?>>Reguler</td>
+                <td><input type="radio" name='is_reguler' value="Non Reguler" <?= ($detail_pendaftaran['is_reguler'] == 'Non Reguler') ? 'checked' : ''?>>Non Reguler</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row-container">
+              <h4>Tahu STAINU dari mana ?</h4>
+              <table class="tahu">
+                  <tr>
+                      <td>
+                      <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" name="tahu_stainu" value="1" id="sosial_media" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '1') ? 'checked' : ''?>>Sosmed
+                      <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" name="tahu_stainu" value="2" id="dosen" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '2') ? 'checked' : ''?>>Dosen                   
+                      <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" name="tahu_stainu" value="3" id="alumni" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '3') ? 'checked' : ''?>>Alumni                    
+                        <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" name="tahu_stainu" value="4" id="via_nu" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '4') ? 'checked' : ''?>>Via NU                   
+                        <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" name="tahu_stainu" value="5" id="lainnnya" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['tahu_stainu'] == '5') ? 'checked' : ''?>>Lainnya                   
+                      </td>
+                  </tr>
+              </table>
+
+    </div>
 
 
     <script>
@@ -425,17 +623,6 @@
           return false;
       });
 
-      <?php if (!empty($detail_pendaftaran)) {?>
-                $('#provinsi').val(<?= $detail_pendaftaran['provinsi']?>).change();
-                $('#kabupaten').val(<?= $detail_pendaftaran['kab_kota']?>).change();
-                $('#kecamatan').val(<?= $detail_pendaftaran['kec']?>).change();
-                $('#kelurahan').val(<?= $detail_pendaftaran['kel']?>).change();
-                $('#provinsi_orangtua').val(<?= $detail_pendaftaran['provinsi_orangtua']?>).change();
-                $('#kabupaten_orangtua').val(<?= $detail_pendaftaran['kota_orangtua']?>).change();
-                $('#kecamatan_orangtua').val(<?= $detail_pendaftaran['kec_orangtua']?>).change();
-                $('#kelurahan_orangtua').val(<?= $detail_pendaftaran['kel_orangtua']?>).change();
-
-        <?php }?>
 
       $("#checkbox_lainnya").change(function() {
                   const textarea = document.getElementById("tahu-textarea");
@@ -464,6 +651,8 @@
                   console.log(target);
               });
       });
+
+      window.print();
     </script>
 </body>
 </html>

@@ -49,6 +49,16 @@
     
             if ($print_view){
                 $data['is_print'] = $print_view;
+                $kec = $data['detail_pendaftaran']['kec'];
+                $kec_ortu = $data['detail_pendaftaran']['kec_orangtua'];
+                $data['detail_pendaftaran']['provinsi'] = $this->Form_model->get_lokasi("tprovinsi", "id_prov", $data['detail_pendaftaran']['provinsi']);
+                $data['detail_pendaftaran']['kab_kota'] = $this->Form_model->get_lokasi("tkabupaten", "id_kab", $data['detail_pendaftaran']['kab_kota']);
+                $data['detail_pendaftaran']['kec'] = $this->Form_model->get_lokasi("tkecamatan", "id_kec", $data['detail_pendaftaran']['kec']);
+                $data['detail_pendaftaran']['kel'] = $this->Form_model->get_lokasi("tkelurahan", "id_kec", $kec);
+                $data['detail_pendaftaran']['provinsi_orangtua'] = $this->Form_model->get_lokasi("tprovinsi", "id_prov", $data['detail_pendaftaran']['provinsi_orangtua']);
+                $data['detail_pendaftaran']['kota_orangtua'] = $this->Form_model->get_lokasi("tkabupaten", "id_kab", $data['detail_pendaftaran']['kota_orangtua']);
+                $data['detail_pendaftaran']['kec_orangtua'] = $this->Form_model->get_lokasi("tkecamatan", "id_kec", $data['detail_pendaftaran']['kec_orangtua']);
+                $data['detail_pendaftaran']['kel_orangtua'] = $this->Form_model->get_lokasi("tkelurahan", "id_kec", $kec_ortu);
                 $this->load->view("home/print_view", $data);
             } else {
                 $data['admin_view'] = true;
