@@ -101,7 +101,7 @@ class Form extends CI_Controller {
         if ($is_update && $_SESSION['detail_pendaftaran']['email'] == $this->input->post('email') && $_SESSION['detail_pendaftaran']['no_hp'] == $this->input->post('no_hp') && $_SESSION['detail_pendaftaran']['nomor_ijazah'] == $this->input->post('nomor_ijazah')) {
             $this->updateProcess();
         } 
-        if ($this->form_validation->run() != false) {
+        else if ($this->form_validation->run() != false) {
                 if ($is_update) {
                     $this->updateProcess();
                 } else {
@@ -112,24 +112,5 @@ class Form extends CI_Controller {
         }
     }
 
-    public function user_detail($mhs_id, $print_view = false){
-        $data = [
-            'provinsi' => $this->Form_model->getprovinsi(),
-            'pendidikan' => $this->Form_model->get_pendidikan(),
-            'mhs_pendidikan' => array("SMA", "SMK", "MA", "Paket C"),
-            'is_home' => false,
-            'is_edit' => false,
-        ];
-        $data['detail_pendaftaran'] = $this->Form_model->get_details($mhs_id)->row_array();
-        $data['is_edit'] = true;
 
-        if ($print_view){
-            $data['is_print'] = $print_view;
-            $this->load->view("home/print_view", $data);
-        } else {
-            $data['admin_view'] = true;
-            $this->load->view("home/sidebar");
-            $this->load->view("home/daftar", $data);
-        }
-    }
 }

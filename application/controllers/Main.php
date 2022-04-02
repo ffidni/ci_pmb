@@ -21,30 +21,81 @@ class Main extends CI_Controller {
         $this->load->view("home/pembayaran");
     }
 
+    public function upload_error($target){
+        $error = array('error' => $this->upload->display_errors());
+        $this->load->view("home/sidebar");
+        $this->load->view("home/$target", $error);
+    }
+
     public function upload_bukti(){
         $config['upload_path'] = './assets/bukti/';
-        $config['allowed_types'] = "jpg|jpeg|jfif|pjpeg|pjp|png|svg|webp|gif";
+        $config['allowed_types'] = "jpg|jpeg|jfif|pjpeg|pjp|png|svg|webp";
         $name = 'bukti-'.$_SESSION['detail_pendaftaran']['nomor_seleksi'];
         $config['file_name'] = $name;
         $oldimage = $this->session->userdata("detail_pendaftaran")['bukti_pembayaran'];
         $oldimage = str_replace(base_url(), "./", $oldimage);
 
-        if (file_exists($oldimage)){
-            unlink($oldimage);
-        }
 
         $this->upload->initialize($config);
         $this->upload->overwrite = true;
         if (!$this->upload->do_upload('userfile')) {
-            $error = array('error' => $this->upload->display_errors());
-            $this->load->view("home/sidebar");
-            $this->load->view("home/pembayaran", $error);
+            $this->upload_error("pembayaran");
         } else {
+            $this->exists_overwrite($oldDoc);
             $path = base_url().'assets/bukti/'.$config['file_name'].$this->upload->data("file_ext");
             $this->Form_model->update("bukti_pembayaran", $path, $this->session->userdata("mhs_id"));
             sleep(1);
             redirect('main/pembayaran');
         }
+
+    }
+
+    public function exists_overwrite($old){
+        if (file_exists($old) && strpos($old, $this->upload->data("file_ext")) == false){
+            unlink($old);
+        }
+    }
+
+
+
+    public function upload_dokumen(){
+        $config['upload_path'] = './assets/dokumen/';
+        $config['allowed_types'] = "jpg|jpeg|jfif|pjpeg|pjp|png|svg|webp|pdf";
+        $name = '';
+        $fileName = '';
+        $oldDoc = '';
+        if (isset($_FILES['pas_foto'])){
+            $name = 'pas_foto';
+        } else if (isset($_FILES['ktp'])){
+            $name = 'ktp';
+        } else if (isset($_FILES['kartu_keluarga'])){
+            $name = 'kartu_keluarga';
+        } else if (isset($_FILES['ijazah'])){
+            $name = 'ijazah';
+        }
+
+        if ($name) {
+            $oldDoc = $this->session->userdata('detail_pendaftaran')[$name];
+            $fileName = $name.'_'.$_SESSION['detail_pendaftaran']['nomor_seleksi'];
+            $config['file_name'] = $fileName;
+            $oldDoc = str_replace(base_url(), './', $oldDoc);
+    
+            $this->upload->initialize($config);
+            $this->upload->overwrite = true;
+            if (!$this->upload->do_upload($name)) {
+                $this->upload_error("dokumen");
+            } else {
+                $this->exists_overwrite($oldDoc);
+                $path = base_url().'assets/dokumen/'.$config['file_name'].$this->upload->data("file_ext");
+                $this->Form_model->update($name, $path, $this->session->userdata("mhs_id"));  
+                sleep(1);
+                redirect('main/dokumen');
+            }
+        } else {
+            redirect('main/dokumen');
+        }
+
+
 
     }
 
@@ -57,5 +108,17 @@ class Main extends CI_Controller {
         $this->load->view("home/pembayaran", $data);
 
     }
+
+    public function dokumen(){
+        $data = array(
+            "pas_foto" => "",
+            "ktp" => "",
+            "kartu_keluarga" => "",
+            "ijazah" => "",
+        );
+        $this->load->view("home/sidebar");
+        $this->load->view("home/dokumen", $data);
+    }
+
 
 }

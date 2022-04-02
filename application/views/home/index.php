@@ -35,8 +35,8 @@
                 <h1>Kamu sementara ditolak, dengan alasan:</h1>
                 <h3><?= ($detail_pendaftaran['alasan_pembatalan']) ? $detail_pendaftaran['alasan_pembatalan'] : 'Tanpa alasan, hubungi admin untuk info lebih lanjut.'?></h3>
         <?php } else if ($detail_pendaftaran['approved'] == ""){?>
-            <h1>Formulir pendaftaran telah terisi.</h1>
-            <h3>Konfirmasi pembayaran untuk menyelesaikan pendaftaran!</h3>
+            <h1 style="text-align: center;">Formulir pendaftaran telah terisi.</h1>
+            <h3>Konfirmasi pembayaran dan lengkapi dokumen untuk menyelesaikan pendaftaran!</h3>
         <?php } else {?>
             <h3>Selamat! Kamu sudah terdaftar.</h3>
         <?php }?>
@@ -48,9 +48,8 @@
                 <a href="<?= base_url('admin/verifikasi')?>" class="btn"><span class="mdi mdi-note"></span>Verifikasi Data</a>
                 <?php } else {?>
                     <a href="<?= base_url('form/daftar/detail')?>" class="btn"><span class="mdi mdi-note"></span>Data Pendaftaran-mu</a>
-                    <?php if ($detail_pendaftaran['approved'] != "1") {?>
+                        <a href="<?= base_url('main/dokumen')?>" class="btn"><span class="mdi mdi-file-link"></span>Lengkapi Dokumen</a>
                         <a href="<?= base_url('main/pembayaran')?>" class="btn"><span class="mdi mdi-credit-card"></span>Konfirmasi Pembayaran</a>
-                    <?php }?>
                 <?php }?>
             <?php } else {?>
                 <a href="<?= base_url('form/daftar')?>" class="btn"><span class="mdi mdi-note"></span>Daftar</a>

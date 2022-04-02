@@ -10,6 +10,10 @@
 <body>
     <?php $detail_pendaftaran = $this->Form_model->get_details($_SESSION['mhs_id'])->row_array();
         $_SESSION['detail_pendaftaran'] = $detail_pendaftaran;
+
+        if (!file_exists(str_replace(base_url(), './', $detail_pendaftaran['bukti_pembayaran']))){
+            $detail_pendaftaran['bukti_pembayaran'] = ""; 
+        }
     ?>
     <div class="container-payment">
         <?= form_open_multipart(base_url('main/upload_bukti'))?>
