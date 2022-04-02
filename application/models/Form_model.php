@@ -79,6 +79,7 @@ class Form_model extends CI_Model {
     public function update($field, $value, $id){
         $this->db->where("mhs_id", $id);
         $this->db->update("mahasiswa", array($field => $value));
+        $this->db->affected_rows();
     }
 
     public function update_all($id, $data) {

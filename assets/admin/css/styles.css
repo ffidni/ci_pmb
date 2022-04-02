@@ -137,24 +137,47 @@ table th {
     border-top: 1px solid black;
 }
 
-.search {
+.inputs {
     border: 1px solid rgb(40, 40, 40);
     padding: 3px;
     margin-bottom: 10px;
     border-radius: 5px;
 }
 
+.inputs:first-child{
+    margin-right: 1.2em;
+}
+
+.actions select {
+    border: none;
+    padding: 3px;
+}
+
+.actions select:focus {
+    outline: none;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
 
 .mdi-magnify {
     font-size: 1.2em;
 }
 
-.search input {
+.actions input {
     border: none;
     padding: 3px;
 }
 
-.search input:focus {
+.actions input:focus {
     outline: none;
 }
 
@@ -220,6 +243,22 @@ a {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
+.notif {
+    background-color: rgb(103, 206, 103);
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 2px solid rgb(85, 169, 85);
+    position: fixed;
+    z-index: 10;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 5vh;
+    display: none;
+}
 
 .batal-content {
     display: flex;
@@ -320,4 +359,12 @@ a {
     }
   }
   
-  
+  @media screen and (max-width: 413px){
+
+    .inputs:first-child{
+        margin: 0;
+        margin-bottom: 10px;
+
+    }
+
+  }

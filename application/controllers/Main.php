@@ -41,7 +41,7 @@ class Main extends CI_Controller {
         if (!$this->upload->do_upload('userfile')) {
             $this->upload_error("pembayaran");
         } else {
-            $this->exists_overwrite($oldDoc);
+            $this->exists_overwrite($oldimage);
             $path = base_url().'assets/bukti/'.$config['file_name'].$this->upload->data("file_ext");
             $this->Form_model->update("bukti_pembayaran", $path, $this->session->userdata("mhs_id"));
             sleep(1);

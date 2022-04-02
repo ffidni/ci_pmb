@@ -14,6 +14,7 @@ class Form extends CI_Controller {
     }
 
     public function daftar($is_edit = false, $detail = [], $updated = false){
+
         $data = [
             'provinsi' => $this->Form_model->getprovinsi(),
             'pendidikan' => $this->Form_model->get_pendidikan(),

@@ -13,7 +13,7 @@
 <body>
 <div class="notif">
         <div class="content">
-            <p><?= (isset($updated) && $updated) ? 'Data berhasil diperbarui.': 'Data gagal diperbarui. Pastikan anda terkoneksi dengan internet.'?></p>
+            <p><?= (isset($updated) && $updated != -1) ? 'Data berhasil diperbarui.': 'Data gagal diperbarui. Pastikan anda terkoneksi dengan internet.'?></p>
         </div>
     </div>
 <div class="tab-daftar">
@@ -808,7 +808,7 @@
           const inputStyle = document.querySelectorAll("input")[0].style;
           $(document).ready(function () {
             <?php if (isset($updated)) {?> 
-                <?php if ($updated == 0 || $updated == -1){?>
+                <?php if ($updated == -1){?>
                     $('.notif').css({"background-color", "rgb(206, 103, 103)", "border", "rgb(169, 85, 85)"});
                 <?php }?>
                 $('.notif').show();

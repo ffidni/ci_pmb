@@ -28,9 +28,23 @@
     </div>
     <div class="container">
         <h2>Daftar Calon Mahasiswa</h2>
-        <div class="search">
+        <div class="actions">
+        <div class="inputs">
             <span class="mdi mdi-magnify"></span><input placeholder='Cari Calon Mahasiswa' type="text" id="cari" onkeyup="search()">
         </div>
+        <div class="inputs">
+            <span class="mdi mdi-filter"></span>
+            <select name="" id="filter" onchange="search(this)">
+                <option value="" selected>Semua</option>
+                <option value="Menunggu Konfirmasi">Menunggu Konfirmasi</option>
+                <option value="Diterima">Diterima</option>
+                <option value="Ditolak">Ditolak</option>
+                <option value="Lihat Bukti">Sudah Bayar</option>
+                <option value="Tidak Ada">Belum Bayar</option>
+            </select>
+        </div>
+        </div>
+
         <div class="items">
         <?php foreach ($data_mahasiswa as $row) {?>
                 <?php
@@ -118,8 +132,13 @@
 
 
 
-        function search(){
-            let input = document.getElementById("cari").value;
+        function search(input = false){
+            if (input) {
+                input = input.value;
+            } else {
+                let input = document.getElementById("cari").value;
+            }
+            console.log("A");
             input = input.toLowerCase();
             let x = document.querySelectorAll(".item");
 
