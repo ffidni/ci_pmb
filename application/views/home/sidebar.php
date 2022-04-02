@@ -42,12 +42,15 @@
                         <a href="<?= base_url('form/daftar')?>"  class="sidebar-button">Form Pendaftaran</a>   
                     <?php }?>
                 </li>
+                <?php if (!empty($detail_pendaftaran) && $this->session->userdata("hak_akses") == "user") {?>
                     <li>
                         <a href="<?= base_url('main/pembayaran')?>" class="sidebar-button">Konfirmasi Pembayaran</a>
                     </li>
                     <li>
                         <a href="<?= base_url('main/dokumen')?>" class="sidebar-button">Lengkapi Dokumen</a>
                     </li>
+                <?php }?>
+
                 <li>
                     <a href="<?= base_url('auth/pengaturan')?>"  class="sidebar-button">Pengaturan Akun</a>           
                 </li>
