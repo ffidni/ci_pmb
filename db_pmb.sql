@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2022 at 10:26 AM
+-- Generation Time: Apr 03, 2022 at 12:13 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -78,16 +78,20 @@ CREATE TABLE `mahasiswa` (
   `nomor_seleksi` varchar(100) NOT NULL,
   `approved` enum('0','1','') NOT NULL DEFAULT '',
   `alasan_pembatalan` varchar(255) NOT NULL,
-  `bukti_pembayaran` varchar(100) NOT NULL
+  `bukti_pembayaran` varchar(100) NOT NULL,
+  `pas_foto` varchar(255) NOT NULL,
+  `ktp` varchar(255) NOT NULL,
+  `kartu_keluarga` varchar(255) NOT NULL,
+  `ijazah` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`mhs_id`, `mhs_nama`, `mhs_nik`, `mhs_tempat_lahir`, `mhs_tgl_lahir`, `mhs_jk`, `mhs_alamat`, `mhs_rt_rw`, `provinsi`, `kab_kota`, `kec`, `kel`, `kode_pos`, `no_hp`, `email`, `pendidikan_id`, `nama_sekolah`, `nisn`, `nomor_ijazah`, `tahun_ijazah`, `nama_ayah`, `tgl_lahir_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `penghasilan_ayah`, `nama_ibu`, `tgl_lahir_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `penghasilan_ibu`, `alamat_orangtua`, `rt_rw_orangtua`, `provinsi_orangtua`, `kota_orangtua`, `kec_orangtua`, `kel_orangtua`, `kode_pos_orangtua`, `status_mhs`, `pekerjaan_mhs`, `id_tinggal`, `nama_pesantren`, `id_transportasi`, `id_prodi`, `is_reguler`, `penghasilan`, `tahu_stainu`, `keterangan_tahu`, `nomor_seleksi`, `approved`, `alasan_pembatalan`, `bukti_pembayaran`) VALUES
-(1, 'Muhammad Haikal Hilalul Hamdi', '123123123', 'Ciamis', '2022-03-25', 'l', 'Tembong Sari', '1, 3', 35, 3501, 350101, 2147483647, '43176', '082130089012', 'realityinaship@gmail.com', 7, 'SMKS NU Tasikmalaya', '123123', 'D-42069', 2023, 'Endin', '2022-03-10', 11, 'Wiraswasta', 10000000, 'Hilda', '2022-03-09', 11, '-', 0, 'wdwdw', '1, 1', 33, 3301, 330101, 2147483647, '43176', 'Kawin', 'Programmer', 1, '', 1, 1, 'Reguler', 10000000, '5', 'test', '22-1', '1', '', ''),
-(2, 'Muhammad Haikal', '1231232', 'Ciamis', '2022-03-17', 'l', 'awdawd', '11', 51, 5101, 510101, 2147483647, '12321', '123', 'akunhaikal@gmail.com', 9, 'SMKS NU', '123123', '123123', 2023, 'Endin', '2022-03-17', 11, 'wdwdwd', 2313213, 'Hilda', '2022-03-10', 11, '-', 0, '123213', '11', 52, 5201, 520101, 2147483647, '123213', 'Belum Kawin', 'Programmer', 1, '', 2, 1, 'Reguler', 23123213, '1', '', '22-2', '0', 'Bukti pembayaran tidak valid.', 'https://localhost/pmb2022/assets/bukti/bukti-22-2.jpg');
+INSERT INTO `mahasiswa` (`mhs_id`, `mhs_nama`, `mhs_nik`, `mhs_tempat_lahir`, `mhs_tgl_lahir`, `mhs_jk`, `mhs_alamat`, `mhs_rt_rw`, `provinsi`, `kab_kota`, `kec`, `kel`, `kode_pos`, `no_hp`, `email`, `pendidikan_id`, `nama_sekolah`, `nisn`, `nomor_ijazah`, `tahun_ijazah`, `nama_ayah`, `tgl_lahir_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `penghasilan_ayah`, `nama_ibu`, `tgl_lahir_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `penghasilan_ibu`, `alamat_orangtua`, `rt_rw_orangtua`, `provinsi_orangtua`, `kota_orangtua`, `kec_orangtua`, `kel_orangtua`, `kode_pos_orangtua`, `status_mhs`, `pekerjaan_mhs`, `id_tinggal`, `nama_pesantren`, `id_transportasi`, `id_prodi`, `is_reguler`, `penghasilan`, `tahu_stainu`, `keterangan_tahu`, `nomor_seleksi`, `approved`, `alasan_pembatalan`, `bukti_pembayaran`, `pas_foto`, `ktp`, `kartu_keluarga`, `ijazah`) VALUES
+(1, 'Muhammad Haikal Hilalul Hamdi', '123123123', 'Ciamis', '2022-03-25', 'l', 'Tembong Sari', '1, 3', 35, 3501, 350101, 2147483647, '43176', '082130089012', 'realityinaship@gmail.com', 7, 'SMKS NU Tasikmalaya', '123123', 'D-42069', 2023, 'Endin', '2022-03-10', 11, 'Wiraswasta', 10000000, 'Hilda', '2022-03-09', 11, '-', 0, 'wdwdw', '1, 1', 33, 3301, 330101, 2147483647, '43176', 'Kawin', 'Programmer', 1, '', 1, 1, 'Reguler', 10000000, '5', 'test', '22-1', '1', '', '', '', '', '', ''),
+(2, 'Muhammad Haikals', '1231232', 'Ciamis', '2022-03-17', 'l', 'awdawd', '11', 34, 3401, 340101, 2147483647, '12321', '123', 'akunhaikal@gmail.com', 9, 'SMKS NU', '123123', '123123', 2023, 'Endin', '2022-03-17', 11, 'wdwdwd', 2313213, 'Hilda', '2022-03-10', 11, '-', 0, '123213', '11', 52, 5201, 520101, 2147483647, '123213', 'Belum Kawin', 'Programmer', 1, '', 2, 1, 'Reguler', 23123213, '1', '', '22-2', '', 'Bukti pembayaran tidak valid.', 'https://localhost/pmb2022/assets/bukti/bukti-22-2.jpg', 'https://localhost/pmb2022/assets/dokumen/pas_foto_22-2.jpg', 'https://localhost/pmb2022/assets/dokumen/ktp_22-2.pdf', 'https://localhost/pmb2022/assets/dokumen/kartu_keluarga_22-2.jpg', '');
 
 -- --------------------------------------------------------
 
