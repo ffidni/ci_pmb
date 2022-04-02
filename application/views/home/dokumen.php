@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/homepage/css/dokumen.css')?>">
 </head>
 <body>
-<?php $detail_pendaftaran = $this->Form_model->get_details($_SESSION['mhs_id'])->row_array();
+<?php 
+    $detail_pendaftaran = $this->Form_model->get_details((isset($lihat_dokumen)) ? $lihat_dokumen['id'] : $_SESSION['mhs_id'])->row_array();
         $_SESSION['detail_pendaftaran'] = $detail_pendaftaran;
 
         if (!file_exists(str_replace(base_url(), './', $detail_pendaftaran['pas_foto']))){
@@ -27,8 +28,11 @@
     <div class="dokumen-container">
         <div class="title">
             <span class="mdi mdi-file-link-outline"></span>
-            <h3>Kelengkapan Dokumen</h3>
+            <h3>Kelengkapan Dokumen <?= (isset($lihat_dokumen)) ? '<br>'.$lihat_dokumen['title'] : '' ?></h3>
             <?= (isset($error)) ? $error : ''?>
+            <div class="buttons">
+                        <a class="btn" href="<?= base_url('admin/verifikasi')?>">Kembali</a>
+            </div>
         </div>
         <div class="docs">
             <div class="doc">
@@ -40,8 +44,10 @@
                 <h4>PAS Foto</h4>
                 <p class="<?= ($detail_pendaftaran['pas_foto']) ? 'lengkap' : 'belum-lengkap'?>"><?= ($detail_pendaftaran['pas_foto']) ? 'Lengkap': 'Belum Lengkap'?></p>
                 <div class="buttons">
-                <label for="pas_foto_input" class="btn">Unggah</label>
-                <input type="file" name="pas_foto" id="pas_foto_input" class="btn unggah" accept="image/*" onchange="loadFile(event, 'pas_foto_output', 'pas_foto_form')">
+                <?php if (!isset($lihat_dokumen)) {?>
+                    <label for="pas_foto_input" class="btn">Unggah</label>
+                    <input type="file" name="pas_foto" id="pas_foto_input" class="btn unggah" accept="image/*" onchange="loadFile(event, 'pas_foto_output', 'pas_foto_form')">
+                <?php }?>
                 <?php if ($detail_pendaftaran['pas_foto']) {?>
                     <a class="btn" href="<?= $detail_pendaftaran['pas_foto']?>" target="_blank">Buka</a>
                     <a href="<?= $detail_pendaftaran['pas_foto']?>" class="btn" download>Unduh</a>
@@ -61,8 +67,10 @@
                 <h4>KTP</h4>
                 <p class="<?= ($detail_pendaftaran['ktp']) ? 'lengkap' : 'belum-lengkap'?>"><?= ($detail_pendaftaran['ktp']) ? 'Lengkap': 'Belum Lengkap'?></p>
                 <div class="buttons">
+                <?php if (!isset($lihat_dokumen)) {?>
                 <label for="ktp_input" class="btn">Unggah</label>
-                    <input type="file" name="ktp" id="ktp_input" class="btn unggah" accept="image/*" onchange="loadFile(event, 'ktp_output', 'ktp_form')">
+                <input type="file" name="ktp" id="ktp_input" class="btn unggah" accept="image/*" onchange="loadFile(event, 'ktp_output', 'ktp_form')">
+                <?php }?>
                 <?php if ($detail_pendaftaran['ktp']) {?>
                     <a class="btn" href="<?= $detail_pendaftaran['ktp']?>" target="_blank">Buka</a>
                     <a href="<?= $detail_pendaftaran['ktp']?>" class="btn" download>Unduh</a>
@@ -80,8 +88,10 @@
                 <h4>Kartu Keluarga</h4>
                 <p class="<?= ($detail_pendaftaran['kartu_keluarga']) ? 'lengkap' : 'belum-lengkap'?>"><?= ($detail_pendaftaran['kartu_keluarga']) ? 'Lengkap': 'Belum Lengkap'?></p>
                 <div class="buttons">
-                <label for="kk_input" class="btn">Unggah</label>
-                <input type="file" name="kartu_keluarga" id="kk_input" class="btn unggah" accept="image/*" onchange="loadFile(event, 'kk_output', 'kk_form')">
+                <?php if (!isset($lihat_dokumen)) {?>
+                    <label for="kk_input" class="btn">Unggah</label>
+                    <input type="file" name="kartu_keluarga" id="kk_input" class="btn unggah" accept="image/*" onchange="loadFile(event, 'kk_output', 'kk_form')">
+                <?php }?>
                 <?php if ($detail_pendaftaran['kartu_keluarga']) {?>
                     <a class="btn" href="<?= $detail_pendaftaran['kartu_keluarga']?>" target="_blank">Buka</a>
                     <a href="<?= $detail_pendaftaran['kartu_keluarga']?>" class="btn" download>Unduh</a>
@@ -98,8 +108,10 @@
                 <h4>Ijazah</h4>
                 <p class="<?= ($detail_pendaftaran['ijazah']) ? 'lengkap' : 'belum-lengkap'?>"><?= ($detail_pendaftaran['ijazah']) ? 'Lengkap': 'Belum Lengkap'?></p>
                 <div class="buttons">
+                <?php if (!isset($lihat_dokumen)) {?>
                 <label for="ijazah_input" class="btn">Unggah</label>
                 <input type="file" name="pas_foto" id="ijazah_input" class="btn unggah" accept="image/*" onchange="loadFile(event, 'ijazah_output', 'ijazah_form')">
+                <?php }?>
                 <?php if ($detail_pendaftaran['ijazah']) { ?>
                     <a class="btn" href="<?= $detail_pendaftaran['ijazah']?>" target="_blank">Buka</a>
                     <a href="<?= $detail_pendaftaran['ijazah']?>" class="btn" download>Unduh</a>

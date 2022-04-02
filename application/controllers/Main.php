@@ -124,5 +124,16 @@ class Main extends CI_Controller {
         $this->load->view("home/dokumen", $data);
     }
 
+    public function lihat_dokumen($id, $nama, $nomor_seleksi) {
+        $data['lihat_dokumen'] = array();
+        $data['lihat_dokumen']['id'] = $id;
+        $data['lihat_dokumen']['title'] = $nama.' ('.$nomor_seleksi.')';
+        $data['lihat_dokumen']['title'] = str_replace("%20", " ", $data['lihat_dokumen']['title']);
+        $data['title'] = "Lihat Dokumen";
+
+        $this->load->view("home/sidebar", $data);
+        $this->load->view("home/dokumen", $data);
+    }
+
 
 }

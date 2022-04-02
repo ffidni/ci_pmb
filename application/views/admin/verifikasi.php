@@ -92,13 +92,18 @@
                             <p><?= $status?></p>
                         </div>
                         <div class="row bukti">
-                            <h3>Bukti Pembayaran</h3>
+                            <h3>Transaksi</h3>
                             <?php if ($row->bukti_pembayaran) {?>
-                                <a href="<?= base_url('main/lihat_bukti/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn">Lihat Bukti</a>
+                                <a href="<?= base_url('main/lihat_bukti/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn-verif">Lihat</a>
                                 <?php } else {?>
-                                    <p>Tidak Ada</p>
+                                    <a class="btn-verif">Tidak Ada</a>
                                 <?php }?>
                         </div>
+                        <div class="row dokumen">
+                        <h3>Dokumen</h3>
+                            <a href="<?= base_url('main/lihat_dokumen/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn-verif">Lihat</a>
+                        </div>
+
                         <div class="row buttons">
                         <?php if ($status != 'Menunggu konfirmasi') {?>
                         <a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn">Batal</a>

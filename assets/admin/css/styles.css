@@ -184,9 +184,13 @@ table th {
 .bukti {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    border-top: 1px solid black;
+
 
 }
+
+
 
 .bukti p {
     margin-left: 5px;
@@ -287,6 +291,33 @@ a {
     justify-content: center;
 }
 
+.dokumen {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+
+.btn-verif{ 
+    width: 50%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    background-color: rgb(116, 116, 116); 
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    padding: 1px 0;
+    margin: 5px 0;
+  }
+
+  .btn-verif:hover {
+      background-color: #888888;
+  }
+  .buttons a { 
+    width: 100%;
+  }
+
 
 
 .close {
@@ -367,4 +398,11 @@ a {
 
     }
 
+  }
+
+  @media screen and (max-width: 280px){
+
+    .row {
+        font-size: 12px;
+    }
   }
