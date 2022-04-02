@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buat Akun - PMBB 2022</title>
+    <title><?= $title?></title>
     <link rel="stylesheet" href="<?= base_url('assets/auth/css/style.css')?>">
+    <link rel="icon" href="<?= base_url('assets/homepage/images/logo_stainu.png')?>" type="image/x-icon">
   <script src="<?= base_url('assets/bootstrap/js/jquery.min.js')?>"></script>
 
 </head>

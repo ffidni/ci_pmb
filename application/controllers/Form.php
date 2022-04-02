@@ -21,6 +21,7 @@ class Form extends CI_Controller {
             'mhs_pendidikan' => array("SMA", "SMK", "MA", "Paket C"),
             'is_home' => false,
             'is_edit' => false,
+            'title' => "Formulir Pendaftaran",
         ];
         if ($updated) {
             $data['updated'] = $updated;
@@ -29,6 +30,7 @@ class Form extends CI_Controller {
         if ($is_edit){
             $detail = $this->session->userdata("detail_pendaftaran");
             $data['is_edit'] = true;
+            $data['title'] = "Detail Pendaftaran";
         }
 
 

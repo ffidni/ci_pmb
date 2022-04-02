@@ -116,7 +116,6 @@
         var loadFile = (event, outputID, formID) => {
             var output = document.getElementById(outputID);
             var form = document.getElementById(formID); 
-            console.log(form);
             form.submit();
         }
     </script>

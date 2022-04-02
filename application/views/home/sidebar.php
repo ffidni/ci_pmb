@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+    <title><?= $title?></title>
+    <link rel="icon" href="<?= base_url('assets/homepage/images/logo_stainu.png')?>" type="image/x-icon">
     <link rel="stylesheet" href="<?= base_url('assets/homepage/css/styles.css')?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
 </head>
@@ -106,7 +106,6 @@
     menuIcon.addEventListener("click", () => {
 
         sidebar.classList.toggle("active")
-        console.log(sidebar.classList);
         
 
     });

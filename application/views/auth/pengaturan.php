@@ -91,7 +91,6 @@
         });
 
         $('input').keydown(function () {
-            console.log(this.classList.contains("error"));
             if (this.classList.contains("error")){
                 this.classList.remove("error");
                 

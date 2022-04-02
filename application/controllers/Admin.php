@@ -17,6 +17,7 @@
 
         public function verifikasi(){
             $data['data_mahasiswa'] = $this->Form_model->get_mahasiswa()->result();
+            $data['title'] = "Verifikasi Data";
             $this->load->view("home/sidebar", $data);
             $this->load->view("admin/verifikasi", $data);   
         }
@@ -62,7 +63,8 @@
                 $this->load->view("home/print_view", $data);
             } else {
                 $data['admin_view'] = true;
-                $this->load->view("home/sidebar");
+                $data['title'] = "Detail Calon Mahasiswa";
+                $this->load->view("home/sidebar", $data);
                 $this->load->view("home/daftar", $data);
             }
         }

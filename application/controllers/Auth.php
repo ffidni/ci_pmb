@@ -8,7 +8,8 @@ class Auth extends CI_Controller {
     }
 
     public function index(){
-        $this->load->view("auth/register");
+
+        redirect("auth/register");
         
     }
 
@@ -94,7 +95,8 @@ class Auth extends CI_Controller {
             if ($validate){
                 $this->validateRegister();
             } else {
-                $this->load->view("auth/register");
+                $data['title'] = "Buat Akun";
+                $this->load->view("auth/register", $data);
             }
         }
 
@@ -107,7 +109,8 @@ class Auth extends CI_Controller {
             if ($validate){
                 $this->validateLogin();
             } else {    
-                $this->load->view("auth/login");
+                $data['title'] = "Masuk";
+                $this->load->view("auth/login", $data);
             }
         }
 
@@ -124,6 +127,7 @@ class Auth extends CI_Controller {
 
     public function ubah($type) {
         if ($type == 'pass'){
+            $data['title'] = "Pengaturan Password";
             $passwordLama = $this->input->post('passwordLama');
             $this->form_validation->set_rules("passwordLama", "Password Lama", "required|callback_check_password['.$passwordLama.']", array("required" => "Harus diisi.", "check_password" => "Password lama tidak sesuai."));
             $this->form_validation->set_rules("password", "Password", "required", array("required" => "Harus diisi."));
@@ -133,11 +137,11 @@ class Auth extends CI_Controller {
                 $updated = $this->Auth_model->updatePassword($passwordBaru);
                 $data['update_status'] = $updated;
                 $data['ubah_pass'] = true;
-                $this->load->view("home/sidebar");
+                $this->load->view("home/sidebar", $data);
                 $this->load->view("auth/pengaturan", $data);
             } else {
                 $data["ubah_pass"] = true;
-                $this->load->view("home/sidebar");
+                $this->load->view("home/sidebar", $data);
                 $this->load->view("auth/pengaturan", $data);
             }
 
@@ -155,14 +159,16 @@ class Auth extends CI_Controller {
                 }
             }
             $data["ubah_pass"] = false;
-            $this->load->view("home/sidebar");
+            $data["title"] = "Pengaturan Akun";
+            $this->load->view("home/sidebar", $data);
             $this->load->view("auth/pengaturan", $data);
         }
     }
 
     public function pengaturan($password = false){
         $data['ubah_pass'] = $password;
-        $this->load->view("home/sidebar");
+        $data['title'] = ($password) ? 'Pengaturan Password' : 'Pengaturan Akun';
+        $this->load->view("home/sidebar", $data);
         $this->load->view("auth/pengaturan", $data);
     }
     

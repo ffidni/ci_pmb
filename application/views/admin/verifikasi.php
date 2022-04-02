@@ -138,12 +138,10 @@
             } else {
                 let input = document.getElementById("cari").value;
             }
-            console.log("A");
             input = input.toLowerCase();
             let x = document.querySelectorAll(".item");
 
             for (i = 0; i < x.length; i++){
-                console.log(x[i].innerHTML);
                 if (!x[i].innerHTML.toLowerCase().includes(input)){
                     x[i].style.display = "none";
                 } else {

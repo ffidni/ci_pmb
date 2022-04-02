@@ -241,9 +241,7 @@
           function validateSelect(){
               const selects = Array.from(document.getElementsByTagName("select"));
               var valid = true;
-              console.log(selects);
               selects.forEach((select) => {
-                  console.log(select.value);
                   if (select.value === ""){
                       valid = false;
                       select.classList.add("error");
@@ -256,19 +254,14 @@
           function validateInput(type){   
               const inputs = document.querySelectorAll(`input[type=${type}]`);
               var valid = true;
-              console.log("HALO")
-              console.log(inputs);
               
               inputs.forEach((input) => {
-                  console.log(input.value === "" && input.name !== "nama_pesantren");
                   if (input.value === "" && input.name !== "nama_pesantren"){
                       valid = false
                       input.classList.add("error");
-                      console.log(input.classList);
                   }
                   //if (input.type === "number" && input.value )
               });
-              console.log(valid);
               return valid;
           }
       
@@ -316,9 +309,7 @@
               var tab_content, tab_links;
 
               tab_content = document.querySelectorAll(".tab-content");
-              console.log(tab_content);
               tab_content.forEach((content) => {
-                  console.log(content);
                   content.style.display = "none";
               });
 
@@ -347,7 +338,6 @@
                 $('.notif').show();
                 var count = 1
                 var interval = setInterval(() => {
-                    console.log(count);
                     if (count === 2 || $('.notif').is(':hidden')) {
                         clearInterval(interval);
                         $('.notif').hide();
@@ -445,7 +435,6 @@
       });
       
       $('#provinsi').change(function () {
-          console.log("AHALOW");
           var id = $(this).val();
           $.ajax({
               url: "<?php echo site_url('Form/get_kabupaten');?>",
@@ -457,7 +446,6 @@
               dataType: 'json',
               success: function (data) {
                   var html = '';
-                  console.log(data);
                   if (data.length === 0){
                       html = "<option>-- Pilih --</option>";
                       $('#kecamatan').html(html);
@@ -545,7 +533,6 @@
               dataType: 'json',
               success: function (data) {
                   var html = '';
-                  console.log(data);
                   if (data.length === 0){
                       html = "<option>-- Pilih --</option>";
                       $('#kecamatan_orangtua').html(html);
@@ -626,7 +613,6 @@
 
       $("#checkbox_lainnya").change(function() {
                   const textarea = document.getElementById("tahu-textarea");
-                  console.log(this.checked);
                   if (this.checked === true){
                       textarea.style.display = "inline-block";
                   } else {
@@ -643,12 +629,8 @@
               $(".btn-next, .btn-previous").click(function(){
                   const targetName = this.dataset.target;
                   const target = document.getElementsByClassName(targetName)[0];
-                  console.log("A");
-                  console.log(target);
                   openTab(false, targetName);
                   target.classList.add("active");
-                  console.log("B");
-                  console.log(target);
               });
       });
 

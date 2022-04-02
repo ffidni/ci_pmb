@@ -11,18 +11,20 @@ class Main extends CI_Controller {
     
     public function index(){
         $_SESSION['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata("mhs_id"))->row_array();
-
-        $this->load->view("home/sidebar");
+        $data['title'] = "PMBB2022";
+        $this->load->view("home/sidebar", $data);
         $this->load->view("home/index");
     }
 
     public function pembayaran(){
-        $this->load->view("home/sidebar");
+        $data['title'] = "Konfirmasi Pembayaran";
+        $this->load->view("home/sidebar", $data);
         $this->load->view("home/pembayaran");
     }
 
     public function upload_error($target){
         $error = array('error' => $this->upload->display_errors());
+        $data['title'] = ($target == 'pembayaran') ? 'Konfirmasi Pembayaran' : 'Dokumen';
         $this->load->view("home/sidebar");
         $this->load->view("home/$target", $error);
     }
@@ -104,7 +106,8 @@ class Main extends CI_Controller {
         $data['lihat_bukti']['img'] = $this->Form_model->get_img($id);
         $data['lihat_bukti']['nomor_seleksi'] = $nomor_seleksi;
         $data['lihat_bukti']['nama'] = str_replace("%20", " ", $nama);
-        $this->load->view("home/sidebar");
+        $data['title'] = "Lihat Bukti";
+        $this->load->view("home/sidebar", $data);
         $this->load->view("home/pembayaran", $data);
 
     }
@@ -115,8 +118,9 @@ class Main extends CI_Controller {
             "ktp" => "",
             "kartu_keluarga" => "",
             "ijazah" => "",
+            "title" => "Dokumen",
         );
-        $this->load->view("home/sidebar");
+        $this->load->view("home/sidebar", $data);
         $this->load->view("home/dokumen", $data);
     }
 
