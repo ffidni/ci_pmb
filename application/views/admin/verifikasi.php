@@ -39,8 +39,8 @@
                 <option value="Menunggu Konfirmasi">Menunggu Konfirmasi</option>
                 <option value="Diterima">Diterima</option>
                 <option value="Ditolak">Ditolak</option>
-                <option value="Lihat Bukti">Sudah Bayar</option>
-                <option value="Tidak Ada">Belum Bayar</option>
+                <option value="Bukti">Sudah Bayar</option>
+                <option value="Belum Transaksi">Belum Bayar</option>
             </select>
         </div>
         </div>
@@ -87,7 +87,7 @@
                     </td>
                     <td data-label="Transaksi">
                     <?php if ($row->bukti_pembayaran) {?>
-                                <a href="<?= base_url('main/lihat_bukti/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn">Lihat</a>
+                                <a href="<?= base_url('main/lihat_bukti/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn">Bukti</a>
                                 <?php } else {?>
                                     Belum Transaksi
                                 <?php }?>
