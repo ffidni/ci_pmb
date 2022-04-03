@@ -40,7 +40,7 @@
                 <option value="Diterima">Diterima</option>
                 <option value="Ditolak">Ditolak</option>
                 <option value="Bukti">Sudah Bayar</option>
-                <option value="Belum Transaksi">Belum Bayar</option>
+                <option value="Belum Bayar">Belum Bayar</option>
             </select>
         </div>
         </div>
