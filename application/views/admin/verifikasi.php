@@ -46,85 +46,71 @@
         </div>
 
         <div class="items">
-        <?php foreach ($data_mahasiswa as $row) {?>
+        <table border="1" cellspacing="0" id="verifikasi_table">
+            <thead>
+            <tr>
+                <th scope="col">Nomor Seleksi</th>
+                <th scope="col">Nomor HP</th>
+                <th scope="col">Asal Sekolah</th>
+                <th scope="col">Jurusan</th>
+                <th scope="col">Reguler/Non Reguler</th>
+                <th scope="col">Status</th>
+                <th scope="col">Dokumen</th>
+                <th scope="col">Transaksi</th>
+                <th scope="Aksi">Aksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($data_mahasiswa as $row) {?>
                 <?php
                     $approved = $row->approved;
                     $status = '';
-                    $classStatus = '';
                     if ($approved == '0'){
                         $status = 'Ditolak';
-                        $classStatus = 'denied';
                     } else if ($approved == '1'){
                         $status = 'Diterima';
-                        $classStatus = 'accepted';
                     } else {
                     $status = 'Menunggu konfirmasi';
-                    $classStatus ='wait';
 
                     }
                 ?>
-                <a href="<?= base_url('admin/user_detail/'.$row->mhs_id)?>">
-                <div class="item <?= $classStatus?>">
-                    <div class="item-no"><h3><?= $row->nomor_seleksi?></h3></div>
-                    <div class="item-content">
-                        <div class="row">
-                            <h3>Nama</h3>
-                            <p><?= $row->mhs_nama?></p>
-                        </div>
-                        <div class="row">
-                            <h3>Nomor HP</h3>
-                            <p><?= $row->no_hp?></p>
-                        </div>
-                        <div class="row">
-                            <h3>Asal Sekolah</h3>
-                            <p><?= $row->nama_sekolah?></p>
-                        </div>
-                        <div class="row">
-                            <h3>Pilihan Jurusan</h3>
-                            <p><?= $row->nama?></p>
-                        </div>
-                        <div class="row">
-                            <h3>Reguler/Non Reguler</h3>
-                            <p><?= $row->is_reguler?></p>
-                        </div>
-                        <div class="row">
-                            <h3>Status</h3>
-                            <p><?= $status?></p>
-                        </div>
-                        <div class="row bukti">
-                            <h3>Transaksi</h3>
-                            <?php if ($row->bukti_pembayaran) {?>
-                                <a href="<?= base_url('main/lihat_bukti/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn-verif">Lihat</a>
-                                <?php } else {?>
-                                    <a class="btn-verif">Tidak Ada</a>
-                                <?php }?>
-                        </div>
-                        <div class="row dokumen">
-                        <h3>Dokumen</h3>
-                            <a href="<?= base_url('main/lihat_dokumen/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn-verif">Lihat</a>
-                        </div>
+                <tr>
+                    <td data-label="Nomor Seleksi"><?= $row->nomor_seleksi?></td>
+                    <td data-label="Nomor HP"><?= $row->no_hp?></td>
+                    <td data-label="Asal Sekolah"><?= $row->nama_sekolah?></td>
+                    <td data-label="Jurusan"><?= $row->nama ?></td>
+                    <td data-label="Reguler/Non Reguler"><?= $row->is_reguler?></td>
+                    <td data-label="Status"><?= $status?></td>
+                    <td data-label="Dokumen">
+                            <a href="<?= base_url('main/lihat_dokumen/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn">Lihat</a>
 
-                        <div class="row buttons">
-                        <?php if ($status != 'Menunggu konfirmasi') {?>
+                    </td>
+                    <td data-label="Transaksi">
+                    <?php if ($row->bukti_pembayaran) {?>
+                                <a href="<?= base_url('main/lihat_bukti/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn">Lihat</a>
+                                <?php } else {?>
+                                    Belum Transaksi
+                                <?php }?>
+                    </td>
+                    <td data-label="Aksi">
+                    <?php if ($status != 'Menunggu konfirmasi') {?>
                         <a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn">Batal</a>
                         <?php if ($status == 'Diterima'){?>
-                            <a href="<?= base_url('admin/user_detail/'.$row->mhs_id.'/true')?>" class="btn">Cetak</a>
+                            <a href="<?= base_url('admin/cetak/'.$row->mhs_id)?>" class="btn">Cetak</a>
                         <?php }?>
+                        
                     <?php } else {?>
                         <a href="<?= base_url('admin/accept/'.$row->mhs_id)?>"  class="btn">Terima</a>
                         <a class="btn tolak" onclick="openModal('<?= $row->mhs_id?>')">Tolak</a>
                     <?php }?>
-                        </div>
-                    </div>
-                </div>
-        <?php }?>
+                    </td>
+
+
+                </tr>
+            <?php }?>
+            </tbody>
+        </table>
         </div>
-                </a>
-                
-
-
-
-    </div>
 
     <script>
         var modal = document.getElementById("modal");
@@ -139,22 +125,26 @@
 
         function search(input = false){
             if (input) {
-                input = input.value;
+                input = input.value.toUpperCase();
             } else {
-                let input = document.getElementById("cari").value;
+                input = document.getElementById("cari").value.toUpperCase();
             }
-            input = input.toLowerCase();
             let x = document.querySelectorAll(".item");
 
-            for (i = 0; i < x.length; i++){
-                if (!x[i].innerHTML.toLowerCase().includes(input)){
-                    x[i].style.display = "none";
+            table = document.getElementById("verifikasi_table");
+            tbody = document.querySelector("tbody");
+            tr = tbody.getElementsByTagName("tr");
+
+            for (var i = 0; i < tr.length; i ++){
+                var value = tr[i].innerHTML;
+                if (value.toUpperCase().includes(input)){
+                    tr[i].style.display = "table-row";
                 } else {
-                    x[i].style.display = "flex";
+                    tr[i].style.display = "none";
                 }
             }
 
-        }
+    }
 
         window.onclick = (event) => {
             if (event.target == modal || event.target == imgModal) {

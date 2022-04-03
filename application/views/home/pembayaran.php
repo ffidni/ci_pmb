@@ -35,7 +35,7 @@
                     <h4>Bukti transaksi pembayaran anda sudah dikonfirmasi.</h4>
                 <?php } else {?>
                     <h4><?= ($detail_pendaftaran['bukti_pembayaran'] && $detail_pendaftaran['approved'] != '1') ?  'Bukti transaksi sudah disertakan. Tunggu konfirmasi dari admin, untuk memvalidasi dan menyelesaikan pendaftaran anda.' : 'Sertakan bukti transaksi anda di sini:' ?></h4>
-                <img id="output" alt="" src="<?= ($detail_pendaftaran['bukti_pembayaran']) ? $detail_pendaftaran['bukti_pembayaran']: ''?>">
+                <img id="output" alt="Belum Ada" src="<?= ($detail_pendaftaran['bukti_pembayaran']) ? $detail_pendaftaran['bukti_pembayaran']: ''?>">
                 <?= (isset($error)) ? $error : ''?>
                 <div class="buttons">
                 <label for="fileinput" class="btn">Pilih Gambar</label>
