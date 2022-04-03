@@ -93,16 +93,21 @@
                                 <?php }?>
                     </td>
                     <td data-label="Aksi">
-                    <?php if ($status != 'Menunggu konfirmasi') {?>
-                        <a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn">Batal</a>
-                        <?php if ($status == 'Diterima'){?>
-                            <a href="<?= base_url('admin/cetak/'.$row->mhs_id)?>" class="btn">Cetak</a>
+                        <div class="buttons aksi-btn">
+                        <a href="<?= base_url('admin/user_detail/'.$row->mhs_id)?>" class="btn">Detail</a>
+
+                        <?php if ($status != 'Menunggu konfirmasi') {?>
+                            <a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn">Batal</a>
+                            <?php if ($status == 'Diterima'){?>
+                                <a href="<?= base_url('admin/user_detail/'.$row->mhs_id.'/'.'cetak')?>" class="btn">Cetak</a>
+                            <?php }?>
+                            
+                        <?php } else {?>
+                            <a href="<?= base_url('admin/accept/'.$row->mhs_id)?>"  class="btn">Terima</a>
+                            <a class="btn tolak" onclick="openModal('<?= $row->mhs_id?>')">Tolak</a>
                         <?php }?>
-                        
-                    <?php } else {?>
-                        <a href="<?= base_url('admin/accept/'.$row->mhs_id)?>"  class="btn">Terima</a>
-                        <a class="btn tolak" onclick="openModal('<?= $row->mhs_id?>')">Tolak</a>
-                    <?php }?>
+                                                </div>
+
                     </td>
 
 

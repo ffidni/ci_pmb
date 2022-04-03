@@ -82,12 +82,15 @@
     text-align: center;
 }
 
+
+
 .btn {
-    padding: 5px 10px;
+    padding: 5px 8px;
     color: white;
     text-align: center;
     border-radius: 5px;
     transition: 0.2s;
+    font-size: 15px;
 }
 
 
@@ -141,7 +144,6 @@ table {
     align-items: center;
     justify-content: center;
     margin-top: 5px;
-    border-top: 1px solid black;
 }
 
 .inputs {
