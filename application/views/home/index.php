@@ -18,9 +18,11 @@
                 <h3>Cara Mendaftar di STAINU</h3>
             </div>
             <ol class="steps">
-                <li>Step Satu</li>
-                <li>Step Satu</li>
-                <li>Step Satu</li>
+            <li>Mengisi Formulis</li>
+            <li>Upload (Pas Photo, KK, Ijazah, KTP)</li>
+            <li>Upload Bukti Pembayaran</li>
+
+
             </ol>
         </div>
     </div>
