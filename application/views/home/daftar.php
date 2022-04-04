@@ -289,18 +289,40 @@
                   </tr>
                   <tr>
                   <td>
-                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="text" class="form-control" name="pekerjaan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_ayah']?>">
+                  <select name="pekerjaan_ayah"  class="form-control select2" id="">
+                      <option value="1" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 1) ? 'selected' : '' ?>>Tidak Bekerja</option>
+                      <option value="2" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 2) ? 'selected' : '' ?>>Nelayan</option>
+                      <option value="3" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 3) ? 'selected' : '' ?>>Petani</option>
+                      <option value="4" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 4) ? 'selected' : '' ?>>Peternak</option>
+                      <option value="5" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 5) ? 'selected' : '' ?>>PNS / TNI / POLRI</option>
+                      <option value="6" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 6) ? 'selected' : '' ?>>Karyawan Swasta</option>
+                      <option value="7" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 7) ? 'selected' : '' ?>>Pedagang Kecil</option>
+                      <option value="8" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 8) ? 'selected' : '' ?>>Pedagang Besar</option>
+                      <option value="9" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 9) ? 'selected' : '' ?>>Wiraswasta</option>
+                      <option value="10" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 10) ? 'selected' : '' ?>>Wirausaha</option>
+                      <option value="11" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 11) ? 'selected' : '' ?>>Buruh</option>
+                      <option value="12" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 12) ? 'selected' : '' ?>>Pensiunan</option>
+                      <option value="13" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 13) ? 'selected' : '' ?>>Sudah Meninggal</option>
+                      <option value="14" <?= ($detail_pendaftaran['pekerjaan_ayah'] == 14) ? 'selected' : '' ?>>Lainnya</option>
+                  </select>
+                  </td>
+                  </tr>
+                  <tr>
+                  <td>
+                          <label for="">Penghasilan</label>
                       </td>
                   </tr>
                   <tr>
                   <td>
-                          <label for="">Penghasilan - Rp</label>
-                      </td>
-                  </tr>
-                  <tr>
-                  <td>
-                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="number" class="form-control" name="penghasilan_ayah" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan_ayah']?>">
-                      </td>
+                      <select name="penghasilan_ayah" id=""  class="form-control select2">
+                          <option value="">-- Pilih --</option>
+                          <option value="1" <?= ($detail_pendaftaran['penghasilan_ayah'] == 1) ? 'selected' : '' ?>>Kurang dari Rp. 500.000</option>
+                          <option value="2" <?= ($detail_pendaftaran['penghasilan_ayah'] == 2) ? 'selected' : '' ?>>Rp. 500.000 - Rp. 999.999</option>
+                          <option value="3" <?= ($detail_pendaftaran['penghasilan_ayah'] == 3) ? 'selected' : '' ?>>Rp. 1.000.000 - Rp 1.999.999</option>
+                          <option value="4" <?= ($detail_pendaftaran['penghasilan_ayah'] == 4) ? 'selected' : '' ?>>Rp. 2.000.000 - Rp. 4.999.999</option>
+                          <option value="5" <?= ($detail_pendaftaran['penghasilan_ayah'] == 5) ? 'selected' : '' ?>>Lebih dari Rp. 5.000.000</option>
+                      </select>
+                  </td>
                   </tr>
                   <tr>
                       <td>
@@ -344,17 +366,39 @@
                   </tr>
                   <tr>
                   <td>
-                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="text" class="form-control" name="pekerjaan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['pekerjaan_ibu']?>">
+                  <select name="pekerjaan_ibu"  class="form-control select2" id="">
+                      <option value="1" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 1) ? 'selected' : '' ?>>Tidak Bekerja</option>
+                      <option value="2" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 2) ? 'selected' : '' ?>>Nelayan</option>
+                      <option value="3" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 3) ? 'selected' : '' ?>>Petani</option>
+                      <option value="4" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 4) ? 'selected' : '' ?>>Peternak</option>
+                      <option value="5" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 5) ? 'selected' : '' ?>>PNS / TNI / POLRI</option>
+                      <option value="6" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 6) ? 'selected' : '' ?>>Karyawan Swasta</option>
+                      <option value="7" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 7) ? 'selected' : '' ?>>Pedagang Kecil</option>
+                      <option value="8" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 8) ? 'selected' : '' ?>>Pedagang Besar</option>
+                      <option value="9" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 9) ? 'selected' : '' ?>>Wiraswasta</option>
+                      <option value="10" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 10) ? 'selected' : '' ?>>Wirausaha</option>
+                      <option value="11" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 11) ? 'selected' : '' ?>>Buruh</option>
+                      <option value="12" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 12) ? 'selected' : '' ?>>Pensiunan</option>
+                      <option value="13" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 13) ? 'selected' : '' ?>>Sudah Meninggal</option>
+                      <option value="14" <?= ($detail_pendaftaran['pekerjaan_ibu'] == 14) ? 'selected' : '' ?>>Lainnya</option>
+                  </select>
                       </td>
                   </tr>
                   <tr>
                   <td>
-                          <label for="">Penghasilan - Rp</label>
+                          <label for="">Penghasilan</label>
                       </td>
                   </tr>
                   <tr>
                   <td>
-                        <input <?= (isset($admin_view)) ? 'readonly': ''?> type="number" class="form-control" name="penghasilan_ibu" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan_ibu']?>">
+                  <select name="penghasilan_ibu" id="" class="form-control">
+                          <option value="">-- Pilih --</option>
+                          <option value="1" <?= ($detail_pendaftaran['penghasilan_ibu'] == 1) ? 'selected' : '' ?>>Kurang dari Rp. 500.000</option>
+                          <option value="2" <?= ($detail_pendaftaran['penghasilan_ibu'] == 2) ? 'selected' : '' ?>>Rp. 500.000 - Rp. 999.999</option>
+                          <option value="3" <?= ($detail_pendaftaran['penghasilan_ibu'] == 3) ? 'selected' : '' ?>>Rp. 1.000.000 - Rp 1.999.999</option>
+                          <option value="4" <?= ($detail_pendaftaran['penghasilan_ibu'] == 4) ? 'selected' : '' ?>>Rp. 2.000.000 - Rp. 4.999.999</option>
+                          <option value="5" <?= ($detail_pendaftaran['penghasilan_ibu'] == 5) ? 'selected' : '' ?>>Lebih dari Rp. 5.000.000</option>
+                      </select>
                       </td>
                   </tr>
                   <tr>
@@ -479,12 +523,19 @@
               <tr>
 
               <td>
-                      <label for="">Penghasilan - Rp</label>
+                      <label for="">Penghasilan</label>
                   </td>
               </tr>
               <tr>
               <td>
-                      <input <?= (isset($admin_view)) ? 'readonly': ''?> type="number" class="form-control" name="penghasilan" value="<?= (empty($detail_pendaftaran)) ? "" : $detail_pendaftaran['penghasilan']?>">
+              <select name="penghasilan" id="" class="form-control">
+                          <option value="">-- Pilih --</option>
+                          <option value="1" <?= ($detail_pendaftaran['penghasilan'] == 1) ? 'selected' : '' ?>>Kurang dari Rp. 500.000</option>
+                          <option value="2" <?= ($detail_pendaftaran['penghasilan'] == 2) ? 'selected' : '' ?>>Rp. 500.000 - Rp. 999.999</option>
+                          <option value="3" <?= ($detail_pendaftaran['penghasilan'] == 3) ? 'selected' : '' ?>>Rp. 1.000.000 - Rp 1.999.999</option>
+                          <option value="4" <?= ($detail_pendaftaran['penghasilan'] == 4) ? 'selected' : '' ?>>Rp. 2.000.000 - Rp. 4.999.999</option>
+                          <option value="5" <?= ($detail_pendaftaran['penghasilan'] == 5) ? 'selected' : '' ?>>Lebih dari Rp. 5.000.000</option>
+                      </select>
                   </td>
               </tr>
               <tr>
@@ -963,6 +1014,7 @@
       
       $('#kecamatan').change(function () {
           var id = $(this).val();
+          console.log(id);
           $.ajax({
               url: "<?php echo site_url('Form/get_kelurahan');?>",
               method: "POST",
@@ -982,6 +1034,7 @@
                           '</option>';
                   }
                   }
+                  console.log(html);
                   $('#kelurahan').html(html);
                   $('#kelurahan').trigger("change");
               }
@@ -1078,14 +1131,44 @@
       });
 
       <?php if (!empty($detail_pendaftaran)) {?>
-                $('#provinsi').val(<?= $detail_pendaftaran['provinsi']?>).change();
-                $('#kabupaten').val(<?= $detail_pendaftaran['kab_kota']?>).change();
-                $('#kecamatan').val(<?= $detail_pendaftaran['kec']?>).change();
-                $('#kelurahan').val(<?= $detail_pendaftaran['kel']?>).change();
-                $('#provinsi_orangtua').val(<?= $detail_pendaftaran['provinsi_orangtua']?>).change();
-                $('#kabupaten_orangtua').val(<?= $detail_pendaftaran['kota_orangtua']?>).change();
-                $('#kecamatan_orangtua').val(<?= $detail_pendaftaran['kec_orangtua']?>).change();
-                $('#kelurahan_orangtua').val(<?= $detail_pendaftaran['kel_orangtua']?>).change();
+        $('#provinsi').prop('value', <?= $detail_pendaftaran['provinsi']?>).change();
+        $('#provinsi_orangtua').prop('value', <?= $detail_pendaftaran['provinsi_orangtua']?>).change();
+                    var kab = $('#kabupaten');
+                    var kec = $('#kecamatan');
+                    var kel = $('#kelurahan');
+                    var kab_or = $('#kabupaten_orangtua');
+                    var kec_or = $('#kecamatan_orangtua');
+                    var kel_or = $('#kelurahan_orangtua');
+
+                    var kab_val = "<?= $detail_pendaftaran['kab_kota']?>";
+                    var kec_val = "<?= $detail_pendaftaran['kec']?>";
+                    var kel_val = "<?= $detail_pendaftaran['kel']?>";
+                    var kab_or_val = "<?= $detail_pendaftaran['kota_orangtua']?>";
+                    var kec_or_val = "<?= $detail_pendaftaran['kec_orangtua']?>";
+                    var kel_or_val = "<?= $detail_pendaftaran['kel_orangtua']?>";
+
+                    
+
+                    setTimeout(() => {
+                    kab.prop('value', kab_val).change();
+                    setTimeout(() => {
+                        kec.prop('value', kec_val).change();
+                        setTimeout(() => {
+                            kel.prop('value', kel_val).change();
+                        }, 500);
+                    }, 500);
+                    }, 500);
+
+                    setTimeout(() => {
+                        kab_or.prop('value', kab_or_val).change();
+                        setTimeout(() => {
+                            kec_or.prop('value', kec_or_val).change();
+                            setTimeout(() => {
+                                kel_or.prop('value', kel_or_val).change();
+                            }, 500);
+                        }, 500);
+                    }, 500);
+
 
         <?php }?>
 

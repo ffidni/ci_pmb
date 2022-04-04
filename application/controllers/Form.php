@@ -33,14 +33,8 @@ class Form extends CI_Controller {
             $data['title'] = "Detail Pendaftaran";
         }
 
-
-        if (!empty($detail)){
-            $data['detail_pendaftaran'] = $detail;
-        } else {
-            $data['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('mhs_id'))->row_array();
-            $_SESSION['detail_pendaftaran'] = $data['detail_pendaftaran'];
-        }
-
+        $data['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('mhs_id'))->row_array();
+        $_SESSION['detail_pendaftaran'] = $data['detail_pendaftaran'];
         $this->load->view("home/sidebar", $data);
         $this->load->view("home/daftar", $data);
     }
@@ -87,7 +81,7 @@ class Form extends CI_Controller {
         $id = $_SESSION['detail_pendaftaran']['mhs_id'];
         $updated = $this->Form_model->update_all($id, $data);
         $_SESSION['detail_pendaftaran'] = $this->Form_model->get_details($this->session->userdata('mhs_id'))->row_array();
-        $this->daftar(true, $data, $updated);
+        $this->daftar(true, $_SESSION['detail_pendaftaran'], $updated);
     }
 
     public function get_seleksi($id){

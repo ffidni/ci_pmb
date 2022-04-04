@@ -17,6 +17,7 @@
 
         public function verifikasi(){
             $data['data_mahasiswa'] = $this->Form_model->get_mahasiswa()->result();
+            $data['data_pengguna'] = $this->Auth_model->get_data()->result();
             $data['title'] = "Verifikasi Data";
             $this->load->view("home/sidebar", $data);
             $this->load->view("admin/verifikasi", $data);   

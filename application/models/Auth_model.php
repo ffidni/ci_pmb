@@ -57,4 +57,8 @@
             $this->db->where("id", $id);
             $this->db->update("user", array($field => $value));
         }
+
+        public function get_data(){
+            return $this->db->get("user");
+        }
     }

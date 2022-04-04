@@ -26,15 +26,60 @@
             <img id="imgBukti" src="" alt="">
         </div>
     </div>
-    <div class="container">
-        <h2>Daftar Calon Mahasiswa</h2>
+    <div class="container tab">
+        <div class="tab-links">
+            <button class="tab-link active-tab" onclick="openTab(event, 'daftar_pengguna')">Daftar Pengguna</button>
+            <button class="tab-link" onclick="openTab(event, 'daftar_mahasiswa')">Daftar Calon Mahasiswa</button>
+        </div>
+        <div class="tab-content active" id="daftar_pengguna">
+        <h2>Daftar Pengguna</h2>
         <div class="actions">
         <div class="inputs">
-            <span class="mdi mdi-magnify"></span><input placeholder='Cari Calon Mahasiswa' type="text" id="cari" onkeyup="search()">
+            <span class="mdi mdi-magnify"></span><input placeholder='Cari Pengguna' type="text" id="cariAkun" onkeyup="search('cariAkun', 'pengguna_table')">
         </div>
         <div class="inputs">
             <span class="mdi mdi-filter"></span>
-            <select name="" id="filter" onchange="search(this)">
+            <select name="" id="filterAkun" onchange="search('cariAkun', 'pengguna_table', this.value)">
+                <option value="" selected>Semua</option>
+                <option value="Belum Daftar">Belum Daftar</option>
+                <option value="Sudah Daftar">Sudah Daftar</option>
+            </select>
+        </div>
+        </div>
+
+
+        <div class="items">
+            <table border="1" cellspacing="0" id="pengguna_table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nomor HP</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($data_pengguna as $row) {?>
+                        <?php if ($row->hak_akses != 'admin') { ?>
+                            <tr>
+                                <td data-label="Nomor HP"><?= $row->no_hp?></td>
+                                <td data-label="Email"><?= $row->email?></td>
+                                <td data-label="Status"><?= ($row->mhs_id) ? 'Sudah Daftar' : 'Belum Daftar' ?></td>
+                            </tr>
+                        <?php }?>
+                    <?php }?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="tab-content" id="daftar_mahasiswa">
+        <h2>Daftar Calon Mahasiswa</h2>
+        <div class="actions">
+        <div class="inputs">
+            <span class="mdi mdi-magnify"></span><input placeholder='Cari Calon Mahasiswa' type="text" id="cari" onkeyup="search('cari', 'verifikasi_table')">
+        </div>
+        <div class="inputs">
+            <span class="mdi mdi-filter"></span>
+            <select name="" id="filter" onchange="search('cari', 'verifikasi_table', this.value)">
                 <option value="" selected>Semua</option>
                 <option value="Menunggu Konfirmasi">Menunggu Konfirmasi</option>
                 <option value="Diterima">Diterima</option>
@@ -57,7 +102,7 @@
                 <th scope="col">Status</th>
                 <th scope="col">Dokumen</th>
                 <th scope="col">Transaksi</th>
-                <th scope="Aksi">Aksi</th>
+                <th scope="col">Aksi</th>
             </tr>
             </thead>
             <tbody>
@@ -89,7 +134,7 @@
                     <?php if ($row->bukti_pembayaran) {?>
                                 <a href="<?= base_url('main/lihat_bukti/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn">Bukti</a>
                                 <?php } else {?>
-                                    Belum Transaksi
+                                    Belum Bayar
                                 <?php }?>
                     </td>
                     <td data-label="Aksi">
@@ -116,6 +161,8 @@
             </tbody>
         </table>
         </div>
+    </div>
+
 
     <script>
         var modal = document.getElementById("modal");
@@ -125,24 +172,42 @@
         var form = document.getElementById("batal-form");
         var currId = ''
 
+        function openTab(event, tab){
+              var tab_content, tab_links;
+
+              tab_content = document.querySelectorAll(".tab-content");
+              tab_content.forEach((content) => {
+                  content.style.display = "none";
+              });
+
+              tab_links = document.querySelectorAll(".tab-link");
+              tab_links.forEach((links) => {
+                  links.classList.remove("active-tab");
+              });
+              
+              document.getElementById(tab).style.display = "block";
+              if (event) {
+              event.currentTarget.classList.add("active-tab");
+              }
+              window.scrollTo(0,0);
+              
+
+          }
 
 
-
-        function search(input = false){
-            if (input) {
-                input = input.value.toUpperCase();
-            } else {
-                input = document.getElementById("cari").value.toUpperCase();
-            }
+        function search(inputName, tableName, filter = ''){
+            let input = document.getElementById(inputName).value.toUpperCase();
             let x = document.querySelectorAll(".item");
 
-            table = document.getElementById("verifikasi_table");
-            tbody = document.querySelector("tbody");
+            filter = filter.toUpperCase();
+            table = document.getElementById(tableName);
+            tbody = table.querySelector("tbody");
             tr = tbody.getElementsByTagName("tr");
-
+            
+            console.log(tableName);
             for (var i = 0; i < tr.length; i ++){
                 var value = tr[i].innerHTML;
-                if (value.toUpperCase().includes(input)){
+                if (value.toUpperCase().includes(input) && value.toUpperCase().includes(filter)){
                     tr[i].style.display = "table-row";
                 } else {
                     tr[i].style.display = "none";

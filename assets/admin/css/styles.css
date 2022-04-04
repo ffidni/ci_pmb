@@ -70,7 +70,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 40px 5px;
+    margin-top: 2em;
 }
 
 .container h2 {
@@ -94,6 +94,7 @@
 }
 
 
+
 .tolak {
     background-color: #ee2525;
 }
@@ -102,9 +103,6 @@
     background-color: #ff2424;
 }
 
-table {
-    overflow: auto;
-}
 
 table th {
     color: white;
@@ -121,18 +119,25 @@ table th {
     box-shadow: 10px 10px 10px rgba(74, 73, 73, 0.2);
     border-radius: 10px;
     cursor: pointer;
+
 }
 
 
 .items {
+    border-top: 2px solid black;
+
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    overflow: hidden;
+    width: 100%;
 }
 
 table {
     margin-top: 30px;
+    font-size: 14px;
+    min-width: 300px;
 }
 
 .row {
@@ -144,6 +149,7 @@ table {
     align-items: center;
     justify-content: center;
     margin-top: 5px;
+
 }
 
 .inputs {
@@ -171,7 +177,10 @@ table {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding-bottom: 30px;
 }
+
+
 
 
 
@@ -339,8 +348,75 @@ a {
     width: 100%;
     cursor: pointer;
 }
+.tab {
+    display: flex;
+    overflow: hidden;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+}
 
-@media screen and (max-width: 822px) {
+.tab-links {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+
+
+
+
+.tab button {
+    background-color: inherit;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 30px;
+    transition: 0.3s;
+    width: 100%;
+    white-space: nowrap;
+}
+
+
+
+.tab button:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+.tab .active-tab {
+    border-bottom: 2px solid rgb(85, 169, 85);
+}
+
+
+
+
+
+.tab-content {
+    display: none;
+    margin-top: 35px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.tab-content table {
+    width: 76vw;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content {
+    display: none;
+}
+@media screen and (max-width: 980px) {
+
+    .container {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
     .batal-content {
         width: 60%;
     }
@@ -391,6 +467,10 @@ a {
   }
   
   @media screen and (max-width: 413px){
+    .tab-links {
+        display: block;
+        width: 80%;
+    }
 
     .row {
         font-size: 13px;

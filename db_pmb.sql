@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2022 at 12:13 AM
+-- Generation Time: Apr 04, 2022 at 04:31 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -36,10 +36,10 @@ CREATE TABLE `mahasiswa` (
   `mhs_jk` enum('l','p') NOT NULL,
   `mhs_alamat` varchar(100) NOT NULL,
   `mhs_rt_rw` varchar(20) NOT NULL,
-  `provinsi` int(3) NOT NULL,
-  `kab_kota` int(5) NOT NULL,
-  `kec` int(5) NOT NULL,
-  `kel` int(10) NOT NULL,
+  `provinsi` char(2) NOT NULL,
+  `kab_kota` char(4) NOT NULL,
+  `kec` char(6) NOT NULL,
+  `kel` char(10) NOT NULL,
   `kode_pos` varchar(10) NOT NULL,
   `no_hp` varchar(20) NOT NULL,
   `email` varchar(80) NOT NULL,
@@ -51,19 +51,19 @@ CREATE TABLE `mahasiswa` (
   `nama_ayah` varchar(50) NOT NULL,
   `tgl_lahir_ayah` date NOT NULL,
   `pendidikan_ayah` int(2) NOT NULL,
-  `pekerjaan_ayah` varchar(100) NOT NULL,
-  `penghasilan_ayah` int(11) NOT NULL,
+  `pekerjaan_ayah` int(2) NOT NULL,
+  `penghasilan_ayah` int(2) NOT NULL,
   `nama_ibu` varchar(50) NOT NULL,
   `tgl_lahir_ibu` date NOT NULL,
   `pendidikan_ibu` int(2) NOT NULL,
-  `pekerjaan_ibu` varchar(100) NOT NULL,
-  `penghasilan_ibu` int(11) NOT NULL,
+  `pekerjaan_ibu` int(2) NOT NULL,
+  `penghasilan_ibu` int(2) NOT NULL,
   `alamat_orangtua` varchar(50) NOT NULL,
   `rt_rw_orangtua` varchar(20) NOT NULL,
-  `provinsi_orangtua` int(2) NOT NULL,
-  `kota_orangtua` int(5) NOT NULL,
-  `kec_orangtua` int(5) NOT NULL,
-  `kel_orangtua` int(10) NOT NULL,
+  `provinsi_orangtua` char(2) NOT NULL,
+  `kota_orangtua` char(4) NOT NULL,
+  `kec_orangtua` char(6) NOT NULL,
+  `kel_orangtua` char(10) NOT NULL,
   `kode_pos_orangtua` varchar(20) NOT NULL,
   `status_mhs` enum('Belum Kawin','Kawin','Cerai Hidup','Cerai Mati') NOT NULL,
   `pekerjaan_mhs` varchar(10) NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE `mahasiswa` (
   `id_transportasi` int(2) NOT NULL,
   `id_prodi` int(2) NOT NULL,
   `is_reguler` enum('Reguler','Non Reguler') NOT NULL,
-  `penghasilan` int(11) NOT NULL,
+  `penghasilan` int(2) NOT NULL,
   `tahu_stainu` enum('1','2','3','4','5') CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `keterangan_tahu` text NOT NULL,
   `nomor_seleksi` varchar(100) NOT NULL,
@@ -90,8 +90,39 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`mhs_id`, `mhs_nama`, `mhs_nik`, `mhs_tempat_lahir`, `mhs_tgl_lahir`, `mhs_jk`, `mhs_alamat`, `mhs_rt_rw`, `provinsi`, `kab_kota`, `kec`, `kel`, `kode_pos`, `no_hp`, `email`, `pendidikan_id`, `nama_sekolah`, `nisn`, `nomor_ijazah`, `tahun_ijazah`, `nama_ayah`, `tgl_lahir_ayah`, `pendidikan_ayah`, `pekerjaan_ayah`, `penghasilan_ayah`, `nama_ibu`, `tgl_lahir_ibu`, `pendidikan_ibu`, `pekerjaan_ibu`, `penghasilan_ibu`, `alamat_orangtua`, `rt_rw_orangtua`, `provinsi_orangtua`, `kota_orangtua`, `kec_orangtua`, `kel_orangtua`, `kode_pos_orangtua`, `status_mhs`, `pekerjaan_mhs`, `id_tinggal`, `nama_pesantren`, `id_transportasi`, `id_prodi`, `is_reguler`, `penghasilan`, `tahu_stainu`, `keterangan_tahu`, `nomor_seleksi`, `approved`, `alasan_pembatalan`, `bukti_pembayaran`, `pas_foto`, `ktp`, `kartu_keluarga`, `ijazah`) VALUES
-(1, 'Muhammad Haikal Hilalul Hamdi', '123123123', 'Ciamis', '2022-03-25', 'l', 'Tembong Sari', '1, 3', 35, 3501, 350101, 2147483647, '43176', '082130089012', 'realityinaship@gmail.com', 7, 'SMKS NU Tasikmalaya', '123123', 'D-42069', 2023, 'Endin', '2022-03-10', 11, 'Wiraswasta', 10000000, 'Hilda', '2022-03-09', 11, '-', 0, 'wdwdw', '1, 1', 33, 3301, 330101, 2147483647, '43176', 'Kawin', 'Programmer', 1, '', 1, 1, 'Reguler', 10000000, '5', 'test', '22-1', '1', '', '', '', '', '', ''),
-(2, 'Muhammad Haikals', '1231232', 'Ciamis', '2022-03-17', 'l', 'awdawd', '11', 34, 3401, 340101, 2147483647, '12321', '123', 'akunhaikal@gmail.com', 9, 'SMKS NU', '123123', '123123', 2023, 'Endin', '2022-03-17', 11, 'wdwdwd', 2313213, 'Hilda', '2022-03-10', 11, '-', 0, '123213', '11', 52, 5201, 520101, 2147483647, '123213', 'Belum Kawin', 'Programmer', 1, '', 2, 1, 'Reguler', 23123213, '1', '', '22-2', '', 'Bukti pembayaran tidak valid.', 'https://localhost/pmb2022/assets/bukti/bukti-22-2.jpg', 'https://localhost/pmb2022/assets/dokumen/pas_foto_22-2.jpg', 'https://localhost/pmb2022/assets/dokumen/ktp_22-2.pdf', 'https://localhost/pmb2022/assets/dokumen/kartu_keluarga_22-2.jpg', '');
+(1, 'Muhammad Haikal Hilalul Hamdi', '123123123', 'Ciamis', '2022-03-25', 'l', 'Tembong Sari', '1, 3', '35', '3501', '350101', '214748', '43176', '082130089012', 'realityinaship@gmail.com', 7, 'SMKS NU Tasikmalaya', '123123', 'D-42069', 2023, 'Endin', '2022-03-10', 11, 1, 2, 'Hilda', '2022-03-09', 11, 1, 2, 'wdwdw', '1, 1', '33', '3301', '330101', '2147483647', '43176', 'Kawin', 'Programmer', 1, '', 1, 1, 'Reguler', 2, '5', 'test', '22-1', '1', '', '', '', '', '', ''),
+(2, 'Muhammad Haikals', '1231232', 'Ciamis', '2022-03-17', 'l', 'awdawd', '11', '34', '3403', '340302', '3403022007', '12321', '123', 'akunhaikal@gmail.com', 9, 'SMKS NU', '123123', '123123', 2023, 'Endin', '2022-03-17', 11, 2, 3, 'Hilda', '2022-03-10', 11, 2, 3, '123213', '11', '11', '1103', '110301', '1103012001', '123213', 'Belum Kawin', 'Programmer', 1, '', 2, 1, 'Reguler', 5, '1', '', '22-2', '', 'Bukti pembayaran tidak valid.', 'https://localhost/pmb2022/assets/bukti/bukti-22-2.jpg', 'https://localhost/pmb2022/assets/dokumen/pas_foto_22-2.jpg', 'https://localhost/pmb2022/assets/dokumen/ktp_22-2.pdf', 'https://localhost/pmb2022/assets/dokumen/kartu_keluarga_22-2.jpg', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pekerjaan`
+--
+
+CREATE TABLE `pekerjaan` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pekerjaan`
+--
+
+INSERT INTO `pekerjaan` (`id`, `nama`) VALUES
+(1, 'Tidak Bekerja'),
+(2, 'Nelayan'),
+(3, 'Petani'),
+(4, 'Peternak'),
+(5, 'PNS / TNI / POLRI'),
+(6, 'Karyawan Swasta'),
+(7, 'Pedagang Kecil'),
+(8, 'Pedagang Besar'),
+(9, 'Wiraswasta'),
+(10, 'Wirausaha'),
+(11, 'Buruh'),
+(12, 'Pensiunan'),
+(13, 'Sudah Meninggal'),
+(14, 'Lainnya');
 
 -- --------------------------------------------------------
 
@@ -128,6 +159,28 @@ INSERT INTO `pendidikan` (`id`, `nama`, `singkatan`) VALUES
 (16, 'Diploma 3', 'D3'),
 (17, 'Diploma 4', 'D4'),
 (18, 'Lainnya', 'Lainnya');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penghasilan`
+--
+
+CREATE TABLE `penghasilan` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penghasilan`
+--
+
+INSERT INTO `penghasilan` (`id`, `nama`) VALUES
+(1, 'Kurang dari Rp. 500.000'),
+(2, 'Rp. 500.000 - Rp. 999.999'),
+(3, 'Rp. 1.000.000 - Rp 1.999.999'),
+(4, 'Rp. 2.000.000 - Rp. 4.999.999'),
+(5, 'Lebih dari Rp. 5.000.000');
 
 -- --------------------------------------------------------
 
@@ -90499,6 +90552,18 @@ ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`mhs_id`);
 
 --
+-- Indexes for table `pekerjaan`
+--
+ALTER TABLE `pekerjaan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `penghasilan`
+--
+ALTER TABLE `penghasilan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
@@ -90543,6 +90608,18 @@ ALTER TABLE `user`
 --
 ALTER TABLE `mahasiswa`
   MODIFY `mhs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pekerjaan`
+--
+ALTER TABLE `pekerjaan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `penghasilan`
+--
+ALTER TABLE `penghasilan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `prodi`

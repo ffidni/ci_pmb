@@ -65,6 +65,18 @@ class Form_model extends CI_Model {
         return $this->db->get("mahasiswa");
     }
 
+    public function get_pekerjaan($id) {
+        $this->db->select("name");
+        $this->db->where("id", $id);
+        return $this->db->get("pekerjaan");
+    }
+
+    public function get_penghasilan($id) {
+        $this->db->select("name");
+        $this->db->where("id", $id);
+        return $this->db->get("penghasilan");
+    }
+
     public function get_prodi($id_prodi){
         $this->db->where("id", $id_prodi);
         return $this->db->get("prodi");
