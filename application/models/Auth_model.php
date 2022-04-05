@@ -26,6 +26,16 @@
             return $val['id'];
         }
 
+        public function get_email($id){
+            $this->db->select("email");
+            $this->db->where("id", $id);
+            $val = $this->db->get("user")->row_array();
+            if ($val){
+                return $val['email'];
+            }
+            return null;
+        }
+
 
         public function check_field($curr, $id, $field) {
             $this->db->select($field);
@@ -41,8 +51,8 @@
             }
         }
 
-        public function updatePassword($new){
-            $this->db->where("id", $_SESSION['id']);
+        public function updatePassword($new, $id = false){
+            $this->db->where("id", ($id) ? $id: $_SESSION['id']);
             $this->db->update("user", array("password" => $new));
             return $this->db->affected_rows();
         }

@@ -28,7 +28,7 @@
     </div>
     <section>
     <div class="home-container">
-        <?php if (empty($detail_pendaftaran)) {?>
+        <?php if (empty($detail_pendaftaran) && $this->session->userdata("hak_akses") != "admin") {?>
             <h1 style="text-align: center;">Selamat datang di aplikasi PMBB2022!</h1>
             <h3>Baca informasi lebih lanjut untuk cara mendaftar dan daftarkan dirimu sekarang!</h3>
         <?php } else if ($this->session->userdata("hak_akses") == "admin") {?>
@@ -54,8 +54,13 @@
                         <a href="<?= base_url('main/pembayaran')?>" class="btn"><span class="mdi mdi-credit-card"></span>Konfirmasi Pembayaran</a>
                 <?php }?>
             <?php } else {?>
-                <a href="<?= base_url('form/daftar')?>" class="btn"><span class="mdi mdi-note"></span>Daftar</a>
-                <a  class="btn" id="info"><span class="mdi mdi-information-variant"></span>Cara Mendaftar</a>
+                 <?php if ($this->session->userdata("hak_akses") == "admin") {?>
+                    <a href="<?= base_url('admin/verifikasi')?>" class="btn"><span class="mdi mdi-note"></span>Verifikasi Data</a>
+                 <?php } else {?>
+                    <a href="<?= base_url('form/daftar')?>" class="btn"><span class="mdi mdi-note"></span>Daftar</a>
+                    <a  class="btn" id="info"><span class="mdi mdi-information-variant"></span>Cara Mendaftar</a>
+                 <?php }?>
+
                 <?php }?>
         </div>
     </div>

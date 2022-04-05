@@ -13,7 +13,7 @@
 
 <div class="notif">
         <div class="content">
-            <p><?= (isset($update_status) && $update_status) ? "Data akun berhasil diperbarui." : "Memperbarui akun gagal. Pastikan anda terkoneksi dengan internet."?></p>
+            <p><?= (isset($update_status) && $update_status != -1) ? "Data akun berhasil diperbarui." : "Memperbarui akun gagal. Pastikan anda terkoneksi dengan internet."?></p>
         </div>
     </div>
     <?= form_open(base_url(($ubah_pass) ? 'auth/ubah/pass': 'auth/ubah/detail'), array("id" => "form_pengaturan", "method" => "POST", "onsubmit" => "return validate()"))?>
@@ -112,7 +112,7 @@
         }
 
         <?php if (isset($update_status)) {?> 
-                if (!$update_status){
+                if ($update_status == -1){
                     $('.notif').css({"background-color", "rgb(206, 103, 103)", "border", "rgb(169, 85, 85)"});
                 }
                 $('.notif').show();

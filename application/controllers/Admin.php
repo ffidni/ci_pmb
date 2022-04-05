@@ -69,4 +69,12 @@
                 $this->load->view("home/daftar", $data);
             }
         }
+
+        public function reset_password($id){
+            $data['user_id'] = $id;
+            $status = $this->Auth_model->updatePassword(md5("pmb2022stainu"), $id);
+            $this->session->set_flashdata("update_status", $status);
+            redirect('admin/verifikasi');
+        }
+
     }

@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="<?= base_url('assets/admin/css/styles.css')?>">
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/style.css')?>">
 </head>
 <body>
+    <?php $update_status = $this->session->flashdata("update_status")?>
     <div id="modal" class="popup">
         <div class="batal-content">
             <form id="batal-form" method="post">
@@ -19,6 +20,12 @@
                 </div>
             </form>
         </div>  
+    </div>
+
+    <div class="notif" id="notif">
+        <div class="content">
+            <p><?= (isset($update_status) && $update_status != -1) ? "Data akun berhasil diperbarui." : "Memperbarui akun gagal. Pastikan anda terkoneksi dengan internet."?></p>
+        </div>
     </div>
 
     <div id="pembayaran" class="popup">
@@ -55,6 +62,7 @@
                         <th scope="col">Nomor HP</th>
                         <th scope="col">Email</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,7 +71,12 @@
                             <tr>
                                 <td data-label="Nomor HP"><?= $row->no_hp?></td>
                                 <td data-label="Email"><?= $row->email?></td>
-                                <td data-label="Status"><?= ($row->mhs_id) ? 'Sudah Daftar' : 'Belum Daftar' ?></td>
+                                <td data-label="Status" class="<?= ($row->mhs_id) ? 'sudah-daftar' : 'belum-daftar' ?>"><?= ($row->mhs_id) ? 'Sudah Daftar' : 'Belum Daftar' ?></td>
+                                <td data-label="Aksi">
+                                    <div class="buttons">
+                                    <a href="<?= base_url('admin/reset_password/'.$row->id)?>" class="btn">Reset Password</a>
+                                    </div>
+                                </td>
                             </tr>
                         <?php }?>
                     <?php }?>
@@ -165,6 +178,28 @@
 
 
     <script>
+            <?php if (isset($update_status)) {?> 
+                var notif = document.getElementById("notif");
+                <?php if ($update_status == -1){?>
+                    notif.style.backgroundColor = "rgb(206, 103, 103)";
+                    notif.style.border = "rgb(169, 85, 85)";
+                <?php }?>
+                notif.style.display = "block";
+                var count = 1
+                var interval = setInterval(() => {
+                    if (count === 2) {
+                        clearInterval(interval);
+                        notif.style.display = "none";
+                        count = 1;
+                    } else {
+                        count++;
+                    }
+                }, 2000);
+            <?php }?>
+        
+            notif.addEventListener("click", () => {
+                notif.style.display = "none";
+            })
         var modal = document.getElementById("modal");
         var imgModal = document.getElementById("pembayaran");
         var imgBukti = document.getElementById("imgBukti");
@@ -208,7 +243,7 @@
             for (var i = 0; i < tr.length; i ++){
                 var value = tr[i].innerHTML;
                 if (value.toUpperCase().includes(input) && value.toUpperCase().includes(filter)){
-                    tr[i].style.display = "table-row";
+                    tr[i].style.display = "";
                 } else {
                     tr[i].style.display = "none";
                 }

@@ -223,7 +223,13 @@ img#bg {
     .container {
         flex-direction: column;
         align-items: center;
+        margin-top: 5vh;
+
         
+    }
+
+    .title {
+        margin-top: 0;
     }
 
     .btn {
