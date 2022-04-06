@@ -137,5 +137,10 @@ class Main extends CI_Controller {
         $this->load->view("home/dokumen", $data);
     }
 
+    public function kartu(){
+        $data['detail_pendaftaran'] = $this->Form_model->get_kartu($_SESSION['mhs_id'])->row_array();
+        $this->load->view("home/kartu", $data);
+    }
+
 
 }

@@ -167,7 +167,11 @@
                             
 
                         <?php if ($status != 'Menunggu konfirmasi') {?>
-                            <a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn">Batal</a>
+                            <?php if ($this->uri->segment('4')) {?>
+                                <a href="<?= base_url('admin/batal/'.$row->mhs_id.'/'.$this->uri->segment('4'))?>" class="btn">Batal</a>
+                            <?php } else {?>
+                                <a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn">Batal</a>
+                            <?php }?>
                             <?php if ($status == 'Diterima'){?>
                                 <?php if ($this->uri->segment('4')) {?>
                                     <a href="<?= base_url('admin/user_detail/'.$row->mhs_id.'/'.$this->uri->segment('4').'/cetak')?>" class="btn" onclick="change_link('mahasiswa')">Cetak</a>
@@ -179,8 +183,13 @@
                             <?php }?>
                             
                         <?php } else {?>
-                            <a href="<?= base_url('admin/accept/'.$row->mhs_id)?>"  class="btn">Terima</a>
+                            <?php if ($this->uri->segment('4')) {?>
+                                <a href="<?= base_url('admin/accept/'.$row->mhs_id.'/'.$this->uri->segment('4'))?>"  class="btn">Terima</a>
+                            <?php } else {?>
+                                <a href="<?= base_url('admin/accept/'.$row->mhs_id)?>"  class="btn">Terima</a>
+                            <?php }?>
                             <a class="btn tolak" onclick="openModal('<?= $row->mhs_id?>')">Tolak</a>
+
                         <?php }?>
                         </div>
 
@@ -360,7 +369,11 @@
 
         function openModal(id){
             modal.style.display = "block";
-            form.action = "<?= base_url('admin/deny/')?>" + id;
+            <?php if ($this->uri->segment('4')) {?>
+                form.action = "<?= base_url('admin/deny/')?>" + id + "<?= '/'.$this->uri->segment('4')?>";
+            <?php } else {?>
+                form.action = "<?= base_url('admin/deny/')?>" + id;
+            <?php }?>
         }
 
         function closeModal(submit = false){

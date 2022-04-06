@@ -58,6 +58,9 @@
                     <li>
                         <a href="<?= base_url('admin/verifikasi/pengguna')?>"  class="sidebar-button">Verifikasi Data</a>           
                     </li>
+                    <li>
+                        <a href="<?= base_url('admin/stats')?>" class="sidebar-button">Statistik Afiliator</a>
+                    </li>
                 <?php }?>   
                 <li>
                     <a href="<?= base_url('auth/logout')?>" class="sidebar-button responsive-visibility last" >Keluar</a>

@@ -54,8 +54,20 @@ class Form_model extends CI_Model {
         return $this->db->get("mahasiswa");
     }
 
+    public function get_kartu($mhs_id){
+        $this->db->select("mahasiswa.mhs_nama, mahasiswa.nomor_seleksi, mahasiswa.pas_foto, mahasiswa.nama_sekolah, mahasiswa.mhs_tgl_lahir, mahasiswa.mhs_tempat_lahir, mahasiswa.no_hp, mahasiswa.mhs_jk, mahasiswa.mhs_alamat, prodi.nama as nama_prodi, ");
+        $this->db->where("mhs_id", $mhs_id);
+        $this->db->join("prodi", "prodi.id = mahasiswa.id_prodi");
+        return $this->db->get("mahasiswa");
+    }
+
     public function get_id($email){
         $this->db->where("email", $email);
+        return $this->db->get("mahasiswa");
+    }
+
+    public function get_stats(){
+        $this->db->select("tahu_stainu");
         return $this->db->get("mahasiswa");
     }
 
@@ -63,10 +75,13 @@ class Form_model extends CI_Model {
         return $this->db->get('mahasiswa')->num_rows();
     }
 
-    public function get_mahasiswa($number, $offset){
+    public function get_mahasiswa($number = false, $offset = false){
         $this->db->select('mahasiswa.mhs_id, mahasiswa.pas_foto, mahasiswa.ktp, mahasiswa.kartu_keluarga, mahasiswa.ijazah, mahasiswa.mhs_nama, mahasiswa.bukti_pembayaran, mahasiswa.nomor_seleksi, mahasiswa.mhs_nama, mahasiswa.no_hp, mahasiswa.nama_sekolah, prodi.nama, mahasiswa.is_reguler, mahasiswa.approved');
         $this->db->join("prodi", "prodi.id = mahasiswa.id_prodi");
-        return $this->db->get("mahasiswa", $number, $offset);
+        if ($number && $offset){
+            return $this->db->get("mahasiswa", $number, $offset);
+        }
+        return $this->db->get("mahasiswa");
     }
 
     public function get_pekerjaan($id) {
@@ -85,6 +100,8 @@ class Form_model extends CI_Model {
         $this->db->where("id", $id_prodi);
         return $this->db->get("prodi");
     }
+
+
 
     public function get_lokasi($table, $field, $id){
         $this->db->select("nama");

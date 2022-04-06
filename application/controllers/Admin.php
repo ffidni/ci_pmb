@@ -20,7 +20,7 @@
             $this->load->library('pagination');
             $config['base_url'] = base_url('admin/verifikasi/mahasiswa');
             $config['total_rows'] = $jumlah_data;
-            $config['per_page'] = 15;
+            $config['per_page'] = 10;
 
             $config['full_tag_open'] = '<div class="pagination"><ul>';
             $config['full_tag_close'] = '</ul></div><!--pagination-->';
@@ -60,20 +60,35 @@
             $this->load->view("admin/verifikasi", $data);   
         }
 
-        public function accept($id){
+        public function accept($id, $page = ''){
             $this->Form_model->update("approved", "1", $id);
-            redirect('admin/verifikasi');
+            if ($page){
+                redirect('admin/verifikasi/mahasiswa/'.$page);
+
+            } else {
+                redirect('admin/verifikasi/mahasiswa');
+            }
         }
 
-        public function deny($id){
+        public function deny($id, $page = ""){
             $this->Form_model->update("approved", "0", $id);
             $this->Form_model->update("alasan_pembatalan", $this->input->post("alasan_pembatalan"), $id);
-            redirect('admin/verifikasi');
+            if ($page){
+                redirect('admin/verifikasi/mahasiswa/'.$page);
+
+            } else {
+                redirect('admin/verifikasi/mahasiswa');
+            }
         }
 
-        public function batal($id){
+        public function batal($id, $page = ""){
             $this->Form_model->update("approved", "", $id);
-            redirect('admin/verifikasi');
+            if ($page){
+                redirect('admin/verifikasi/mahasiswa/'.$page);
+
+            } else {
+                redirect('admin/verifikasi/mahasiswa');
+            }
         }
 
         public function user_detail($mhs_id, $page = '', $print_view = false){
@@ -113,6 +128,12 @@
             $status = $this->Auth_model->updatePassword(md5("pmb2022stainu"), $id);
             $this->session->set_flashdata("update_status", $status);
             redirect('admin/verifikasi');
+        }
+
+        public function stats(){
+            $data['title'] = "Statistik Afiliator";
+            $this->load->view("home/sidebar", $data);
+            $this->load->view("admin/stats");
         }
 
     }

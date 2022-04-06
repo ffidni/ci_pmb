@@ -189,6 +189,7 @@
                     <td><input type="radio" name='id_prodi' value="1" <?= ($detail_pendaftaran['id_prodi'] == '1') ? 'checked' : ''?>>Manajemen Pendidikan Islam (S1)</td>
                     <td><input type="radio" name='id_prodi' value="2" <?= ($detail_pendaftaran['id_prodi'] == '2') ? 'checked' : ''?>>Komunikasi Penyiaran Islam (S1)</td>
                     <td><input type="radio" name='id_prodi' value="3" <?= ($detail_pendaftaran['id_prodi'] == '3') ? 'checked' : ''?>>Hukum Keluarga Islam (S1)</td>
+                    <td><input type="radio" name='id_prodi' value="4" <?= ($detail_pendaftaran['id_prodi'] == '4') ? 'checked' : ''?>>Ekonomi Syariah(S1)</td>
                 </tr>
                 <tr>
                 <td><input type="radio" name='is_reguler' value="Reguler" <?= ($detail_pendaftaran['is_reguler'] == 'Reguler') ? 'checked' : ''?>>Reguler</td>

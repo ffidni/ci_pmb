@@ -48,14 +48,22 @@
 
             <?php if ($this->session->userdata("hak_akses") == "admin") {?>
                 <a href="<?= base_url('admin/verifikasi/pengguna')?>" class="btn"><span class="mdi mdi-note"></span>Verifikasi Data</a>
+                <a href="<?= base_url('admin/stats')?>" class="btn"><span class="mdi mdi-chart-pie"></span>Statistik Afiliator</a>
+
                 <?php } else {?>
+                    <?php if ($detail_pendaftaran['approved'] == "1") {?>
+                        <iframe src="<?= base_url('main/kartu')?>" style="display:none;" name="frame"></iframe>
+                        <a  onclick="frames['frame'].print()" class="btn"><span class="mdi mdi-note"></span>Kartu Pendaftaran</a>
+                    <?php } else {?>
                     <a href="<?= base_url('form/daftar/detail')?>" class="btn"><span class="mdi mdi-note"></span>Data Pendaftaran-mu</a>
                         <a href="<?= base_url('main/dokumen')?>" class="btn"><span class="mdi mdi-file-link"></span>Lengkapi Dokumen</a>
                         <a href="<?= base_url('main/pembayaran')?>" class="btn"><span class="mdi mdi-credit-card"></span>Konfirmasi Pembayaran</a>
+                    <?php }?>
                 <?php }?>
             <?php } else {?>
                  <?php if ($this->session->userdata("hak_akses") == "admin") {?>
-                    <a href="<?= base_url('admin/verifikasi')?>" class="btn"><span class="mdi mdi-note"></span>Verifikasi Data</a>
+                    <a href="<?= base_url('admin/verifikasi/pengguna')?>" class="btn"><span class="mdi mdi-note"></span>Verifikasi Data</a>
+                    <a href="<?= base_url('admin/stats')?>" class="btn"><span class="mdi mdi-chart-pie"></span>Statistik Afiliator</a>
                  <?php } else {?>
                     <a href="<?= base_url('form/daftar')?>" class="btn"><span class="mdi mdi-note"></span>Daftar</a>
                     <a  class="btn" id="info"><span class="mdi mdi-information-variant"></span>Cara Mendaftar</a>

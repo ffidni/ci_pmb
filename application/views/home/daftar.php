@@ -669,7 +669,12 @@
                 <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="hukum_keluarga_islam" name="id_prodi" value="3" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_prodi'] == '3') ? 'checked' : ''?>>
                     <label for="hukum_keluarga_islam">Hukum Keluarga Islam (S1)</label>
                 </td>
-            </tr>          
+            </tr>         
+            <td>
+                <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="ekonomi_syariah" name="id_prodi" value="4" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['id_prodi'] == '4') ? 'checked' : ''?>>
+                    <label for="hukum_keluarga_islam">Ekonomi Syariah (S1)</label>
+                </td>
+            </tr>    
             <tr>
             <td>
                 <input <?= (isset($admin_view)) ? 'disabled': ''?> type="radio" id="reguler" name="is_reguler" value="Reguler" <?= (!empty($detail_pendaftaran) && $detail_pendaftaran['is_reguler'] == 'Reguler') ? 'checked' : ''?>>
