@@ -9,6 +9,7 @@
 </head>
 <body>
     <?php $update_status = $this->session->flashdata("update_status")?>
+    <img src="<?= base_url('assets/homepage/images/header_print.jpg')?>" alt="" class="header-print to-print">
     <div id="modal" class="popup">
         <div class="batal-content">
             <form id="batal-form" method="post">
@@ -33,12 +34,12 @@
             <img id="imgBukti" src="" alt="">
         </div>
     </div>
-    <div class="container tab">
-        <div class="tab-links">
-            <button class="tab-link active-tab" onclick="openTab(event, 'daftar_pengguna')">Daftar Pengguna</button>
-            <button class="tab-link" onclick="openTab(event, 'daftar_mahasiswa')">Daftar Calon Mahasiswa</button>
+    <div class="container tab dont-print">
+        <div class="tab-links dont-print">
+            <button class="tab-link  <?= ($type == 'pengguna') ? 'active-tab' : ''?>" onclick="openTab(event, 'daftar_pengguna')">Daftar Pengguna</button>
+            <button class="tab-link  <?= ($type == 'mahasiswa') ? 'active-tab' : ''?>" onclick="openTab(event, 'daftar_mahasiswa')">Daftar Calon Mahasiswa</button>
         </div>
-        <div class="tab-content active" id="daftar_pengguna">
+        <div class="tab-content <?= ($type == 'pengguna') ? 'active' : ''?>" id="daftar_pengguna">
         <h2>Daftar Pengguna</h2>
         <div class="actions">
         <div class="inputs">
@@ -51,7 +52,6 @@
                 <option value="Belum Daftar">Belum Daftar</option>
                 <option value="Sudah Daftar">Sudah Daftar</option>
             </select>
-        </div>
         </div>
 
 
@@ -83,9 +83,14 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="tab-content" id="daftar_mahasiswa">
-        <h2>Daftar Calon Mahasiswa</h2>
+    </div>    
+        </div>
+
+    <div class="tab-content <?= ($type == 'mahasiswa') ? 'active' : ''?>" id="daftar_mahasiswa">
+
+        <h2>Daftar Calon Mahasiswa<br></h2>
+        
+
         <div class="actions">
         <div class="inputs">
             <span class="mdi mdi-magnify"></span><input placeholder='Cari Calon Mahasiswa' type="text" id="cari" onkeyup="search('cari', 'verifikasi_table')">
@@ -104,6 +109,7 @@
         </div>
 
         <div class="items">
+        <a class="btn" onclick="print()">Cetak Data</a>
         <table border="1" cellspacing="0" id="verifikasi_table">
             <thead>
             <tr>
@@ -140,31 +146,43 @@
                     <td data-label="Reguler/Non Reguler"><?= $row->is_reguler?></td>
                     <td data-label="Status"><?= $status?></td>
                     <td data-label="Dokumen">
-                            <a href="<?= base_url('main/lihat_dokumen/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn">Lihat</a>
+                            <a href="<?= base_url('main/lihat_dokumen/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi.'/'.$this->uri->segment('4'))?>" class="btn">Lihat</a>
 
                     </td>
                     <td data-label="Transaksi">
                     <?php if ($row->bukti_pembayaran) {?>
-                                <a href="<?= base_url('main/lihat_bukti/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi)?>" class="btn">Bukti</a>
+                                <a href="<?= base_url('main/lihat_bukti/'.$row->mhs_id.'/'.$row->mhs_nama.'/'.$row->nomor_seleksi.'/'.$this->uri->segment('4'))?>" class="btn">Bukti</a>
                                 <?php } else {?>
                                     Belum Bayar
                                 <?php }?>
                     </td>
                     <td data-label="Aksi">
                         <div class="buttons aksi-btn">
-                        <a href="<?= base_url('admin/user_detail/'.$row->mhs_id)?>" class="btn">Detail</a>
+                            <?php if ($this->uri->segment('4')) {?>
+                                    <a href="<?= base_url('admin/user_detail/'.$row->mhs_id.'/'.$this->uri->segment('4'))?>" class="btn">Detail</a>
+                                <?php } else {?>
+                                    <a href="<?= base_url('admin/user_detail/'.$row->mhs_id)?>" class="btn">Detail</a>
+
+                            <?php }?>
+                            
 
                         <?php if ($status != 'Menunggu konfirmasi') {?>
                             <a href="<?= base_url('admin/batal/'.$row->mhs_id)?>" class="btn">Batal</a>
                             <?php if ($status == 'Diterima'){?>
-                                <a href="<?= base_url('admin/user_detail/'.$row->mhs_id.'/'.'cetak')?>" class="btn">Cetak</a>
+                                <?php if ($this->uri->segment('4')) {?>
+                                    <a href="<?= base_url('admin/user_detail/'.$row->mhs_id.'/'.$this->uri->segment('4').'/cetak')?>" class="btn" onclick="change_link('mahasiswa')">Cetak</a>
+
+                                <?php } else {?>
+                                    <a href="<?= base_url('admin/user_detail/'.$row->mhs_id.'/'.'0'.'/cetak')?>" class="btn" onclick="change_link('mahasiswa')">Cetak</a>
+
+                                <?php }?>
                             <?php }?>
                             
                         <?php } else {?>
                             <a href="<?= base_url('admin/accept/'.$row->mhs_id)?>"  class="btn">Terima</a>
                             <a class="btn tolak" onclick="openModal('<?= $row->mhs_id?>')">Tolak</a>
                         <?php }?>
-                                                </div>
+                        </div>
 
                     </td>
 
@@ -174,9 +192,70 @@
             </tbody>
         </table>
         </div>
+        <?= $this->pagination->create_links()?>
+    </div>
     </div>
 
+    <table border="1" cellspacing="0" id="verifikasi_table2" class="to-print">
 
+            <thead>
+            <tr>
+                <th scope="col">Nomor Seleksi</th>
+                <th scope="col">Nomor HP</th>
+                <th scope="col">Asal Sekolah</th>
+                <th scope="col">Jurusan</th>
+                <th scope="col">Reguler/Non Reguler</th>
+                <th scope="col">Status</th>
+                <th scope="col">Dokumen</th>
+                <th scope="col">Transaksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($data_mahasiswa as $row) {?>
+                <?php
+                    $approved = $row->approved;
+                    $status = '';
+                    if ($approved == '0'){
+                        $status = 'Ditolak';
+                    } else if ($approved == '1'){
+                        $status = 'Diterima';
+                    } else {
+                    $status = 'Menunggu konfirmasi';
+
+                    }
+                ?>
+                <tr>
+                    <td data-label="Nomor Seleksi"><?= $row->nomor_seleksi?></td>
+                    <td data-label="Nomor HP"><?= $row->no_hp?></td>
+                    <td data-label="Asal Sekolah"><?= $row->nama_sekolah?></td>
+                    <td data-label="Jurusan"><?= $row->nama ?></td>
+                    <td data-label="Reguler/Non Reguler"><?= $row->is_reguler?></td>
+                    <td data-label="Status"><?= $status?></td>
+                    <td data-label="Dokumen">
+                            <?php 
+                                $lengkap = "Belum Lengkap";
+                                if ($row->pas_foto && $row->ktp && $row->kartu_keluarga && $row->ijazah){
+                                    $lengkap = "Lengkap";
+                                }
+                                echo $lengkap;
+                            ?>
+                    </td>
+                    <td data-label="Transaksi">
+                    <?php if ($row->bukti_pembayaran) {?>
+                                Sudah Bayar
+                                <?php } else {?>
+                                    Belum Bayar
+                                <?php }?>
+                    </td>
+                </tr>
+            <?php }?>
+            </tbody>
+        </table>
+        <img src="<?= base_url('assets/homepage/images/footer_print.jpg')?>" alt="" class="footer-print to-print">
+
+
+    
+    
     <script>
             <?php if (isset($update_status)) {?> 
                 var notif = document.getElementById("notif");
@@ -207,6 +286,21 @@
         var form = document.getElementById("batal-form");
         var currId = ''
 
+        function isNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+        function change_link(link){
+            const stateObj = { foo: 'bar' };
+            var curr = window.location.toString();
+            var currSplit = curr.split("/");
+            if (currSplit[currSplit.length - 2] == "mahasiswa"){
+                window.location = curr.replace("mahasiswa/" + currSplit[currSplit.length - 1], link);
+            } else {
+                history.replaceState('', '', link);
+            }
+        }
+
         function openTab(event, tab){
               var tab_content, tab_links;
 
@@ -223,6 +317,12 @@
               document.getElementById(tab).style.display = "block";
               if (event) {
               event.currentTarget.classList.add("active-tab");
+              }
+
+              if (tab == 'daftar_pengguna'){
+                  change_link('pengguna');
+              } else {
+                  change_link('mahasiswa');
               }
               window.scrollTo(0,0);
               

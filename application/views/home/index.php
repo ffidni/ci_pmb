@@ -47,7 +47,7 @@
             <?php if (!empty($detail_pendaftaran)) {?>
 
             <?php if ($this->session->userdata("hak_akses") == "admin") {?>
-                <a href="<?= base_url('admin/verifikasi')?>" class="btn"><span class="mdi mdi-note"></span>Verifikasi Data</a>
+                <a href="<?= base_url('admin/verifikasi/pengguna')?>" class="btn"><span class="mdi mdi-note"></span>Verifikasi Data</a>
                 <?php } else {?>
                     <a href="<?= base_url('form/daftar/detail')?>" class="btn"><span class="mdi mdi-note"></span>Data Pendaftaran-mu</a>
                         <a href="<?= base_url('main/dokumen')?>" class="btn"><span class="mdi mdi-file-link"></span>Lengkapi Dokumen</a>

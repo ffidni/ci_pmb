@@ -29,7 +29,11 @@
                 <?php if (isset($lihat_bukti)) {?>
                     <img src="<?= $lihat_bukti['img']['bukti_pembayaran']?>" alt="">
                     <div class="buttons">
-                        <a class="btn" href="<?= base_url('admin/verifikasi')?>">Kembali</a>
+                    <?php if ($page) {?>
+                        <a class="btn" href="<?= base_url('admin/verifikasi/mahasiswa/'.$page)?>">Kembali</a>
+                    <?php } else {?>
+                        <a class="btn" href="<?= base_url('admin/verifikasi/mahasiswa')?>">Kembali</a>
+                    <?php }?>
                     </div>
                 <?php }else if ($detail_pendaftaran['approved'] == "1") {?>
                     <h4>Bukti transaksi pembayaran anda sudah dikonfirmasi.</h4>

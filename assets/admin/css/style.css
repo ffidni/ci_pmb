@@ -6,6 +6,8 @@
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     text-decoration: none;
+    -webkit-print-color-adjust: exact
+
 
 }
 .form-control {
@@ -124,8 +126,8 @@ table th {
 
 
 .items {
-
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
@@ -408,14 +410,66 @@ a {
 .tab-content {
     display: none;
 }
-
 .belum-daftar {
-    background-color: rgb(240, 200, 68);
+    color: rgb(200, 160, 0);
 }
 
 .sudah-daftar {
-    background-color:rgb(100, 229, 64);
+    color:rgb(40, 148, 11);
 }
+
+.to-print {
+    display: none;
+}
+
+.header-print, .footer-print {
+    width: 100%;
+}
+
+.pagination ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.pagination ul li {
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+
+
+@media print {
+
+    #verifikasi_table2 {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 30px;
+    }
+
+    .header-print {
+        position: absolute;
+        top: 0;
+    }
+    
+    .footer-print {
+        position: absolute;
+        bottom: 0;
+    }
+
+
+    .dont-print {
+        display: none;
+    }
+
+    .to-print {
+        display: block;
+    }
+
+}
+
 
 @media screen and (max-width: 980px) {
 

@@ -93,6 +93,7 @@
     color: rgb(255, 255, 255);
     font-size: 2em;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .steps ol {
@@ -276,6 +277,14 @@ section h1 {
     font-size: 2rem;
 }
 
+@media print {
+
+
+    .dont-print {
+        display: none;
+
+    }
+}
 
 
 @media only screen and (max-width: 992px) {

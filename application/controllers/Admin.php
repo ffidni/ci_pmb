@@ -15,10 +15,47 @@
 
         }
 
-        public function verifikasi(){
-            $data['data_mahasiswa'] = $this->Form_model->get_mahasiswa()->result();
+        public function verifikasi($type = "pengguna"){
+            $jumlah_data = $this->Form_model->count_mahasiswa();
+            $this->load->library('pagination');
+            $config['base_url'] = base_url('admin/verifikasi/mahasiswa');
+            $config['total_rows'] = $jumlah_data;
+            $config['per_page'] = 15;
+
+            $config['full_tag_open'] = '<div class="pagination"><ul>';
+            $config['full_tag_close'] = '</ul></div><!--pagination-->';
+        
+            $config['first_link'] = '&laquo; First';
+            $config['first_tag_open'] = '<li class="prev page">';
+            $config['first_tag_close'] = '</li>';
+        
+            $config['last_link'] = 'Last &raquo;';
+            $config['last_tag_open'] = '<li class="next page">';
+            $config['last_tag_close'] = '</li>';
+        
+            $config['next_link'] = 'Selanjutnya &rarr;';
+            $config['next_tag_open'] = '<li class="next page">';
+            $config['next_tag_close'] = '</li>';
+        
+            $config['prev_link'] = '&larr; Sebelumnya';
+            $config['prev_tag_open'] = '<li class="prev page">';
+            $config['prev_tag_close'] = '</li>';
+        
+            $config['cur_tag_open'] = '<li class="active"><a class="btn">';
+            $config['cur_tag_close'] = '</a></li>';
+        
+            $config['num_tag_open'] = '<li class="page">';
+            $config['num_tag_close'] = '</li>';
+            $from = $this->uri->segment(4);
+            $this->pagination->initialize($config);
+
+
+
+            $data['data_mahasiswa'] = $this->Form_model->get_mahasiswa($config['per_page'], $from)->result();
             $data['data_pengguna'] = $this->Auth_model->get_data()->result();
             $data['title'] = "Verifikasi Data";
+            $data['type'] = $type;
+
             $this->load->view("home/sidebar", $data);
             $this->load->view("admin/verifikasi", $data);   
         }
@@ -39,16 +76,17 @@
             redirect('admin/verifikasi');
         }
 
-        public function user_detail($mhs_id, $print_view = false){
+        public function user_detail($mhs_id, $page = '', $print_view = false){
             $data = [
                 'provinsi' => $this->Form_model->getprovinsi(),
                 'pendidikan' => $this->Form_model->get_pendidikan(),
                 'mhs_pendidikan' => array("SMA", "SMK", "MA", "Paket C"),
                 'is_home' => false,
                 'is_edit' => false,
+                'page' => $page,
             ];
             $data['detail_pendaftaran'] = $this->Form_model->get_details($mhs_id)->row_array();
-    
+            
             if ($print_view){
                 $data['is_print'] = $print_view;
                 $kec = $data['detail_pendaftaran']['kec'];

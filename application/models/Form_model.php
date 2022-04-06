@@ -59,10 +59,14 @@ class Form_model extends CI_Model {
         return $this->db->get("mahasiswa");
     }
 
-    public function get_mahasiswa(){
-        $this->db->select('mahasiswa.mhs_id, mahasiswa.mhs_nama, mahasiswa.bukti_pembayaran, mahasiswa.nomor_seleksi, mahasiswa.mhs_nama, mahasiswa.no_hp, mahasiswa.nama_sekolah, prodi.nama, mahasiswa.is_reguler, mahasiswa.approved');
+    public function count_mahasiswa(){
+        return $this->db->get('mahasiswa')->num_rows();
+    }
+
+    public function get_mahasiswa($number, $offset){
+        $this->db->select('mahasiswa.mhs_id, mahasiswa.pas_foto, mahasiswa.ktp, mahasiswa.kartu_keluarga, mahasiswa.ijazah, mahasiswa.mhs_nama, mahasiswa.bukti_pembayaran, mahasiswa.nomor_seleksi, mahasiswa.mhs_nama, mahasiswa.no_hp, mahasiswa.nama_sekolah, prodi.nama, mahasiswa.is_reguler, mahasiswa.approved');
         $this->db->join("prodi", "prodi.id = mahasiswa.id_prodi");
-        return $this->db->get("mahasiswa");
+        return $this->db->get("mahasiswa", $number, $offset);
     }
 
     public function get_pekerjaan($id) {

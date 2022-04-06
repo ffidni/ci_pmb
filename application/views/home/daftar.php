@@ -158,7 +158,12 @@
             <?php if ($is_edit && !isset($admin_view)) {?>
                     <input <?= (isset($admin_view)) ? 'readonly': ''?> type="submit" class="btn btn-perbarui" value="Perbarui">
                 <?php } else if (isset($admin_view)) {?>
-                    <a href="<?= base_url('admin/verifikasi')?>" class="btn">Kembali ke Verifikasi</a>
+                    <?php if ($page) {?>
+                        <a href="<?= base_url('admin/verifikasi/mahasiswa/'.$page)?>" class="btn">Kembali ke Verifikasi</a>
+                    <?php } else {?>
+                        <a href="<?= base_url('admin/verifikasi/mahasiswa')?>" class="btn">Kembali ke Verifikasi</a>
+
+                    <?php }?>
                 <?php }?>
                 
                 <a data-target="latar_belakang" class="btn btn-next">Selanjutnya</a>
@@ -239,7 +244,7 @@
                 <?php if ($is_edit && !isset($admin_view)) {?>
                     <input <?= (isset($admin_view)) ? 'readonly': ''?> type="submit" class="btn btn-perbarui" value="Perbarui">
                 <?php } else if (isset($admin_view)) {?>
-                    <a href="<?= base_url('admin/verifikasi')?>" class="btn">Kembali ke Verifikasi</a>
+                    <a href="<?= base_url('admin/verifikasi/mahasiswa')?>" class="btn">Kembali ke Verifikasi</a>
                 <?php }?>
                 <a data-target="data_ortu" class="btn btn-next">Selanjutnya</a>
             </div>

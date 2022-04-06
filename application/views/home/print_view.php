@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/print_style.css')?>">
 
   <script src="<?= base_url('assets/bootstrap/js/jquery.min.js')?>"></script>
+  
 </head>
 <body>
+    <img src="<?= base_url('assets/homepage/images/header_print.jpg')?>" alt="">
+    
     <div class="container">
-        <h3>STAINU Formulir Pendaftaran Mahasiswa Baru Tahun 2022/2023</h3>
+        <h3>Formulir Pendaftaran Mahasiswa Baru Tahun 2022/2023</h3>
         <div class="container-row">
         <h3>Data Diri Calon Mahasiswa Baru</h3>
         <table>
@@ -68,10 +71,10 @@
                 <tr>
                     <td><label for="">Pendidikan Terakhir</label></td>
                     <td>
-                        <input type="radio" name="pendidikan_id" value="1" <?= ($detail_pendaftaran['pendidikan_id'] == '1') ? 'checked': ''?>>SMA
-                        <input type="radio" name="pendidikan_id" value="2" <?= ($detail_pendaftaran['pendidikan_id'] == '2') ? 'checked': ''?>>MA
-                        <input type="radio" name="pendidikan_id" value="3" <?= ($detail_pendaftaran['pendidikan_id'] == '3') ? 'checked': ''?>>SMK
-                        <input type="radio" name="pendidikan_id" value="4" <?= ($detail_pendaftaran['pendidikan_id'] == '4') ? 'checked': ''?>>Paket C
+                        <input type="radio" name="pendidikan_id" value="1" <?= ($detail_pendaftaran['pendidikan_id'] == '7') ? 'checked': ''?>>SMA
+                        <input type="radio" name="pendidikan_id" value="2" <?= ($detail_pendaftaran['pendidikan_id'] == '8') ? 'checked': ''?>>MA
+                        <input type="radio" name="pendidikan_id" value="3" <?= ($detail_pendaftaran['pendidikan_id'] == '9') ? 'checked': ''?>>SMK
+                        <input type="radio" name="pendidikan_id" value="4" <?= ($detail_pendaftaran['pendidikan_id'] == '10') ? 'checked': ''?>>Paket C
                 </td>
                 <td><label for="">Nama Sekolah</label></td>
                 <td><p><?= $detail_pendaftaran['nama_sekolah']?></p></td>
@@ -207,9 +210,11 @@
                       </td>
                   </tr>
               </table>
-
+        </div>
     </div>
-
+    <div class="footer">
+    <img src="<?= base_url('assets/homepage/images/footer_print.jpg')?>" alt="" id="footer">
+    </div>
 
     <script>
     
@@ -636,5 +641,8 @@
 
       window.print();
     </script>
+
+
 </body>
+
 </html>

@@ -56,7 +56,7 @@
                 </li>
                 <?php if ($this->session->userdata('hak_akses') == 'admin') {?>
                     <li>
-                        <a href="<?= base_url('admin/verifikasi')?>"  class="sidebar-button">Verifikasi Data</a>           
+                        <a href="<?= base_url('admin/verifikasi/pengguna')?>"  class="sidebar-button">Verifikasi Data</a>           
                     </li>
                 <?php }?>   
                 <li>
@@ -66,7 +66,8 @@
         </div>
     </div>
 
-    <nav class="nav-header">
+
+    <nav class="nav-header dont-print">
         <div class="header-container">
         <?php if (!isset($is_print)) {?>
         <div class="menu">

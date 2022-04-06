@@ -101,12 +101,13 @@ class Main extends CI_Controller {
 
     }
 
-    public function lihat_bukti($id, $nama, $nomor_seleksi){
+    public function lihat_bukti($id, $nama, $nomor_seleksi, $page = ''){
         $data['lihat_bukti'] = array();
         $data['lihat_bukti']['img'] = $this->Form_model->get_img($id);
         $data['lihat_bukti']['nomor_seleksi'] = $nomor_seleksi;
         $data['lihat_bukti']['nama'] = str_replace("%20", " ", $nama);
         $data['title'] = "Lihat Bukti";
+        $data['page'] = $page;
         $this->load->view("home/sidebar", $data);
         $this->load->view("home/pembayaran", $data);
 
@@ -124,12 +125,13 @@ class Main extends CI_Controller {
         $this->load->view("home/dokumen", $data);
     }
 
-    public function lihat_dokumen($id, $nama, $nomor_seleksi) {
+    public function lihat_dokumen($id, $nama, $nomor_seleksi, $page = '') {
         $data['lihat_dokumen'] = array();
         $data['lihat_dokumen']['id'] = $id;
         $data['lihat_dokumen']['title'] = $nama.' ('.$nomor_seleksi.')';
         $data['lihat_dokumen']['title'] = str_replace("%20", " ", $data['lihat_dokumen']['title']);
         $data['title'] = "Lihat Dokumen";
+        $data['page'] = $page;
 
         $this->load->view("home/sidebar", $data);
         $this->load->view("home/dokumen", $data);

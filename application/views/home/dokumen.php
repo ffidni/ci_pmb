@@ -31,7 +31,11 @@
             <h3>Kelengkapan Dokumen <?= (isset($lihat_dokumen)) ? '<br>'.$lihat_dokumen['title'] : '' ?></h3>
             <?= (isset($error)) ? $error : ''?>
             <div class="buttons">
-                        <a class="btn" href="<?= base_url('admin/verifikasi')?>">Kembali</a>
+                <?php if ($page) {?>
+                    <a class="btn" href="<?= base_url('admin/verifikasi/mahasiswa/'.$page)?>">Kembali</a>
+                <?php } else {?>
+                    <a class="btn" href="<?= base_url('admin/verifikasi/mahasiswa')?>">Kembali</a>
+                <?php }?>
             </div>
         </div>
         <div class="docs">
