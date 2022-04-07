@@ -59,10 +59,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
             maxValues.forEach(value => {
-            var index = maxValues.indexOf(value);
+            var index = xValues.indexOf(value);
+            var indexMax = maxValues.indexOf(value);
             var color = `<span class='color' id='color${index+colorOffset}'>${value}</span>`
             console.log(color);
-            maxValues[index] = color;
+            maxValues[indexMax] = color;
         });
 
 
@@ -96,11 +97,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
     var afiliatorNames = ["Sosial Media", "Dosen", "Alumni", "NU", "Lainnya"];
     var prodiTitles = ["Manajemen Pendidikan Islam", "Komunikasi Penyiaran Islam", "Hukum Keluarga Islam", "Ekonomi Syariah"];
     var afiliatorColors = {
-                    0:"#b91d47",
+                    0:"#d12250",
                     1:"#00aba9",
-                    2:"#2b5797",
-                    3:"#1e7145",
-                    4:"grey",
+                    2:"#346cbf",
+                    3:"#24975a",
+                    4:"#8d8d8d",
     };
     var prodiColors = {
         5: "#1db966",
