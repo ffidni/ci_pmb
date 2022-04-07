@@ -17,6 +17,13 @@
             max-width: 500px;
         }
 
+        .even{
+            padding: 0;
+            padding-left: 20px;
+            border-left: 1px solid lightgrey;
+            border-right: none;
+        }
+
         .color {
             padding: 3px;
         }
@@ -34,16 +41,35 @@
         }
 
         #color3 {
-            background-color: #e8c3b9;
-        }
-
-        #color4 {
             background-color: #1e7145;
         }
 
+        #color4 {
+            background-color: grey;
+        }
+
+        #color5 {
+            background-color: #1db966;
+        }
+
+        #color6 {
+            background-color: #1d88b9;
+        }
+
+
+        #color7 {
+            background-color: #b9921d;
+        }
+
+
+        #color8 {
+            background-color: #82b91d;    
+        }
+
+
         .main-container {
             display: flex;
-            height: 80vh;
+            margin-top: 10vh;
             flex-direction: column;
             justify-content: space-around;
         }
@@ -51,7 +77,19 @@
         h1{
             text-align: center;
             color: rgb(45, 45, 45);
+            margin-bottom: 30px;
         }
+
+        canvas {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .main-stats {
+            margin-bottom: 10vh;
+        }
+
+        
 
         @media screen and (max-width: 950px){
 
@@ -62,10 +100,13 @@
                 flex-direction: column;
             }
 
-            #myChart {
+            canvas {
                 order: -1;
                 padding-bottom: 30px;
             }
+
+
+
 
             
 

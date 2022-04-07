@@ -115,6 +115,7 @@
             <tr>
                 <th scope="col">Nomor Seleksi</th>
                 <th scope="col">Nomor HP</th>
+                <th scope="col">Nama</th>
                 <th scope="col">Asal Sekolah</th>
                 <th scope="col">Jurusan</th>
                 <th scope="col">Reguler/Non Reguler</th>
@@ -141,6 +142,7 @@
                 <tr>
                     <td data-label="Nomor Seleksi"><?= $row->nomor_seleksi?></td>
                     <td data-label="Nomor HP"><?= $row->no_hp?></td>
+                    <td data-label="Nama"><?= $row->mhs_nama?></td>
                     <td data-label="Asal Sekolah"><?= $row->nama_sekolah?></td>
                     <td data-label="Jurusan"><?= $row->nama ?></td>
                     <td data-label="Reguler/Non Reguler"><?= $row->is_reguler?></td>
@@ -211,6 +213,7 @@
             <tr>
                 <th scope="col">Nomor Seleksi</th>
                 <th scope="col">Nomor HP</th>
+                <th scope="col">Nama</th>
                 <th scope="col">Asal Sekolah</th>
                 <th scope="col">Jurusan</th>
                 <th scope="col">Reguler/Non Reguler</th>
@@ -236,6 +239,7 @@
                 <tr>
                     <td data-label="Nomor Seleksi"><?= $row->nomor_seleksi?></td>
                     <td data-label="Nomor HP"><?= $row->no_hp?></td>
+                    <td data-label="Nama"><?= $row->mhs_nama?></td>
                     <td data-label="Asal Sekolah"><?= $row->nama_sekolah?></td>
                     <td data-label="Jurusan"><?= $row->nama ?></td>
                     <td data-label="Reguler/Non Reguler"><?= $row->is_reguler?></td>

@@ -59,7 +59,7 @@
                         <a href="<?= base_url('admin/verifikasi/pengguna')?>"  class="sidebar-button">Verifikasi Data</a>           
                     </li>
                     <li>
-                        <a href="<?= base_url('admin/stats')?>" class="sidebar-button">Statistik Afiliator</a>
+                        <a href="<?= base_url('admin/stats')?>" class="sidebar-button">Statistik</a>
                     </li>
                 <?php }?>   
                 <li>
